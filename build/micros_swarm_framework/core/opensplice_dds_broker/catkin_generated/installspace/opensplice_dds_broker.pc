@@ -1,0 +1,8 @@
+prefix=/home/roberto/COverage_ws/install
+
+Name: opensplice_dds_broker
+Description: Description of opensplice_dds_broker
+Version: 0.0.17
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy micros_swarm

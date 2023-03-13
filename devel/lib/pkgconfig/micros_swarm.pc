@@ -1,0 +1,8 @@
+prefix=/home/roberto/COverage_ws/devel
+
+Name: micros_swarm
+Description: Description of micros_swarm
+Version: 0.0.17
+Cflags: -I/home/roberto/COverage_ws/src/micros_swarm_framework/core/micros_swarm/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs message_runtime app_loader gsdf_msgs

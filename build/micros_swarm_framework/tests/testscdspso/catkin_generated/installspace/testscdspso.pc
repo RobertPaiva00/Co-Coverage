@@ -1,0 +1,8 @@
+prefix=/home/roberto/COverage_ws/install
+
+Name: testscdspso
+Description: Description of testscdspso
+Version: 0.0.17
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: micros_swarm roscpp rospy std_msgs nav_msgs geometry_msgs

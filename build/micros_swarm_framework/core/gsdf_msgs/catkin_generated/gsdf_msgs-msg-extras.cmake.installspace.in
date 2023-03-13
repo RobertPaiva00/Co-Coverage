@@ -1,0 +1,2 @@
+set(gsdf_msgs_MESSAGE_FILES "msg/CommHeader.msg;msg/CommContent.msg;msg/CommPacket.msg;msg/RobotBase.msg;msg/JoinSwarm.msg;msg/LeaveSwarm.msg;msg/SwarmList.msg;msg/VirtualStigmergyQuery.msg;msg/VirtualStigmergyPut.msg;msg/VirtualStigmergyPuts.msg;msg/BlackBoardQuery.msg;msg/BlackBoardAck.msg;msg/BlackBoardPut.msg;msg/SCDSPSOGet.msg;msg/SCDSPSOPut.msg;msg/NeighborBroadcastKeyValue.msg;msg/BarrierSyn.msg;msg/BarrierAck.msg")
+set(gsdf_msgs_SERVICE_FILES "")

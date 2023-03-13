@@ -1,0 +1,8 @@
+prefix=/home/roberto/COverage_ws/devel
+
+Name: micros_swarm_gazebo
+Description: Description of micros_swarm_gazebo
+Version: 0.0.17
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

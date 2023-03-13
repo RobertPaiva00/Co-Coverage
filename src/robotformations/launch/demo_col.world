@@ -1,0 +1,25 @@
+include "ISRsea1.inc"
+
+pioneer
+(		  
+  # Can refer to the robot by this name
+  name "pioneer0"
+  pose [ 1.000 2.500 0.000 0.000 ]
+	color "black"
+)
+
+pioneer
+(		  
+  # Can refer to the robot by this name
+  name "pioneer1"
+  pose [ 1.000 3.000 0.000 0.000 ]
+	color "blue"
+)
+
+pioneer
+(		  
+  # Can refer to the robot by this name
+  name "pioneer2"
+  pose [ 1.000 2.000 0.000 0.000 ]
+	color "red"
+)

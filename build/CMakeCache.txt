@@ -20,6 +20,20 @@ BUILD_GMOCK:BOOL=ON
 //Build dynamically-linked binaries
 BUILD_SHARED_LIBS:BOOL=ON
 
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0
+
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=/usr/include
+
+Boost_REGEX_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0
+
+Boost_SERIALIZATION_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_serialization.so.1.71.0
+
+Boost_SYSTEM_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
+
+Boost_THREAD_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
+
 //List of ';' separated packages to exclude
 CATKIN_BLACKLIST_PACKAGES:STRING=
 
@@ -367,6 +381,12 @@ UBUNTU:BOOL=TRUE
 //LSB Distrib - codename tag
 UBUNTU_FOCAL:BOOL=TRUE
 
+//Dependencies for the target
+UDPBCBroker_LIB_DEPENDS:STATIC=general;Boost::thread;general;Boost::regex;general;Boost::serialization;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;
+
+//Using OpenSplice DDS
+USE_OPENSPLICE_DDS:BOOL=OFF
+
 //Path to a file.
 _gmock_INCLUDES:FILEPATH=/usr/src/googletest/googlemock/include/gmock/gmock.h
 
@@ -379,8 +399,98 @@ _gtest_INCLUDES:FILEPATH=/usr/include/gtest/gtest.h
 //Path to a file.
 _gtest_SOURCES:FILEPATH=/usr/src/gtest/src/gtest.cc
 
+//The directory containing a CMake configuration file for actionlib.
+actionlib_DIR:PATH=/opt/ros/noetic/share/actionlib/cmake
+
+//The directory containing a CMake configuration file for actionlib_msgs.
+actionlib_msgs_DIR:PATH=/opt/ros/noetic/share/actionlib_msgs/cmake
+
+//Value Computed by CMake
+app1_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/applications/app1
+
+//Value Computed by CMake
+app1_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/applications/app1
+
+//Value Computed by CMake
+app2_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/applications/app2
+
+//Value Computed by CMake
+app2_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/applications/app2
+
+//Value Computed by CMake
+app3_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/applications/app3
+
+//Value Computed by CMake
+app3_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/applications/app3
+
+//Value Computed by CMake
+app_loader_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/core/app_loader
+
+//The directory containing a CMake configuration file for app_loader.
+app_loader_DIR:PATH=/home/roberto/COverage_ws/devel/share/app_loader/cmake
+
+//Value Computed by CMake
+app_loader_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/core/app_loader
+
+//The directory containing a CMake configuration file for boost_atomic.
+boost_atomic_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_atomic-1.71.0
+
+//The directory containing a CMake configuration file for boost_headers.
+boost_headers_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.71.0
+
+//The directory containing a CMake configuration file for boost_regex.
+boost_regex_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_regex-1.71.0
+
+//The directory containing a CMake configuration file for boost_serialization.
+boost_serialization_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_serialization-1.71.0
+
+//The directory containing a CMake configuration file for boost_system.
+boost_system_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_system-1.71.0
+
+//The directory containing a CMake configuration file for boost_thread.
+boost_thread_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_thread-1.71.0
+
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
+
+//The directory containing a CMake configuration file for class_loader.
+class_loader_DIR:PATH=/opt/ros/noetic/share/class_loader/cmake
+
+//Value Computed by CMake
+co-coverage_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/co-coverage
+
+//Value Computed by CMake
+co-coverage_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/co-coverage
+
+//The directory containing a CMake configuration file for cpp_common.
+cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake
+
+//Value Computed by CMake
+gazebo_flocking_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/applications/gazebo_flocking
+
+//Value Computed by CMake
+gazebo_flocking_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/applications/gazebo_flocking
+
+//The directory containing a CMake configuration file for gencpp.
+gencpp_DIR:PATH=/opt/ros/noetic/share/gencpp/cmake
+
+//The directory containing a CMake configuration file for geneus.
+geneus_DIR:PATH=/opt/ros/noetic/share/geneus/cmake
+
+//The directory containing a CMake configuration file for genlisp.
+genlisp_DIR:PATH=/opt/ros/noetic/share/genlisp/cmake
+
+//The directory containing a CMake configuration file for genmsg.
+genmsg_DIR:PATH=/opt/ros/noetic/share/genmsg/cmake
+
+//The directory containing a CMake configuration file for gennodejs.
+gennodejs_DIR:PATH=/opt/ros/noetic/share/gennodejs/cmake
+
+//The directory containing a CMake configuration file for genpy.
+genpy_DIR:PATH=/opt/ros/noetic/share/genpy/cmake
+
+//The directory containing a CMake configuration file for geometry_msgs.
+geometry_msgs_DIR:PATH=/opt/ros/noetic/share/geometry_msgs/cmake
 
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/gtest/googlemock
@@ -402,6 +512,15 @@ googletest-distribution_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/gtest
 
 //Value Computed by CMake
 googletest-distribution_SOURCE_DIR:STATIC=/usr/src/googletest
+
+//Value Computed by CMake
+gsdf_msgs_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/core/gsdf_msgs
+
+//The directory containing a CMake configuration file for gsdf_msgs.
+gsdf_msgs_DIR:PATH=/home/roberto/COverage_ws/devel/share/gsdf_msgs/cmake
+
+//Value Computed by CMake
+gsdf_msgs_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/core/gsdf_msgs
 
 //Value Computed by CMake
 gtest_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/gtest/googletest
@@ -428,11 +547,193 @@ gtest_hide_internal_symbols:BOOL=OFF
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
+//Value Computed by CMake
+hector_uav_msgs_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tools/hector_quadrotor/hector_uav_msgs
+
+//Value Computed by CMake
+hector_uav_msgs_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tools/hector_quadrotor/hector_uav_msgs
+
+//Path to a library.
+lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
+
+//The directory containing a CMake configuration file for message_filters.
+message_filters_DIR:PATH=/opt/ros/noetic/share/message_filters/cmake
+
+//The directory containing a CMake configuration file for message_generation.
+message_generation_DIR:PATH=/opt/ros/noetic/share/message_generation/cmake
+
+//The directory containing a CMake configuration file for message_runtime.
+message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
+
+//Value Computed by CMake
+micros_swarm_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/core/micros_swarm
+
+//The directory containing a CMake configuration file for micros_swarm.
+micros_swarm_DIR:PATH=/home/roberto/COverage_ws/devel/share/micros_swarm/cmake
+
+//Value Computed by CMake
+micros_swarm_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/core/micros_swarm
+
+//Value Computed by CMake
+micros_swarm_framework_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/micros_swarm_framework
+
+//Value Computed by CMake
+micros_swarm_framework_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/micros_swarm_framework
+
+//Value Computed by CMake
+micros_swarm_gazebo_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tools/micros_swarm_gazebo
+
+//Value Computed by CMake
+micros_swarm_gazebo_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tools/micros_swarm_gazebo
+
+//Value Computed by CMake
+micros_swarm_stage_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tools/micros_swarm_stage
+
+//Value Computed by CMake
+micros_swarm_stage_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tools/micros_swarm_stage
+
+//The directory containing a CMake configuration file for nav_msgs.
+nav_msgs_DIR:PATH=/opt/ros/noetic/share/nav_msgs/cmake
+
+//Value Computed by CMake
+olfati_saber_flocking_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/swarm_library/olfati_saber_flocking
+
+//Value Computed by CMake
+olfati_saber_flocking_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/swarm_library/olfati_saber_flocking
+
+//Value Computed by CMake
+opensplice_dds_broker_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/core/opensplice_dds_broker
+
+//Value Computed by CMake
+opensplice_dds_broker_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/core/opensplice_dds_broker
+
+//The directory containing a CMake configuration file for pluginlib.
+pluginlib_DIR:PATH=/opt/ros/noetic/share/pluginlib/cmake
+
+//Value Computed by CMake
+pso_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/swarm_library/pso
+
+//Value Computed by CMake
+pso_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/swarm_library/pso
+
+//Value Computed by CMake
+robotformations_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/robotformations
+
+//Value Computed by CMake
+robotformations_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/robotformations
+
+//Value Computed by CMake
+ros_broker_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/core/ros_broker
+
+//Value Computed by CMake
+ros_broker_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/core/ros_broker
+
+//The directory containing a CMake configuration file for rosconsole.
+rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
+
+//The directory containing a CMake configuration file for roscpp.
+roscpp_DIR:PATH=/opt/ros/noetic/share/roscpp/cmake
+
+//The directory containing a CMake configuration file for roscpp_serialization.
+roscpp_serialization_DIR:PATH=/opt/ros/noetic/share/roscpp_serialization/cmake
+
+//The directory containing a CMake configuration file for roscpp_traits.
+roscpp_traits_DIR:PATH=/opt/ros/noetic/share/roscpp_traits/cmake
+
+//The directory containing a CMake configuration file for rosgraph.
+rosgraph_DIR:PATH=/opt/ros/noetic/share/rosgraph/cmake
+
+//The directory containing a CMake configuration file for rosgraph_msgs.
+rosgraph_msgs_DIR:PATH=/opt/ros/noetic/share/rosgraph_msgs/cmake
+
+//The directory containing a CMake configuration file for roslib.
+roslib_DIR:PATH=/opt/ros/noetic/share/roslib/cmake
+
+//The directory containing a CMake configuration file for rospack.
+rospack_DIR:PATH=/opt/ros/noetic/share/rospack/cmake
+
+//The directory containing a CMake configuration file for rospy.
+rospy_DIR:PATH=/opt/ros/noetic/share/rospy/cmake
+
+//The directory containing a CMake configuration file for rostime.
+rostime_DIR:PATH=/opt/ros/noetic/share/rostime/cmake
+
+//Dependencies for the target
+runtime_core_LIB_DEPENDS:STATIC=general;Boost::thread;general;Boost::regex;general;Boost::serialization;general;/opt/ros/noetic/lib/libclass_loader.so;general;/usr/lib/x86_64-linux-gnu/libPocoFoundation.so;general;/usr/lib/x86_64-linux-gnu/libdl.so;general;/opt/ros/noetic/lib/libroslib.so;general;/opt/ros/noetic/lib/librospack.so;general;/usr/lib/x86_64-linux-gnu/libpython3.8.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libtinyxml2.so;general;/opt/ros/noetic/lib/libroscpp.so;general;/usr/lib/x86_64-linux-gnu/libpthread.so;general;/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0;general;/opt/ros/noetic/lib/librosconsole.so;general;/opt/ros/noetic/lib/librosconsole_log4cxx.so;general;/opt/ros/noetic/lib/librosconsole_backend_interface.so;general;/usr/lib/x86_64-linux-gnu/liblog4cxx.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.71.0;general;/opt/ros/noetic/lib/libxmlrpcpp.so;general;/opt/ros/noetic/lib/libroscpp_serialization.so;general;/opt/ros/noetic/lib/librostime.so;general;/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.71.0;general;/opt/ros/noetic/lib/libcpp_common.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0;general;/usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4;
+
+//The directory containing a CMake configuration file for sensor_msgs.
+sensor_msgs_DIR:PATH=/opt/ros/noetic/share/sensor_msgs/cmake
+
+//The directory containing a CMake configuration file for std_msgs.
+std_msgs_DIR:PATH=/opt/ros/noetic/share/std_msgs/cmake
+
+//Value Computed by CMake
+test_statistic_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tests/test_statistic
+
+//Value Computed by CMake
+test_statistic_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tests/test_statistic
+
+//Value Computed by CMake
+testbb_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tests/testbb
+
+//Value Computed by CMake
+testbb_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tests/testbb
+
+//Value Computed by CMake
+testnc_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tests/testnc
+
+//Value Computed by CMake
+testnc_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tests/testnc
+
+//Value Computed by CMake
+testrth_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tests/testrth
+
+//Value Computed by CMake
+testrth_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tests/testrth
+
+//Value Computed by CMake
+testscdspso_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tests/testscdspso
+
+//Value Computed by CMake
+testscdspso_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tests/testscdspso
+
+//Value Computed by CMake
+testvstig_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/tests/testvstig
+
+//Value Computed by CMake
+testvstig_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/tests/testvstig
+
+//The directory containing a CMake configuration file for tf2.
+tf2_DIR:PATH=/opt/ros/noetic/share/tf2/cmake
+
+//The directory containing a CMake configuration file for tf2_msgs.
+tf2_msgs_DIR:PATH=/opt/ros/noetic/share/tf2_msgs/cmake
+
+//The directory containing a CMake configuration file for tf2_py.
+tf2_py_DIR:PATH=/opt/ros/noetic/share/tf2_py/cmake
+
+//The directory containing a CMake configuration file for tf2_ros.
+tf2_ros_DIR:PATH=/opt/ros/noetic/share/tf2_ros/cmake
+
+//The directory containing a CMake configuration file for tf.
+tf_DIR:PATH=/opt/ros/noetic/share/tf/cmake
+
+//Value Computed by CMake
+udp_bc_broker_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/micros_swarm_framework/core/udp_bc_broker
+
+//Value Computed by CMake
+udp_bc_broker_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/micros_swarm_framework/core/udp_bc_broker
+
+//The directory containing a CMake configuration file for xmlrpcpp.
+xmlrpcpp_DIR:PATH=/opt/ros/noetic/share/xmlrpcpp/cmake
+
 
 ########################
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
 //catkin environment
 CATKIN_ENV:INTERNAL=/home/roberto/COverage_ws/build/catkin_generated/env_cached.sh
 CATKIN_TEST_RESULTS_DIR:INTERNAL=/home/roberto/COverage_ws/build/test_results
@@ -576,7 +877,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=28
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -619,6 +920,8 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Boost
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake][cfound components: system thread regex serialization ][v1.71.0()]
 //Details about finding PY_em
 FIND_PACKAGE_MESSAGE_DETAILS_PY_em:INTERNAL=[/usr/lib/python3/dist-packages/em.py][v()]
 //Details about finding PythonInterp
@@ -653,6 +956,18 @@ PYTHON_EXECUTABLE-ADVANCED:INTERNAL=1
 PYTHON_INSTALL_DIR:INTERNAL=lib/python3/dist-packages
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/home/roberto/COverage_ws/install
+//ADVANCED property for variable: boost_atomic_DIR
+boost_atomic_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_headers_DIR
+boost_headers_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_regex_DIR
+boost_regex_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_serialization_DIR
+boost_serialization_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_system_DIR
+boost_system_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_thread_DIR
+boost_thread_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gmock_build_tests
 gmock_build_tests-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: gtest_build_samples

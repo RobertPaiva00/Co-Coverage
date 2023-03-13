@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/roberto/COverage_ws/src/micros_swarm_framework/tests/test_statistic/src/test_pso.cpp
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+time.h
+-
+unistd.h
+-
+

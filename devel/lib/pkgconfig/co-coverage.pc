@@ -1,0 +1,8 @@
+prefix=/home/roberto/COverage_ws/devel
+
+Name: co-coverage
+Description: Description of co-coverage
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

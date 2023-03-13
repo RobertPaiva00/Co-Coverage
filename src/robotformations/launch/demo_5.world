@@ -1,0 +1,41 @@
+include "wild.inc"
+
+pioneer
+(		  
+  # Can refer to the robot by this name
+  name "pioneer0"
+  pose [ 1.000 1.000 0.000 0.000 ]
+	color "black"
+)
+
+pioneer
+(		  
+  # Can refer to the robot by this name
+  name "pioneer1"
+  pose [ 1.000 2.000 0.000 0.000 ]
+	color "blue"
+)
+
+pioneer
+(		  
+  # Can refer to the robot by this name
+  name "pioneer2"
+  pose [ 1.000 3.000 0.000 0.000 ]
+	color "red"
+)
+
+pioneer
+(		  
+  # Can refer to the robot by this name
+  name "pioneer3"
+  pose [ 1.000 4.000 0.000 0.000 ]
+	color "magenta"
+)
+
+pioneer
+(		  
+  # Can refer to the robot by this name
+  name "pioneer4"
+  pose [ 1.000 5.000 0.000 0.000 ]
+	color "green"
+)
