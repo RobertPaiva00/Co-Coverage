@@ -52,7 +52,8 @@ using namespace std;
 std::string INstampname, INleaderstampname;
 
 // define doubles to save the formation parameters
-double INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired, INcvrep, INcvatt, IDstamp;
+double INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired, INcvrep, INcvatt;
+int IDstamp;
 
 double dist_threshold = 0.1, vel_points = 0.2;
 
@@ -311,6 +312,7 @@ void scanReceived(const sensor_msgs::LaserScan::ConstPtr& pt)
 bool initCoverage(){
 	if (follower_odom_arrived){
 		if (follower_odom.xPos < (x_goal + IDstamp + dist_threshold) && follower_odom.xPos > (x_goal + IDstamp - dist_threshold) && follower_odom.yPos < (y_goal + dist_threshold) && follower_odom.yPos > (y_goal - dist_threshold)){
+			publishVelocity(0, 0);
 			return true;
 		}
 	}
@@ -319,13 +321,16 @@ bool initCoverage(){
 }
 
 bool standTurn(double angle){
+	ROS_INFO("ANGLE robot_%d: %f", IDstamp, follower_odom.angle);
 
-	if (follower_odom.angle < angle - 0.5 && angle > angle + 0.5){
-		publishVelocity(0, vel_points);
-		return false;
-	} else {
+	if (abs(follower_odom.angle - angle) < 10){
+		publishVelocity(0,0);
 		return true;
 	}
+
+	publishVelocity(0, 0.1);//(follower_odom.angle - angle)*0.001);
+
+	return false;
 
 }
 
@@ -353,7 +358,7 @@ int main(int argc, char** argv){
 	
 
 	// set up target and follower class
-	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
+	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, -INangle_desired);
 	follower.setup(INcvrep, INcvatt);
 	targetColumn.setup(0, INlambda, INtau_delta);
 
@@ -363,8 +368,6 @@ int main(int argc, char** argv){
 	x_goal = 1.0;
 	y_goal = 1.0;
 	goToPoint = true;
-	bool inPoint = false, inDirection = false;
-
 
 	// publish velocity command values
 	follower_cv_pub = node.advertise<geometry_msgs::Twist>(INstampname + "/cmd_vel", 1);
@@ -372,26 +375,17 @@ int main(int argc, char** argv){
 	publishVelocity(0, 0);
 
 
+	ROS_INFO("TESTE");
 	while(ros::ok()){
 
 		if (goToPoint){
-			inPoint = initCoverage();
-			publishVelocity(0, 0);
-
-			if (inPoint && !inDirection){
-				inDirection = standTurn(90);
-				publishVelocity(0, 0);	
-						
-			} else {
-				goToPoint = false;
-				publishVelocity(0, 0);
+			if (initCoverage()){
+				if (standTurn(90)){
+					goToPoint = false;
+					publishVelocity(0, 0);
+				} 
 			}
 		}
-
-		// if (goToPoint && initCoverage()){
-		// 	goToPoint = false;
-		// 	publishVelocity(0, 0);
-		// }
 
 		follower_lrf_sub  = node.subscribe(INstampname + "/base_scan", 1, scanReceived);
 		follower_cv_sub = node.subscribe(INstampname + "/cmd_vel", 1, velReceive);
