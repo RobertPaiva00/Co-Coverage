@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -std=c++0x   -shared -Wl,-soname,libGazeboFlocking.so -o /home/roberto/COverage_ws/devel/lib/libGazeboFlocking.so CMakeFiles/GazeboFlocking.dir/src/gazebo_flocking.cpp.o 

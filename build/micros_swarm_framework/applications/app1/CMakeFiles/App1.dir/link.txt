@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -std=c++0x   -shared -Wl,-soname,libApp1.so -o /home/roberto/COverage_ws/devel/lib/libApp1.so CMakeFiles/App1.dir/src/app1.cpp.o 

@@ -1,8 +1,0 @@
-prefix=/home/roberto/COverage_ws/devel
-
-Name: udp_bc_broker
-Description: Description of udp_bc_broker
-Version: 0.0.17
-Cflags: -I/home/roberto/COverage_ws/src/micros_swarm_framework/core/udp_bc_broker/include
-Libs: -L${prefix}/lib 
-Requires: roscpp rospy message_runtime std_msgs micros_swarm

@@ -1,21 +1,21 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/roberto/COverage_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_a2a8e/fast && /usr/bin/make -f CMakeFiles/cmTC_a2a8e.dir/build.make CMakeFiles/cmTC_a2a8e.dir/build
+Run Build Command(s):/usr/bin/make cmTC_a5e10/fast && /usr/bin/make -f CMakeFiles/cmTC_a5e10.dir/build.make CMakeFiles/cmTC_a5e10.dir/build
 make[1]: a entrar na pasta "/home/roberto/COverage_ws/build/CMakeFiles/CMakeTmp"
-Building C object CMakeFiles/cmTC_a2a8e.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_a2a8e.dir/src.c.o   -c /home/roberto/COverage_ws/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_a2a8e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2a8e.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_a2a8e.dir/src.c.o  -o cmTC_a2a8e 
-/usr/bin/ld: CMakeFiles/cmTC_a2a8e.dir/src.c.o: na função "main":
+Building C object CMakeFiles/cmTC_a5e10.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_a5e10.dir/src.c.o   -c /home/roberto/COverage_ws/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_a5e10
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5e10.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_a5e10.dir/src.c.o  -o cmTC_a5e10 
+/usr/bin/ld: CMakeFiles/cmTC_a5e10.dir/src.c.o: na função "main":
 src.c:(.text+0x46): referência não definida para "pthread_create"
 /usr/bin/ld: src.c:(.text+0x52): referência não definida para "pthread_detach"
 /usr/bin/ld: src.c:(.text+0x63): referência não definida para "pthread_join"
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_a2a8e.dir/build.make:87: cmTC_a2a8e] Erro 1
+make[1]: *** [CMakeFiles/cmTC_a5e10.dir/build.make:87: cmTC_a5e10] Erro 1
 make[1]: a sair da pasta "/home/roberto/COverage_ws/build/CMakeFiles/CMakeTmp"
-make: *** [Makefile:121: cmTC_a2a8e/fast] Erro 2
+make: *** [Makefile:121: cmTC_a5e10/fast] Erro 2
 
 
 Source file was:
@@ -41,18 +41,18 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/roberto/COverage_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_90d37/fast && /usr/bin/make -f CMakeFiles/cmTC_90d37.dir/build.make CMakeFiles/cmTC_90d37.dir/build
+Run Build Command(s):/usr/bin/make cmTC_39d05/fast && /usr/bin/make -f CMakeFiles/cmTC_39d05.dir/build.make CMakeFiles/cmTC_39d05.dir/build
 make[1]: a entrar na pasta "/home/roberto/COverage_ws/build/CMakeFiles/CMakeTmp"
-Building C object CMakeFiles/cmTC_90d37.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_90d37.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_90d37
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_90d37.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_90d37.dir/CheckFunctionExists.c.o  -o cmTC_90d37  -lpthreads 
+Building C object CMakeFiles/cmTC_39d05.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_39d05.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_39d05
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_39d05.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_39d05.dir/CheckFunctionExists.c.o  -o cmTC_39d05  -lpthreads 
 /usr/bin/ld: não foi possível localizar -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_90d37.dir/build.make:87: cmTC_90d37] Erro 1
+make[1]: *** [CMakeFiles/cmTC_39d05.dir/build.make:87: cmTC_39d05] Erro 1
 make[1]: a sair da pasta "/home/roberto/COverage_ws/build/CMakeFiles/CMakeTmp"
-make: *** [Makefile:121: cmTC_90d37/fast] Erro 2
+make: *** [Makefile:121: cmTC_39d05/fast] Erro 2
 
 
 

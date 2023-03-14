@@ -1,8 +1,0 @@
-prefix=/home/roberto/COverage_ws/install
-
-Name: app2
-Description: Description of app2
-Version: 0.0.17
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: micros_swarm roscpp rospy std_msgs nav_msgs geometry_msgs

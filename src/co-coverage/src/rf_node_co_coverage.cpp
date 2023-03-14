@@ -12,6 +12,8 @@
 #include <iostream>
 #include <string>
 #include <ros/ros.h>
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Matrix3x3.h>
 #include <tf/transform_listener.h>
 #include <tf/LinearMath/Matrix3x3.h>
 #include <tf/LinearMath/Quaternion.h>
@@ -55,7 +57,7 @@ std::string INstampname, INleaderstampname;
 double INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired, INcvrep, INcvatt;
 int IDstamp;
 
-double dist_threshold = 0.1, vel_points = 0.2;
+double dist_threshold = 0.05, vel_points = 0.2;
 
 // define points to go
 double x_goal, y_goal;
@@ -80,6 +82,16 @@ struct leader_robot
 
 } leader_odom, follower_odom; // struct for leader and follower variables
 
+double getAngle(double x, double y, double z, double w){
+	tf2::Quaternion quat(x, y, z, w);
+    tf2::Matrix3x3 mat(quat);
+
+	double roll, pitch, yaw;
+	mat.getRPY(roll, pitch, yaw);
+
+	return yaw;
+}
+
 // save leader base_pose_ground_truth information
 void odom_leaderCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg)
 {
@@ -91,7 +103,8 @@ void odom_leaderCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPt
 	leader_odom.z = msg->pose.pose.orientation.z;
 	leader_odom.w = msg->pose.pose.orientation.w;
 
-	leader_odom.angle = atan2(2*(leader_odom.y*leader_odom.x+leader_odom.w*leader_odom.z), leader_odom.w*leader_odom.w+leader_odom.x*leader_odom.x-leader_odom.y*leader_odom.y-leader_odom.z*leader_odom.z);
+	leader_odom.angle = getAngle(leader_odom.x, leader_odom.y, leader_odom.z, leader_odom.w);
+	// leader_odom.angle = atan2(2*(leader_odom.y*leader_odom.x+leader_odom.w*leader_odom.z), leader_odom.w*leader_odom.w+leader_odom.x*leader_odom.x-leader_odom.y*leader_odom.y-leader_odom.z*leader_odom.z);
 
 	leader_odom_arrived = true;
 }
@@ -127,7 +140,8 @@ void odom_followerCallback(const geometry_msgs::PoseWithCovarianceStamped::Const
 	follower_odom.z = msg->pose.pose.orientation.z;
 	follower_odom.w = msg->pose.pose.orientation.w;
 
-	follower_odom.angle = atan2(2*(follower_odom.y*follower_odom.x+follower_odom.w*follower_odom.z), follower_odom.w*follower_odom.w+follower_odom.x*follower_odom.x-follower_odom.y*follower_odom.y-follower_odom.z*follower_odom.z);
+	follower_odom.angle = getAngle(follower_odom.x, follower_odom.y, follower_odom.z, follower_odom.w);
+	// follower_odom.angle = atan2(2*(follower_odom.y*follower_odom.x+follower_odom.w*follower_odom.z), follower_odom.w*follower_odom.w+follower_odom.x*follower_odom.x-follower_odom.y*follower_odom.y-follower_odom.z*follower_odom.z);
 	
 	follower_odom_arrived = true;
 }
@@ -321,14 +335,13 @@ bool initCoverage(){
 }
 
 bool standTurn(double angle){
-	ROS_INFO("ANGLE robot_%d: %f", IDstamp, follower_odom.angle);
+	publishVelocity(0, 0);
 
-	if (abs(follower_odom.angle - angle) < 10){
-		publishVelocity(0,0);
+	if (abs(angle - follower_odom.angle) < M_PI/360){
 		return true;
 	}
 
-	publishVelocity(0, 0.1);//(follower_odom.angle - angle)*0.001);
+	publishVelocity(0, 1.0 * (angle - follower_odom.angle) / M_PI);//(follower_odom.angle - angle)*0.001);
 
 	return false;
 
@@ -365,6 +378,7 @@ int main(int argc, char** argv){
 	// subscribe to LRF, follower current command values, follower base_pose_ground_truth, leader base_pose_ground_truth and leader command values, 
 	ros::Subscriber follower_lrf_sub, follower_cv_sub, follower_bpgt_sub, leader_bpgt_sub, leader_cv_sub;
 
+	double angle;
 	x_goal = 1.0;
 	y_goal = 1.0;
 	goToPoint = true;
@@ -374,22 +388,22 @@ int main(int argc, char** argv){
 	// Start with null velocity
 	publishVelocity(0, 0);
 
-
-	ROS_INFO("TESTE");
 	while(ros::ok()){
+
+		angle = M_PI/2; //getBestCoverageAngle(); // TO DO
 
 		if (goToPoint){
 			if (initCoverage()){
-				if (standTurn(90)){
+				// if (standTurn(M_PI/2)){
 					goToPoint = false;
-					publishVelocity(0, 0);
-				} 
+				// 	publishVelocity(0, 0);
+				// } 
 			}
 		}
 
 		follower_lrf_sub  = node.subscribe(INstampname + "/base_scan", 1, scanReceived);
 		follower_cv_sub = node.subscribe(INstampname + "/cmd_vel", 1, velReceive);
-		follower_bpgt_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(INstampname + "/amcl_pose", 1, &odom_followerCallback);
+		follower_bpgt_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(INstampname + "/amcl_pose", 10, &odom_followerCallback);
 
 		// if (parameters_changed){
 		// 	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);

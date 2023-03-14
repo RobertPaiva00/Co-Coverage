@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -std=c++0x   -shared -Wl,-soname,libTestBb.so -o /home/roberto/COverage_ws/devel/lib/libTestBb.so CMakeFiles/TestBb.dir/src/testbb.cpp.o 
