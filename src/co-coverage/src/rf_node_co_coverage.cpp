@@ -120,8 +120,9 @@ void changeParameters()
 // Promotes the robot from follower to leader
 void promotion()
 {
-	INleaderstampname = INstampname;
+	INleaderstampname = string("/robot_3");
 	role_changed = true;
+	
 }
 
 // save follower base_pose_ground_truth information
@@ -130,10 +131,10 @@ void odom_followerCallback(const geometry_msgs::PoseWithCovarianceStamped::Const
 	follower_odom.xPos = msg->pose.pose.position.x;
 	follower_odom.yPos = msg->pose.pose.position.y;
 
-	// if (follower_odom.yPos > 4 && !parameters_test){
-	// 	// promotion();
-	// 	changeParameters();
-	// }
+	if (follower_odom.yPos > 4 && strcmp(INstampname.c_str(), INleaderstampname.c_str()) != 0){
+		promotion();
+		// changeParameters();
+	}
 
 	follower_odom.x = msg->pose.pose.orientation.x;
 	follower_odom.y = msg->pose.pose.orientation.y;
@@ -200,10 +201,31 @@ void vel_leaderCallback(const geometry_msgs::Twist::ConstPtr& vel_msg)
 	leader_odom.vangular = vel_msg->angular.z;
 }
 
-Repulsive repulsiveForces(const sensor_msgs::LaserScan::ConstPtr& pt)
-{
-	// --> 2nd compute repulsive force, only if exists marker in the field of view
+void robotMovement(const sensor_msgs::LaserScan::ConstPtr& pt){
+	time_t seconds_past_epoch = time(0);
+
+	double target_inli, target_inthetai, target_invj;
+
 	Repulsive repulsive(pt->angle_increment, pt->ranges.size());
+
+	if (!goToPoint){
+		// --> 1st estimate marker/leader pose and velocities (camera simulation without field of vision)
+		target_inli = dist_Euclidian2(leader_odom.xPos, leader_odom.yPos, follower_odom.xPos, follower_odom.yPos);
+		target_inthetai = -wraptoPI((follower_odom.angle - atan2((leader_odom.yPos - follower_odom.yPos), (leader_odom.xPos - follower_odom.xPos))));
+		target_invj = leader_odom.vlinear;
+
+		targetOblique.update(target_inli, target_inthetai, target_invj);
+		targetOblique.upforces();
+
+	} else {
+		// --> 1st estimate marker/leader pose and velocities (camera simulation without field of vision)
+		targetColumn.update(target_inli, target_inthetai, target_invj);
+		targetColumn.upforces();
+
+		target_inli = dist_Euclidian2(leader_odom.xPos, leader_odom.yPos, follower_odom.xPos, follower_odom.yPos);
+		target_inthetai = -wraptoPI((follower_odom.angle - atan2((leader_odom.yPos - follower_odom.yPos), (leader_odom.xPos - follower_odom.xPos))));
+		target_invj = leader_odom.vlinear;
+	}
 
 	geometry_msgs::PointStamped laser_point;
 	laser_point.header.frame_id = INstampname + "/base_laser_link";
@@ -252,75 +274,33 @@ Repulsive repulsiveForces(const sensor_msgs::LaserScan::ConstPtr& pt)
 		}
 	}
 
-	return repulsive;
+	if(!goToPoint){
+		// update repulsive forces
+		repulsive.upforces(targetOblique.li, targetOblique.thetai);
+
+		// update follower command values
+		follower.updatecmd(targetOblique.vid, targetOblique.fangular, repulsive.vid, repulsive.fangular, repulsive.U_positive);
+
+	} else {
+		// update repulsive forces
+		repulsive.upforces(targetColumn.li, targetColumn.thetai);
+
+		// update follower command values
+		follower.updatecmd(targetColumn.vid, targetColumn.fangular, repulsive.vid, repulsive.fangular, repulsive.U_positive);
+	}
+
+	// apply robot command values
+	publishVelocity(follower.cmd_linear, follower.cmd_angular);
+
+	// delete all information about LRF measures
+	repulsive.clear();
+
 }
 
 // function to receive LRF messages and update target information
 void scanReceived(const sensor_msgs::LaserScan::ConstPtr& pt)
 {
-	time_t seconds_past_epoch = time(0);
-
-	double target_inli, target_inthetai, target_invj;
-
-	Repulsive repulsive(pt->angle_increment, pt->ranges.size());
-
-	if (!goToPoint){
-
-		// when leader_odom_arrived and follower_odom_arrived are available
-		if((leader_odom_arrived && follower_odom_arrived) && strcmp(INstampname.c_str(), INleaderstampname.c_str()) != 0){
-			// --> 1st estimate marker/leader pose and velocities (camera simulation without field of vision)
-			target_inli = dist_Euclidian2(leader_odom.xPos, leader_odom.yPos, follower_odom.xPos, follower_odom.yPos);
-			target_inthetai = -wraptoPI((follower_odom.angle - atan2((leader_odom.yPos - follower_odom.yPos), (leader_odom.xPos - follower_odom.xPos))));
-			target_invj = leader_odom.vlinear;
-
-			targetOblique.update(target_inli, target_inthetai, target_invj);
-			targetOblique.upforces();
-
-			repulsive = repulsiveForces(pt);
-
-			// update repulsive forces
-			repulsive.upforces(targetOblique.li, targetOblique.thetai);
-
-			// update follower command values
-			follower.updatecmd(targetOblique.vid, targetOblique.fangular, repulsive.vid, repulsive.fangular, repulsive.U_positive);
-
-			// apply robot command values
-			publishVelocity(follower.cmd_linear, follower.cmd_angular);
-
-			// delete all information about LRF measures
-			repulsive.clear();
-
-		}
-
-	} else {
-
-		// when follower_odom_arrived are available
-		if(follower_odom_arrived){
-			// --> 1st estimate marker/leader pose and velocities (camera simulation without field of vision)
-			target_inli = dist_Euclidian2(x_goal+IDstamp, y_goal, follower_odom.xPos, follower_odom.yPos);
-			target_inthetai = -wraptoPI((follower_odom.angle - atan2((y_goal - follower_odom.yPos), (x_goal+IDstamp - follower_odom.xPos))));
-			target_invj = vel_points;
-
-			targetColumn.update(target_inli, target_inthetai, target_invj);
-			targetColumn.upforces();
-
-			repulsive = repulsiveForces(pt);
-
-			// update repulsive forces
-			repulsive.upforces(targetColumn.li, targetColumn.thetai);
-
-			// update follower command values
-			follower.updatecmd(targetColumn.vid, targetColumn.fangular, repulsive.vid, repulsive.fangular, repulsive.U_positive);
-
-			// apply robot command values
-			publishVelocity(follower.cmd_linear, follower.cmd_angular);
-
-			// delete all information about LRF measures
-			repulsive.clear();
-
-		}
-
-	}
+	robotMovement(pt);
 }
 
 bool initCoverage(){
@@ -371,7 +351,7 @@ int main(int argc, char** argv){
 	
 
 	// set up target and follower class
-	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, -INangle_desired);
+	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
 	follower.setup(INcvrep, INcvatt);
 	targetColumn.setup(0, INlambda, INtau_delta);
 
@@ -381,7 +361,8 @@ int main(int argc, char** argv){
 	double angle;
 	x_goal = 1.0;
 	y_goal = 1.0;
-	goToPoint = true;
+	// goToPoint = true;
+	bool alreadyChanged = false;
 
 	// publish velocity command values
 	follower_cv_pub = node.advertise<geometry_msgs::Twist>(INstampname + "/cmd_vel", 1);
@@ -412,15 +393,22 @@ int main(int argc, char** argv){
 		// 	parameters_changed = false;
 		// }
 
-		// if (role_changed){
-		// 	leader_bpgt_sub.shutdown();
-		// 	leader_cv_sub.shutdown();
-		// 	role_changed = false;
-		// }
-		
-		leader_bpgt_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(INleaderstampname + "/amcl_pose", 1, &odom_leaderCallback);
-		leader_cv_sub = node.subscribe(INleaderstampname + "/cmd_vel", 1, vel_leaderCallback);
-		
+		if (strcmp(INstampname.c_str(), INleaderstampname.c_str()) != 0){
+			if (role_changed && !alreadyChanged){
+				leader_bpgt_sub.shutdown();
+				leader_cv_sub.shutdown();
+
+				role_changed = false;
+				alreadyChanged = true;
+			}
+			
+			leader_bpgt_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(INleaderstampname + "/amcl_pose", 1, &odom_leaderCallback);
+			leader_cv_sub = node.subscribe(INleaderstampname + "/cmd_vel", 1, vel_leaderCallback);
+
+		} else{
+			publishVelocity(0.5, 0);
+		}
+
 		ros::spinOnce();
 	}
 
