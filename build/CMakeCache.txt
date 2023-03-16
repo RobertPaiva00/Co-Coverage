@@ -389,10 +389,10 @@ actionlib_msgs_DIR:PATH=/opt/ros/noetic/share/actionlib_msgs/cmake
 catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
 
 //Value Computed by CMake
-co-coverage_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/co-coverage
+co_coverage_BINARY_DIR:STATIC=/home/roberto/COverage_ws/build/co_coverage
 
 //Value Computed by CMake
-co-coverage_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/co-coverage
+co_coverage_SOURCE_DIR:STATIC=/home/roberto/COverage_ws/src/co_coverage
 
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/noetic/share/cpp_common/cmake

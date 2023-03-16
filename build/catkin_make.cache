@@ -1,2 +1,2 @@
-co-coverage
+co_coverage
 -DCATKIN_DEVEL_PREFIX=/home/roberto/COverage_ws/devel -DCMAKE_INSTALL_PREFIX=/home/roberto/COverage_ws/install -G Unix Makefiles

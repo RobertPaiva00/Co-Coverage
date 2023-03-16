@@ -2,4 +2,4 @@
 source_root_dir = '/home/roberto/COverage_ws/src'
 whitelisted_packages = ''.split(';') if '' != '' else []
 blacklisted_packages = ''.split(';') if '' != '' else []
-underlay_workspaces = '/home/roberto/desinfectionRobot/devel;/home/roberto/catkin_8/devel;/home/roberto/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/roberto/desinfectionRobot/devel;/home/roberto/catkin_8/devel;/home/roberto/catkin_ws/devel;/opt/ros/noetic' != '' else []
+underlay_workspaces = '/home/roberto/COverage_ws/devel;/home/roberto/desinfectionRobot/devel;/home/roberto/catkin_8/devel;/home/roberto/catkin_ws/devel;/opt/ros/noetic'.split(';') if '/home/roberto/COverage_ws/devel;/home/roberto/desinfectionRobot/devel;/home/roberto/catkin_8/devel;/home/roberto/catkin_ws/devel;/opt/ros/noetic' != '' else []

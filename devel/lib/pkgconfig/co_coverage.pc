@@ -1,0 +1,8 @@
+prefix=/home/roberto/COverage_ws/devel
+
+Name: co_coverage
+Description: Description of co_coverage
+Version: 0.0.0
+Cflags: -I/home/roberto/COverage_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: nav_msgs roscpp rospy std_msgs tf message_runtime
