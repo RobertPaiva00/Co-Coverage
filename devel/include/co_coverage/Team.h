@@ -43,7 +43,7 @@ struct Team_
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef boost::array<uint16_t, 5>  _team_id_type;
+   typedef boost::array<uint16_t, 100>  _team_id_type;
   _team_id_type team_id;
 
    typedef uint16_t _team_num_type;
@@ -137,12 +137,12 @@ struct MD5Sum< ::co_coverage::Team_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "bb26a1d54bffd9fefa34153d2198f954";
+    return "dd22fca32791e7894505069c9143e854";
   }
 
   static const char* value(const ::co_coverage::Team_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xbb26a1d54bffd9feULL;
-  static const uint64_t static_value2 = 0xfa34153d2198f954ULL;
+  static const uint64_t static_value1 = 0xdd22fca32791e789ULL;
+  static const uint64_t static_value2 = 0x4505069c9143e854ULL;
 };
 
 template<class ContainerAllocator>
@@ -162,7 +162,7 @@ struct Definition< ::co_coverage::Team_<ContainerAllocator> >
   static const char* value()
   {
     return "Header header\n"
-"uint16[5] team_id\n"
+"uint16[100] team_id\n"
 "uint16 team_num\n"
 "\n"
 "================================================================================\n"

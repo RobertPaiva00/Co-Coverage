@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/roberto/COverage_ws/devel/include/co_coverage/Team.h
-string
--
-vector
--
-memory
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-std_msgs/Header.h
--
-
 /home/roberto/COverage_ws/src/co_coverage/src/attractorcolumn.h
 
 /home/roberto/COverage_ws/src/co_coverage/src/attractoroblique.h

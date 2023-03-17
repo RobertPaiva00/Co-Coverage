@@ -34,7 +34,7 @@ class Team {
         this.team_id = initObj.team_id
       }
       else {
-        this.team_id = new Array(5).fill(0);
+        this.team_id = new Array(100).fill(0);
       }
       if (initObj.hasOwnProperty('team_num')) {
         this.team_num = initObj.team_num
@@ -50,11 +50,11 @@ class Team {
     // Serialize message field [header]
     bufferOffset = std_msgs.msg.Header.serialize(obj.header, buffer, bufferOffset);
     // Check that the constant length array field [team_id] has the right length
-    if (obj.team_id.length !== 5) {
-      throw new Error('Unable to serialize array field team_id - length must be 5')
+    if (obj.team_id.length !== 100) {
+      throw new Error('Unable to serialize array field team_id - length must be 100')
     }
     // Serialize message field [team_id]
-    bufferOffset = _arraySerializer.uint16(obj.team_id, buffer, bufferOffset, 5);
+    bufferOffset = _arraySerializer.uint16(obj.team_id, buffer, bufferOffset, 100);
     // Serialize message field [team_num]
     bufferOffset = _serializer.uint16(obj.team_num, buffer, bufferOffset);
     return bufferOffset;
@@ -67,7 +67,7 @@ class Team {
     // Deserialize message field [header]
     data.header = std_msgs.msg.Header.deserialize(buffer, bufferOffset);
     // Deserialize message field [team_id]
-    data.team_id = _arrayDeserializer.uint16(buffer, bufferOffset, 5)
+    data.team_id = _arrayDeserializer.uint16(buffer, bufferOffset, 100)
     // Deserialize message field [team_num]
     data.team_num = _deserializer.uint16(buffer, bufferOffset);
     return data;
@@ -76,7 +76,7 @@ class Team {
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 12;
+    return length + 202;
   }
 
   static datatype() {
@@ -86,14 +86,14 @@ class Team {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'bb26a1d54bffd9fefa34153d2198f954';
+    return 'dd22fca32791e7894505069c9143e854';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     Header header
-    uint16[5] team_id
+    uint16[100] team_id
     uint16 team_num
     
     ================================================================================
@@ -132,7 +132,7 @@ class Team {
       resolved.team_id = msg.team_id;
     }
     else {
-      resolved.team_id = new Array(5).fill(0)
+      resolved.team_id = new Array(100).fill(0)
     }
 
     if (msg.team_num !== undefined) {

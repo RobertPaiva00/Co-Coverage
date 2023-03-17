@@ -22,7 +22,7 @@
   (:init
    (&key
     ((:header __header) (instance std_msgs::Header :init))
-    ((:team_id __team_id) (make-array 5 :initial-element 0 :element-type :integer))
+    ((:team_id __team_id) (make-array 100 :initial-element 0 :element-type :integer))
     ((:team_num __team_num) 0)
     )
    (send-super :init)
@@ -48,8 +48,8 @@
    (+
     ;; std_msgs/Header _header
     (send _header :serialization-length)
-    ;; uint16[5] _team_id
-    (* 2    5)
+    ;; uint16[100] _team_id
+    (* 2    100)
     ;; uint16 _team_num
     2
     ))
@@ -59,8 +59,8 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; std_msgs/Header _header
        (send _header :serialize s)
-     ;; uint16[5] _team_id
-     (dotimes (i 5)
+     ;; uint16[100] _team_id
+     (dotimes (i 100)
        (write-word (elt _team_id i) s)
        )
      ;; uint16 _team_num
@@ -71,7 +71,7 @@
    (buf &optional (ptr- 0))
    ;; std_msgs/Header _header
      (send _header :deserialize buf ptr-) (incf ptr- (send _header :serialization-length))
-   ;; uint16[5] _team_id
+   ;; uint16[100] _team_id
    (dotimes (i (length _team_id))
      (setf (elt _team_id i) (sys::peek buf ptr- :short)) (incf ptr- 2)
      )
@@ -81,11 +81,11 @@
    self)
   )
 
-(setf (get co_coverage::Team :md5sum-) "bb26a1d54bffd9fefa34153d2198f954")
+(setf (get co_coverage::Team :md5sum-) "dd22fca32791e7894505069c9143e854")
 (setf (get co_coverage::Team :datatype-) "co_coverage/Team")
 (setf (get co_coverage::Team :definition-)
       "Header header
-uint16[5] team_id
+uint16[100] team_id
 uint16 team_num
 
 ================================================================================
@@ -108,6 +108,6 @@ string frame_id
 
 
 
-(provide :co_coverage/Team "bb26a1d54bffd9fefa34153d2198f954")
+(provide :co_coverage/Team "dd22fca32791e7894505069c9143e854")
 
 

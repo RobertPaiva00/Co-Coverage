@@ -16,7 +16,7 @@
     :reader team_id
     :initarg :team_id
     :type (cl:vector cl:fixnum)
-   :initform (cl:make-array 5 :element-type 'cl:fixnum :initial-element 0))
+   :initform (cl:make-array 100 :element-type 'cl:fixnum :initial-element 0))
    (team_num
     :reader team_num
     :initarg :team_num
@@ -58,9 +58,9 @@
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <Team>) istream)
   "Deserializes a message object of type '<Team>"
   (roslisp-msg-protocol:deserialize (cl:slot-value msg 'header) istream)
-  (cl:setf (cl:slot-value msg 'team_id) (cl:make-array 5))
+  (cl:setf (cl:slot-value msg 'team_id) (cl:make-array 100))
   (cl:let ((vals (cl:slot-value msg 'team_id)))
-    (cl:dotimes (i 5)
+    (cl:dotimes (i 100)
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:aref vals i)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 8) (cl:aref vals i)) (cl:read-byte istream))))
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'team_num)) (cl:read-byte istream))
@@ -75,16 +75,16 @@
   "co_coverage/Team")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Team>)))
   "Returns md5sum for a message object of type '<Team>"
-  "bb26a1d54bffd9fefa34153d2198f954")
+  "dd22fca32791e7894505069c9143e854")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Team)))
   "Returns md5sum for a message object of type 'Team"
-  "bb26a1d54bffd9fefa34153d2198f954")
+  "dd22fca32791e7894505069c9143e854")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Team>)))
   "Returns full string definition for message of type '<Team>"
-  (cl:format cl:nil "Header header~%uint16[5] team_id~%uint16 team_num~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%uint16[100] team_id~%uint16 team_num~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Team)))
   "Returns full string definition for message of type 'Team"
-  (cl:format cl:nil "Header header~%uint16[5] team_id~%uint16 team_num~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%uint16[100] team_id~%uint16 team_num~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Team>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'header))

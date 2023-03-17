@@ -73,22 +73,20 @@ struct leader_robot
 } leader_odom, follower_odom; // struct for leader and follower variables
 
 
-void teamUpdate(bool leader)
-{
-	teams.header.stamp = ros::Time::now();
-	// teams.header.frame_id = INstampname;
+// void teamUpdate(bool leader)
+// {
+// 	teams.header.stamp = ros::Time::now();
+// 	// teams.header.frame_id = INstampname;
 
-	if (leader){
-		teams.header.frame_id = "AAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHS" + INstampname;
-		teams.team_num = teams.team_num + 1;
-		teams.team_id[IDstamp] = teams.team_id[IDstamp] + 1;
+// 	if (leader){
+// 		teams.header.frame_id = "AAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHS" + INstampname;
+// 		teams.team_num = teams.team_num + 1;
+// 		teams.team_id[IDstamp] = teams.team_id[IDstamp] + 1;
 
-	} else {
-		teams.team_id[IDstamp] = teams.team_id[IDleaderstamp];
-	}
-
-	teams_pub.publish(teams);
-}
+// 	} else {
+// 		teams.team_id[IDstamp] = teams.team_id[IDleaderstamp];
+// 	}
+// }
 
 
 double getAngle(double x, double y, double z, double w){
@@ -195,18 +193,55 @@ void vel_leaderCallback(const geometry_msgs::Twist::ConstPtr& vel_msg)
 
 void teamStatusCallback(const co_coverage::Team::ConstPtr& msg)
 {
-	// teamUpdate(false);
-
-	if(msg->team_id[IDleaderstamp] != teams.team_id[IDstamp]){
-		teams.team_id = msg->team_id;
-		teams.team_num = msg->team_num;
-		teamUpdate(false);
-		changeTeam = false;
+	if (strcmp(INleaderstampname.c_str(), INstampname.c_str()) == 0){
+		if (msg->team_id[IDstamp] == teams.team_id[IDstamp]){
+			teams.team_id = msg->team_id;
+			teams.team_num = msg->team_num;
+		} else {
+			return;
+		}
 
 	} else {
-		teams.team_id = msg->team_id;
-		teams.team_num = msg->team_num;
-	}
+		if (newCell){
+			teams.team_id = msg->team_id;
+			teams.team_num = msg->team_num;
+			teams.team_num += 1;
+			teams.team_id[IDstamp] = teams.team_num;
+			INleaderstampname = INstampname;
+			IDleaderstamp = IDstamp;
+			newCell = false;
+
+		} else if (msg->team_id[IDleaderstamp] != teams.team_id[IDstamp]){
+			teams.team_id = msg->team_id;
+			teams.team_id[IDstamp] = msg->team_id[IDleaderstamp];
+			teams.team_num = msg->team_num;
+
+		}else {
+			teams.team_id = msg->team_id;
+			teams.team_num = msg->team_num;
+		}
+	}	
+
+	// if(newCell && strcmp(INleaderstampname.c_str(), INstampname.c_str()) != 0){
+	// 	teams.team_id = msg->team_id;
+	// 	teams.team_num = msg->team_num;
+	// 	teams.team_num += 1;
+	// 	teams.team_id[IDstamp] = teams.team_num;
+	// 	// INleaderstampname = INstampname;
+	// 	// IDleaderstamp = IDstamp;
+	// 	newCell = false;
+	
+	// } else{
+
+	// 	if(msg->team_id[IDleaderstamp] != teams.team_id[IDstamp] && strcmp(INleaderstampname.c_str(), INstampname.c_str()) != 0){
+	// 		teams.team_id = msg->team_id;
+	// 		teams.team_id[IDstamp] = msg->team_id[IDleaderstamp];
+	// 		teams.team_num = msg->team_num;
+	// 	} else {
+	// 		teams.team_id = msg->team_id;
+	// 		teams.team_num = msg->team_num;
+	// 	}
+	// }
 
 }
 
@@ -233,6 +268,8 @@ int main(int argc, char** argv){
 	pn.getParam("incvrep", INcvrep);
 	pn.getParam("incvatt", INcvatt);
 
+	// descriptor for which robot is sending to /team
+	teams.header.frame_id = INstampname;
 
 	// subscribe to LRF, follower current command values, follower base_pose_ground_truth, leader base_pose_ground_truth and leader command values, 
 	ros::Subscriber follower_cv_sub, follower_bpgt_sub, leader_bpgt_sub, leader_cv_sub, team_sub;
@@ -244,19 +281,15 @@ int main(int argc, char** argv){
 	publishVelocity(0, 0);
 
 	if(strcmp(INstampname.c_str(), INleaderstampname.c_str()) == 0){
-		teamUpdate(true);
+		teams.team_id[IDstamp] += 1;
+		teams.team_num += 1;
+		teams_pub.publish(teams);
 	}
 
 	while(ros::ok()){
-
-		if (newCell && changeTeam){
-			teamUpdate(true);
-			changeTeam = false;
-		}
-
 		team_sub = node.subscribe("/team", 1, teamStatusCallback);
-
-		teamUpdate(false);
+		teams.header.stamp = ros::Time::now();
+		teams_pub.publish(teams);
 
 		follower_cv_sub = node.subscribe(INstampname + "/cmd_vel", 1, velReceive);
 		follower_bpgt_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(INstampname + "/amcl_pose", 10, &odom_followerCallback);

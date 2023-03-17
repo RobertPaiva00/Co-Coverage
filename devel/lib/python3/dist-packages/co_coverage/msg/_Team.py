@@ -9,11 +9,11 @@ import struct
 import std_msgs.msg
 
 class Team(genpy.Message):
-  _md5sum = "bb26a1d54bffd9fefa34153d2198f954"
+  _md5sum = "dd22fca32791e7894505069c9143e854"
   _type = "co_coverage/Team"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
-uint16[5] team_id
+uint16[100] team_id
 uint16 team_num
 
 ================================================================================
@@ -33,7 +33,7 @@ time stamp
 string frame_id
 """
   __slots__ = ['header','team_id','team_num']
-  _slot_types = ['std_msgs/Header','uint16[5]','uint16']
+  _slot_types = ['std_msgs/Header','uint16[100]','uint16']
 
   def __init__(self, *args, **kwds):
     """
@@ -55,12 +55,12 @@ string frame_id
       if self.header is None:
         self.header = std_msgs.msg.Header()
       if self.team_id is None:
-        self.team_id = [0] * 5
+        self.team_id = [0] * 100
       if self.team_num is None:
         self.team_num = 0
     else:
       self.header = std_msgs.msg.Header()
-      self.team_id = [0] * 5
+      self.team_id = [0] * 100
       self.team_num = 0
 
   def _get_types(self):
@@ -83,7 +83,7 @@ string frame_id
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
-      buff.write(_get_struct_5H().pack(*self.team_id))
+      buff.write(_get_struct_100H().pack(*self.team_id))
       _x = self.team_num
       buff.write(_get_struct_H().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
@@ -114,8 +114,8 @@ string frame_id
       else:
         self.header.frame_id = str[start:end]
       start = end
-      end += 10
-      self.team_id = _get_struct_5H().unpack(str[start:end])
+      end += 200
+      self.team_id = _get_struct_100H().unpack(str[start:end])
       start = end
       end += 2
       (self.team_num,) = _get_struct_H().unpack(str[start:end])
@@ -171,8 +171,8 @@ string frame_id
       else:
         self.header.frame_id = str[start:end]
       start = end
-      end += 10
-      self.team_id = numpy.frombuffer(str[start:end], dtype=numpy.uint16, count=5)
+      end += 200
+      self.team_id = numpy.frombuffer(str[start:end], dtype=numpy.uint16, count=100)
       start = end
       end += 2
       (self.team_num,) = _get_struct_H().unpack(str[start:end])
@@ -184,18 +184,18 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
+_struct_100H = None
+def _get_struct_100H():
+    global _struct_100H
+    if _struct_100H is None:
+        _struct_100H = struct.Struct("<100H")
+    return _struct_100H
 _struct_3I = None
 def _get_struct_3I():
     global _struct_3I
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
-_struct_5H = None
-def _get_struct_5H():
-    global _struct_5H
-    if _struct_5H is None:
-        _struct_5H = struct.Struct("<5H")
-    return _struct_5H
 _struct_H = None
 def _get_struct_H():
     global _struct_H
