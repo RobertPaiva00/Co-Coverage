@@ -111,12 +111,12 @@ void odom_leaderCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPt
 	leader_odom_arrived = true;
 }
 
-void changeParameters()
-{
-	INangle_desired = -INangle_desired;
-	parameters_changed = true;
-	parameters_test = true;
-}
+// void changeParameters()
+// {
+// 	INangle_desired = -INangle_desired;
+// 	parameters_changed = true;
+// 	parameters_test = true;
+// }
 
 
 // Promotes the robot from follower to leader
@@ -133,10 +133,10 @@ void odom_followerCallback(const geometry_msgs::PoseWithCovarianceStamped::Const
 	follower_odom.xPos = msg->pose.pose.position.x;
 	follower_odom.yPos = msg->pose.pose.position.y;
 
-	if (follower_odom.yPos > 4 && strcmp(INstampname.c_str(), INleaderstampname.c_str()) != 0){
-		promotion();
-		// changeParameters();
-	}
+	// if (follower_odom.yPos > 4 && strcmp(INstampname.c_str(), INleaderstampname.c_str()) != 0){
+	// 	promotion();
+	// 	// changeParameters();
+	// }
 
 	follower_odom.x = msg->pose.pose.orientation.x;
 	follower_odom.y = msg->pose.pose.orientation.y;
@@ -221,12 +221,12 @@ void robotMovement(const sensor_msgs::LaserScan::ConstPtr& pt){
 
 	} else {
 		// --> 1st estimate marker/leader pose and velocities (camera simulation without field of vision)
+		target_inli = dist_Euclidian2((x_goal + IDstamp), y_goal, follower_odom.xPos, follower_odom.yPos);
+		target_inthetai = -wraptoPI((follower_odom.angle - atan2((y_goal - follower_odom.yPos), ((x_goal + IDstamp) - follower_odom.xPos))));
+		target_invj = vel_points;
+		
 		targetColumn.update(target_inli, target_inthetai, target_invj);
 		targetColumn.upforces();
-
-		target_inli = dist_Euclidian2(leader_odom.xPos, leader_odom.yPos, follower_odom.xPos, follower_odom.yPos);
-		target_inthetai = -wraptoPI((follower_odom.angle - atan2((leader_odom.yPos - follower_odom.yPos), (leader_odom.xPos - follower_odom.xPos))));
-		target_invj = leader_odom.vlinear;
 	}
 
 	geometry_msgs::PointStamped laser_point;
@@ -302,7 +302,9 @@ void robotMovement(const sensor_msgs::LaserScan::ConstPtr& pt){
 // function to receive LRF messages and update target information
 void scanReceived(const sensor_msgs::LaserScan::ConstPtr& pt)
 {
-	robotMovement(pt);
+	if (strcmp(INstampname.c_str(), INleaderstampname.c_str()) != 0){
+		robotMovement(pt);
+	}
 }
 
 bool initCoverage(){
@@ -323,7 +325,7 @@ bool standTurn(double angle){
 		return true;
 	}
 
-	publishVelocity(0, 1.0 * (angle - follower_odom.angle) / M_PI);//(follower_odom.angle - angle)*0.001);
+	publishVelocity(0, 1.0 * (angle - follower_odom.angle) / (M_PI/2));
 
 	return false;
 
@@ -377,10 +379,10 @@ int main(int argc, char** argv){
 
 		if (goToPoint){
 			if (initCoverage()){
-				// if (standTurn(M_PI/2)){
+				if (standTurn(angle)){
 					goToPoint = false;
-				// 	publishVelocity(0, 0);
-				// } 
+					publishVelocity(0, 0);
+				} 
 			}
 		}
 
@@ -408,7 +410,7 @@ int main(int argc, char** argv){
 			leader_cv_sub = node.subscribe(INleaderstampname + "/cmd_vel", 1, vel_leaderCallback);
 
 		} else{
-			publishVelocity(0.5, 0);
+			// publishVelocity(0, 0);
 		}
 
 		ros::spinOnce();
