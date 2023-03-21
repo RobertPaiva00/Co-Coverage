@@ -87,17 +87,6 @@ struct leader_robot
 // 	}
 // }
 
-
-double getAngle(double x, double y, double z, double w){
-	tf2::Quaternion quat(x, y, z, w);
-    tf2::Matrix3x3 mat(quat);
-
-	double roll, pitch, yaw;
-	mat.getRPY(roll, pitch, yaw);
-
-	return yaw;
-}
-
 // save leader base_pose_ground_truth information
 void odom_leaderCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& msg)
 {

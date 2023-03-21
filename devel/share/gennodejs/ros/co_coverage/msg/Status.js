@@ -21,7 +21,8 @@ class Status {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.header = null;
       this.status = null;
-      this.leader = null;
+      this.subteam = null;
+      this.following = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -36,11 +37,17 @@ class Status {
       else {
         this.status = 0;
       }
-      if (initObj.hasOwnProperty('leader')) {
-        this.leader = initObj.leader
+      if (initObj.hasOwnProperty('subteam')) {
+        this.subteam = initObj.subteam
       }
       else {
-        this.leader = false;
+        this.subteam = 0;
+      }
+      if (initObj.hasOwnProperty('following')) {
+        this.following = initObj.following
+      }
+      else {
+        this.following = 0;
       }
     }
   }
@@ -51,8 +58,10 @@ class Status {
     bufferOffset = std_msgs.msg.Header.serialize(obj.header, buffer, bufferOffset);
     // Serialize message field [status]
     bufferOffset = _serializer.uint16(obj.status, buffer, bufferOffset);
-    // Serialize message field [leader]
-    bufferOffset = _serializer.bool(obj.leader, buffer, bufferOffset);
+    // Serialize message field [subteam]
+    bufferOffset = _serializer.uint16(obj.subteam, buffer, bufferOffset);
+    // Serialize message field [following]
+    bufferOffset = _serializer.uint16(obj.following, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -64,15 +73,17 @@ class Status {
     data.header = std_msgs.msg.Header.deserialize(buffer, bufferOffset);
     // Deserialize message field [status]
     data.status = _deserializer.uint16(buffer, bufferOffset);
-    // Deserialize message field [leader]
-    data.leader = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [subteam]
+    data.subteam = _deserializer.uint16(buffer, bufferOffset);
+    // Deserialize message field [following]
+    data.following = _deserializer.uint16(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 3;
+    return length + 6;
   }
 
   static datatype() {
@@ -82,7 +93,7 @@ class Status {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '4e32b5b75d2be0075af4fc7e7f8aa211';
+    return '01fac872dcc68ecc6194e383a5d188a0';
   }
 
   static messageDefinition() {
@@ -90,7 +101,8 @@ class Status {
     return `
     Header header
     uint16 status
-    bool leader
+    uint16 subteam
+    uint16 following
     
     ================================================================================
     MSG: std_msgs/Header
@@ -131,11 +143,18 @@ class Status {
       resolved.status = 0
     }
 
-    if (msg.leader !== undefined) {
-      resolved.leader = msg.leader;
+    if (msg.subteam !== undefined) {
+      resolved.subteam = msg.subteam;
     }
     else {
-      resolved.leader = false
+      resolved.subteam = 0
+    }
+
+    if (msg.following !== undefined) {
+      resolved.following = msg.following;
+    }
+    else {
+      resolved.following = 0
     }
 
     return resolved;

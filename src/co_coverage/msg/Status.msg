@@ -1,3 +1,4 @@
 Header header
 uint16 status
-bool leader
+uint16 subteam
+uint16 following

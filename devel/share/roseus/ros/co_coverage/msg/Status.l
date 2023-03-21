@@ -16,19 +16,21 @@
 
 (defclass co_coverage::Status
   :super ros::object
-  :slots (_header _status _leader ))
+  :slots (_header _status _subteam _following ))
 
 (defmethod co_coverage::Status
   (:init
    (&key
     ((:header __header) (instance std_msgs::Header :init))
     ((:status __status) 0)
-    ((:leader __leader) nil)
+    ((:subteam __subteam) 0)
+    ((:following __following) 0)
     )
    (send-super :init)
    (setq _header __header)
    (setq _status (round __status))
-   (setq _leader __leader)
+   (setq _subteam (round __subteam))
+   (setq _following (round __following))
    self)
   (:header
    (&rest __header)
@@ -40,9 +42,12 @@
   (:status
    (&optional __status)
    (if __status (setq _status __status)) _status)
-  (:leader
-   (&optional (__leader :null))
-   (if (not (eq __leader :null)) (setq _leader __leader)) _leader)
+  (:subteam
+   (&optional __subteam)
+   (if __subteam (setq _subteam __subteam)) _subteam)
+  (:following
+   (&optional __following)
+   (if __following (setq _following __following)) _following)
   (:serialization-length
    ()
    (+
@@ -50,8 +55,10 @@
     (send _header :serialization-length)
     ;; uint16 _status
     2
-    ;; bool _leader
-    1
+    ;; uint16 _subteam
+    2
+    ;; uint16 _following
+    2
     ))
   (:serialize
    (&optional strm)
@@ -61,8 +68,10 @@
        (send _header :serialize s)
      ;; uint16 _status
        (write-word _status s)
-     ;; bool _leader
-       (if _leader (write-byte -1 s) (write-byte 0 s))
+     ;; uint16 _subteam
+       (write-word _subteam s)
+     ;; uint16 _following
+       (write-word _following s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -71,18 +80,21 @@
      (send _header :deserialize buf ptr-) (incf ptr- (send _header :serialization-length))
    ;; uint16 _status
      (setq _status (sys::peek buf ptr- :short)) (incf ptr- 2)
-   ;; bool _leader
-     (setq _leader (not (= 0 (sys::peek buf ptr- :char)))) (incf ptr- 1)
+   ;; uint16 _subteam
+     (setq _subteam (sys::peek buf ptr- :short)) (incf ptr- 2)
+   ;; uint16 _following
+     (setq _following (sys::peek buf ptr- :short)) (incf ptr- 2)
    ;;
    self)
   )
 
-(setf (get co_coverage::Status :md5sum-) "4e32b5b75d2be0075af4fc7e7f8aa211")
+(setf (get co_coverage::Status :md5sum-) "01fac872dcc68ecc6194e383a5d188a0")
 (setf (get co_coverage::Status :datatype-) "co_coverage/Status")
 (setf (get co_coverage::Status :definition-)
       "Header header
 uint16 status
-bool leader
+uint16 subteam
+uint16 following
 
 ================================================================================
 MSG: std_msgs/Header
@@ -104,6 +116,6 @@ string frame_id
 
 
 
-(provide :co_coverage/Status "4e32b5b75d2be0075af4fc7e7f8aa211")
+(provide :co_coverage/Status "01fac872dcc68ecc6194e383a5d188a0")
 
 

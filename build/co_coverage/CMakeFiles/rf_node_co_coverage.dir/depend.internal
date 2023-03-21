@@ -3,6 +3,7 @@
 
 co_coverage/CMakeFiles/rf_node_co_coverage.dir/src/rf_node_co_coverage.cpp.o
  /home/roberto/COverage_ws/devel/include/co_coverage/Status.h
+ /home/roberto/COverage_ws/devel/include/co_coverage/Subteam.h
  /home/roberto/COverage_ws/devel/include/co_coverage/Team.h
  /home/roberto/COverage_ws/src/co_coverage/src/attractorcolumn.h
  /home/roberto/COverage_ws/src/co_coverage/src/attractoroblique.h
@@ -23,10 +24,8 @@ co_coverage/CMakeFiles/rf_node_co_coverage.dir/src/rf_node_co_coverage.cpp.o
  /opt/ros/noetic/include/geometry_msgs/TransformStamped.h
  /opt/ros/noetic/include/geometry_msgs/Twist.h
  /opt/ros/noetic/include/geometry_msgs/TwistStamped.h
- /opt/ros/noetic/include/geometry_msgs/TwistWithCovariance.h
  /opt/ros/noetic/include/geometry_msgs/Vector3.h
  /opt/ros/noetic/include/geometry_msgs/Vector3Stamped.h
- /opt/ros/noetic/include/nav_msgs/Odometry.h
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h
  /opt/ros/noetic/include/ros/assert.h
@@ -90,12 +89,10 @@ co_coverage/CMakeFiles/rf_node_co_coverage.dir/src/rf_node_co_coverage.cpp.o
  /opt/ros/noetic/include/sensor_msgs/PointCloud.h
  /opt/ros/noetic/include/std_msgs/Empty.h
  /opt/ros/noetic/include/std_msgs/Header.h
- /opt/ros/noetic/include/std_msgs/String.h
  /opt/ros/noetic/include/tf/FrameGraph.h
  /opt/ros/noetic/include/tf/FrameGraphRequest.h
  /opt/ros/noetic/include/tf/FrameGraphResponse.h
  /opt/ros/noetic/include/tf/LinearMath/Matrix3x3.h
- /opt/ros/noetic/include/tf/LinearMath/Quaternion.h
  /opt/ros/noetic/include/tf/LinearMath/Transform.h
  /opt/ros/noetic/include/tf/exceptions.h
  /opt/ros/noetic/include/tf/tf.h

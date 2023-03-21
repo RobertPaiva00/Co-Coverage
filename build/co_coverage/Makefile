@@ -1008,6 +1008,21 @@ sensor_msgs_generate_messages_lisp/fast:
 .PHONY : sensor_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
+co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam.dir/rule:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam.dir/rule
+.PHONY : co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam.dir/rule
+
+# Convenience name for target.
+_co_coverage_generate_messages_check_deps_Subteam: co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam.dir/rule
+
+.PHONY : _co_coverage_generate_messages_check_deps_Subteam
+
+# fast build rule for target.
+_co_coverage_generate_messages_check_deps_Subteam/fast:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam.dir/build.make co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam.dir/build
+.PHONY : _co_coverage_generate_messages_check_deps_Subteam/fast
+
+# Convenience name for target.
 co_coverage/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
 .PHONY : co_coverage/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
@@ -1362,6 +1377,7 @@ help:
 	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... _co_coverage_generate_messages_check_deps_Subteam"
 	@echo "... edit_cache"
 	@echo "... sensor_msgs_generate_messages_nodejs"
 	@echo "... actionlib_generate_messages_nodejs"

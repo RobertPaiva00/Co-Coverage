@@ -1013,6 +1013,19 @@ sensor_msgs_generate_messages_lisp/fast:
 .PHONY : sensor_msgs_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named _co_coverage_generate_messages_check_deps_Subteam
+
+# Build rule for target.
+_co_coverage_generate_messages_check_deps_Subteam: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _co_coverage_generate_messages_check_deps_Subteam
+.PHONY : _co_coverage_generate_messages_check_deps_Subteam
+
+# fast build rule for target.
+_co_coverage_generate_messages_check_deps_Subteam/fast:
+	$(MAKE) -f co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam.dir/build.make co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam.dir/build
+.PHONY : _co_coverage_generate_messages_check_deps_Subteam/fast
+
+#=============================================================================
 # Target rules for targets named sensor_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -1246,6 +1259,7 @@ help:
 	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... _co_coverage_generate_messages_check_deps_Subteam"
 	@echo "... sensor_msgs_generate_messages_nodejs"
 	@echo "... actionlib_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_lisp"

@@ -55,6 +55,7 @@ include co_coverage/CMakeFiles/co_coverage_generate_messages_lisp.dir/progress.m
 
 co_coverage/CMakeFiles/co_coverage_generate_messages_lisp: /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Team.lisp
 co_coverage/CMakeFiles/co_coverage_generate_messages_lisp: /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Status.lisp
+co_coverage/CMakeFiles/co_coverage_generate_messages_lisp: /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Subteam.lisp
 
 
 /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Team.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
@@ -69,9 +70,16 @@ co_coverage/CMakeFiles/co_coverage_generate_messages_lisp: /home/roberto/COverag
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from co_coverage/Status.msg"
 	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/roberto/COverage_ws/src/co_coverage/msg/Status.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg
 
+/home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Subteam.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
+/home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Subteam.lisp: /home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg
+/home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Subteam.lisp: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Lisp code from co_coverage/Subteam.msg"
+	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg
+
 co_coverage_generate_messages_lisp: co_coverage/CMakeFiles/co_coverage_generate_messages_lisp
 co_coverage_generate_messages_lisp: /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Team.lisp
 co_coverage_generate_messages_lisp: /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Status.lisp
+co_coverage_generate_messages_lisp: /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Subteam.lisp
 co_coverage_generate_messages_lisp: co_coverage/CMakeFiles/co_coverage_generate_messages_lisp.dir/build.make
 
 .PHONY : co_coverage_generate_messages_lisp

@@ -3,6 +3,8 @@
   (:export
    "<STATUS>"
    "STATUS"
+   "<SUBTEAM>"
+   "SUBTEAM"
    "<TEAM>"
    "TEAM"
   ))

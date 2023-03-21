@@ -3,6 +3,8 @@
           HEADER
           STATUS-VAL
           STATUS
-          LEADER-VAL
-          LEADER
+          SUBTEAM-VAL
+          SUBTEAM
+          FOLLOWING-VAL
+          FOLLOWING
 ))

@@ -55,6 +55,7 @@ include co_coverage/CMakeFiles/co_coverage_generate_messages_cpp.dir/progress.ma
 
 co_coverage/CMakeFiles/co_coverage_generate_messages_cpp: /home/roberto/COverage_ws/devel/include/co_coverage/Team.h
 co_coverage/CMakeFiles/co_coverage_generate_messages_cpp: /home/roberto/COverage_ws/devel/include/co_coverage/Status.h
+co_coverage/CMakeFiles/co_coverage_generate_messages_cpp: /home/roberto/COverage_ws/devel/include/co_coverage/Subteam.h
 
 
 /home/roberto/COverage_ws/devel/include/co_coverage/Team.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
@@ -71,9 +72,17 @@ co_coverage/CMakeFiles/co_coverage_generate_messages_cpp: /home/roberto/COverage
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from co_coverage/Status.msg"
 	cd /home/roberto/COverage_ws/src/co_coverage && /home/roberto/COverage_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/roberto/COverage_ws/src/co_coverage/msg/Status.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/include/co_coverage -e /opt/ros/noetic/share/gencpp/cmake/..
 
+/home/roberto/COverage_ws/devel/include/co_coverage/Subteam.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/roberto/COverage_ws/devel/include/co_coverage/Subteam.h: /home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg
+/home/roberto/COverage_ws/devel/include/co_coverage/Subteam.h: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+/home/roberto/COverage_ws/devel/include/co_coverage/Subteam.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from co_coverage/Subteam.msg"
+	cd /home/roberto/COverage_ws/src/co_coverage && /home/roberto/COverage_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/include/co_coverage -e /opt/ros/noetic/share/gencpp/cmake/..
+
 co_coverage_generate_messages_cpp: co_coverage/CMakeFiles/co_coverage_generate_messages_cpp
 co_coverage_generate_messages_cpp: /home/roberto/COverage_ws/devel/include/co_coverage/Team.h
 co_coverage_generate_messages_cpp: /home/roberto/COverage_ws/devel/include/co_coverage/Status.h
+co_coverage_generate_messages_cpp: /home/roberto/COverage_ws/devel/include/co_coverage/Subteam.h
 co_coverage_generate_messages_cpp: co_coverage/CMakeFiles/co_coverage_generate_messages_cpp.dir/build.make
 
 .PHONY : co_coverage_generate_messages_cpp

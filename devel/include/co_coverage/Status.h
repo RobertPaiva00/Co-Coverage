@@ -27,12 +27,14 @@ struct Status_
   Status_()
     : header()
     , status(0)
-    , leader(false)  {
+    , subteam(0)
+    , following(0)  {
     }
   Status_(const ContainerAllocator& _alloc)
     : header(_alloc)
     , status(0)
-    , leader(false)  {
+    , subteam(0)
+    , following(0)  {
   (void)_alloc;
     }
 
@@ -44,8 +46,11 @@ struct Status_
    typedef uint16_t _status_type;
   _status_type status;
 
-   typedef uint8_t _leader_type;
-  _leader_type leader;
+   typedef uint16_t _subteam_type;
+  _subteam_type subteam;
+
+   typedef uint16_t _following_type;
+  _following_type following;
 
 
 
@@ -78,7 +83,8 @@ bool operator==(const ::co_coverage::Status_<ContainerAllocator1> & lhs, const :
 {
   return lhs.header == rhs.header &&
     lhs.status == rhs.status &&
-    lhs.leader == rhs.leader;
+    lhs.subteam == rhs.subteam &&
+    lhs.following == rhs.following;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -135,12 +141,12 @@ struct MD5Sum< ::co_coverage::Status_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "4e32b5b75d2be0075af4fc7e7f8aa211";
+    return "01fac872dcc68ecc6194e383a5d188a0";
   }
 
   static const char* value(const ::co_coverage::Status_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x4e32b5b75d2be007ULL;
-  static const uint64_t static_value2 = 0x5af4fc7e7f8aa211ULL;
+  static const uint64_t static_value1 = 0x01fac872dcc68eccULL;
+  static const uint64_t static_value2 = 0x6194e383a5d188a0ULL;
 };
 
 template<class ContainerAllocator>
@@ -161,7 +167,8 @@ struct Definition< ::co_coverage::Status_<ContainerAllocator> >
   {
     return "Header header\n"
 "uint16 status\n"
-"bool leader\n"
+"uint16 subteam\n"
+"uint16 following\n"
 "\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
@@ -198,7 +205,8 @@ namespace serialization
     {
       stream.next(m.header);
       stream.next(m.status);
-      stream.next(m.leader);
+      stream.next(m.subteam);
+      stream.next(m.following);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -222,8 +230,10 @@ struct Printer< ::co_coverage::Status_<ContainerAllocator> >
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
     s << indent << "status: ";
     Printer<uint16_t>::stream(s, indent + "  ", v.status);
-    s << indent << "leader: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.leader);
+    s << indent << "subteam: ";
+    Printer<uint16_t>::stream(s, indent + "  ", v.subteam);
+    s << indent << "following: ";
+    Printer<uint16_t>::stream(s, indent + "  ", v.following);
   }
 };
 

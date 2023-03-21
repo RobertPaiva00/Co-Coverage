@@ -9,12 +9,13 @@ import struct
 import std_msgs.msg
 
 class Status(genpy.Message):
-  _md5sum = "4e32b5b75d2be0075af4fc7e7f8aa211"
+  _md5sum = "01fac872dcc68ecc6194e383a5d188a0"
   _type = "co_coverage/Status"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
 uint16 status
-bool leader
+uint16 subteam
+uint16 following
 
 ================================================================================
 MSG: std_msgs/Header
@@ -32,8 +33,8 @@ time stamp
 #Frame this data is associated with
 string frame_id
 """
-  __slots__ = ['header','status','leader']
-  _slot_types = ['std_msgs/Header','uint16','bool']
+  __slots__ = ['header','status','subteam','following']
+  _slot_types = ['std_msgs/Header','uint16','uint16','uint16']
 
   def __init__(self, *args, **kwds):
     """
@@ -43,7 +44,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,status,leader
+       header,status,subteam,following
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -56,12 +57,15 @@ string frame_id
         self.header = std_msgs.msg.Header()
       if self.status is None:
         self.status = 0
-      if self.leader is None:
-        self.leader = False
+      if self.subteam is None:
+        self.subteam = 0
+      if self.following is None:
+        self.following = 0
     else:
       self.header = std_msgs.msg.Header()
       self.status = 0
-      self.leader = False
+      self.subteam = 0
+      self.following = 0
 
   def _get_types(self):
     """
@@ -84,7 +88,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_HB().pack(_x.status, _x.leader))
+      buff.write(_get_struct_3H().pack(_x.status, _x.subteam, _x.following))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -114,9 +118,8 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 3
-      (_x.status, _x.leader,) = _get_struct_HB().unpack(str[start:end])
-      self.leader = bool(self.leader)
+      end += 6
+      (_x.status, _x.subteam, _x.following,) = _get_struct_3H().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -138,7 +141,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_HB().pack(_x.status, _x.leader))
+      buff.write(_get_struct_3H().pack(_x.status, _x.subteam, _x.following))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -169,9 +172,8 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 3
-      (_x.status, _x.leader,) = _get_struct_HB().unpack(str[start:end])
-      self.leader = bool(self.leader)
+      end += 6
+      (_x.status, _x.subteam, _x.following,) = _get_struct_3H().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -180,15 +182,15 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
+_struct_3H = None
+def _get_struct_3H():
+    global _struct_3H
+    if _struct_3H is None:
+        _struct_3H = struct.Struct("<3H")
+    return _struct_3H
 _struct_3I = None
 def _get_struct_3I():
     global _struct_3I
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
-_struct_HB = None
-def _get_struct_HB():
-    global _struct_HB
-    if _struct_HB is None:
-        _struct_HB = struct.Struct("<HB")
-    return _struct_HB

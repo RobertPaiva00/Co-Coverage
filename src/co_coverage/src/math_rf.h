@@ -38,3 +38,14 @@ double wraptoPI(double angle)
 	}
 	return angle;
 }
+
+// Get the angle from the quaternion
+double getAngle(double x, double y, double z, double w){
+	tf2::Quaternion quat(x, y, z, w);
+    tf2::Matrix3x3 mat(quat);
+
+	double roll, pitch, yaw;
+	mat.getRPY(roll, pitch, yaw);
+
+	return yaw;
+}

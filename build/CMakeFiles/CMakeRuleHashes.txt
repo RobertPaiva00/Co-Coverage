@@ -1,18 +1,24 @@
 # Hashes of file build rules.
 175b03242ec14ca4ecaa8e8415f92f92 /home/roberto/COverage_ws/devel/include/co_coverage/Status.h
+dc673b173d43c964b4e3c6ebb36641d0 /home/roberto/COverage_ws/devel/include/co_coverage/Subteam.h
 b47c2c9d86d0cecd133e854af5ca6695 /home/roberto/COverage_ws/devel/include/co_coverage/Team.h
 b6c6e1da711f0c95003c132c65a4e289 /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Status.py
+b71ffe903c746cfe9553420e151a1a65 /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Subteam.py
 f5ca858916bf3f5a643ad0134b9f3f79 /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Team.py
 1015c6246022011cfa087109c9d709bd /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py
 5e6d6afd148b654a5611ce39bef22f01 /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Status.lisp
+4bf2bd19da5664603921b4158f669eb2 /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Subteam.lisp
 a7082fc4e03ed56c7495c6632a71e3b9 /home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Team.lisp
 252cd93eeb2996b73fd133a1c372eaf0 /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Status.js
+a656d9b49e3bbe5e81a8ab7907714491 /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Subteam.js
 c2f62716dd86599d69d3726bc8b2ccf8 /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Team.js
 370c531fb288902ae93707d544e8b402 /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/manifest.l
 55d243a7526c815ad2f3554e7c1c74eb /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Status.l
+bc2dde0016b477f77ba859872decd506 /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Subteam.l
 b3365407cbe46c654b92ffe3debce99b /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Team.l
 4bfd801eeda2a030563c1c43215cd952 CMakeFiles/clean_test_results
 f9692fc51e0c536c3c496e203d90ff18 co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Status
+68302f4403802224aa9f3986619db7d0 co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Subteam
 73012bede054d4f08a9514e13693f8b1 co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Team
 ca55fd623095ca78c297dab23a51c9e1 co_coverage/CMakeFiles/co_coverage_generate_messages_cpp
 ca55fd623095ca78c297dab23a51c9e1 co_coverage/CMakeFiles/co_coverage_generate_messages_eus
