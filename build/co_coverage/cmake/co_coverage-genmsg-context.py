@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg"
+messages_str = "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg;/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg"
 services_str = ""
 pkg_name = "co_coverage"
 dependencies_str = "nav_msgs;std_msgs"

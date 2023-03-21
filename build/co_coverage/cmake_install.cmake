@@ -38,7 +38,10 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/co_coverage/msg" TYPE FILE FILES "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/co_coverage/msg" TYPE FILE FILES
+    "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg"
+    "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg"
+    )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

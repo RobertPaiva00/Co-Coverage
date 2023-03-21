@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "/home/roberto/COverage_ws/devel/include/co_coverage/Status.h"
   "/home/roberto/COverage_ws/devel/include/co_coverage/Team.h"
   "CMakeFiles/co_coverage_generate_messages_cpp"
 )

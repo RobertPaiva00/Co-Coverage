@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/roberto/COverage_ws/build
 include co_coverage/CMakeFiles/co_coverage_generate_messages_nodejs.dir/progress.make
 
 co_coverage/CMakeFiles/co_coverage_generate_messages_nodejs: /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Team.js
+co_coverage/CMakeFiles/co_coverage_generate_messages_nodejs: /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Status.js
 
 
 /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Team.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
@@ -62,8 +63,15 @@ co_coverage/CMakeFiles/co_coverage_generate_messages_nodejs: /home/roberto/COver
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from co_coverage/Team.msg"
 	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/roberto/COverage_ws/src/co_coverage/msg/Team.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg
 
+/home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Status.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Status.js: /home/roberto/COverage_ws/src/co_coverage/msg/Status.msg
+/home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Status.js: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from co_coverage/Status.msg"
+	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/roberto/COverage_ws/src/co_coverage/msg/Status.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg
+
 co_coverage_generate_messages_nodejs: co_coverage/CMakeFiles/co_coverage_generate_messages_nodejs
 co_coverage_generate_messages_nodejs: /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Team.js
+co_coverage_generate_messages_nodejs: /home/roberto/COverage_ws/devel/share/gennodejs/ros/co_coverage/msg/Status.js
 co_coverage_generate_messages_nodejs: co_coverage/CMakeFiles/co_coverage_generate_messages_nodejs.dir/build.make
 
 .PHONY : co_coverage_generate_messages_nodejs

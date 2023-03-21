@@ -53,6 +53,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   Team.msg
+  Status.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -138,7 +139,9 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/co_coverage_node.cpp)
 add_executable(rf_node_co_coverage src/rf_node_co_coverage.cpp)
-add_executable(rf_node_teams_test src/rf_node_teams_test.cpp) 
+add_executable(rf_node_teams_test src/rf_node_teams_test.cpp)
+add_executable(rf_node_team_management src/rf_node_team_management.cpp)
+add_executable(rf_node_movement src/rf_node_movement.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -157,6 +160,8 @@ add_executable(rf_node_teams_test src/rf_node_teams_test.cpp)
 
 target_link_libraries(rf_node_co_coverage ${catkin_LIBRARIES})
 target_link_libraries(rf_node_teams_test ${catkin_LIBRARIES})
+target_link_libraries(rf_node_team_management ${catkin_LIBRARIES})
+target_link_libraries(rf_node_movement ${catkin_LIBRARIES})
 
 
 #############

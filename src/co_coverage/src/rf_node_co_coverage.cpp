@@ -32,8 +32,10 @@
 #include "follower.h"
 #include <string.h>
 #include "co_coverage/Team.h"
+#include "co_coverage/Status.h"
 
-co_coverage::Team Team;
+co_coverage::Team teams;
+co_coverage::Status status;
 
 // listener for LRF node
 tf::TransformListener* listenerscan = NULL;
@@ -57,7 +59,7 @@ std::string INstampname, INleaderstampname;
 
 // define doubles to save the formation parameters
 double INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired, INcvrep, INcvatt;
-int IDstamp;
+int IDstamp, IDleaderstamp;
 
 double dist_threshold = 0.05, vel_points = 0.2;
 
@@ -65,7 +67,7 @@ double dist_threshold = 0.05, vel_points = 0.2;
 double x_goal, y_goal;
 
 // variables to simulate camera 
-bool leader_odom_arrived = false, follower_odom_arrived = false, role_changed = false, parameters_changed = false, parameters_test = false, goToPoint = false;
+bool leader_odom_arrived = false, follower_odom_arrived = false, role_changed = false, parameters_changed = false, parameters_test = false, goToPoint = false, newCell = false;
 struct leader_robot
 {
 	double xPos;
@@ -106,8 +108,7 @@ void odom_leaderCallback(const geometry_msgs::PoseWithCovarianceStamped::ConstPt
 	leader_odom.w = msg->pose.pose.orientation.w;
 
 	leader_odom.angle = getAngle(leader_odom.x, leader_odom.y, leader_odom.z, leader_odom.w);
-	// leader_odom.angle = atan2(2*(leader_odom.y*leader_odom.x+leader_odom.w*leader_odom.z), leader_odom.w*leader_odom.w+leader_odom.x*leader_odom.x-leader_odom.y*leader_odom.y-leader_odom.z*leader_odom.z);
-
+	
 	leader_odom_arrived = true;
 }
 
@@ -133,10 +134,9 @@ void odom_followerCallback(const geometry_msgs::PoseWithCovarianceStamped::Const
 	follower_odom.xPos = msg->pose.pose.position.x;
 	follower_odom.yPos = msg->pose.pose.position.y;
 
-	// if (follower_odom.yPos > 4 && strcmp(INstampname.c_str(), INleaderstampname.c_str()) != 0){
-	// 	promotion();
-	// 	// changeParameters();
-	// }
+	if (follower_odom.yPos > 7 && strcmp(INstampname.c_str(), INleaderstampname.c_str()) != 0 && !newCell){
+		newCell = true;
+	}
 
 	follower_odom.x = msg->pose.pose.orientation.x;
 	follower_odom.y = msg->pose.pose.orientation.y;
@@ -144,9 +144,41 @@ void odom_followerCallback(const geometry_msgs::PoseWithCovarianceStamped::Const
 	follower_odom.w = msg->pose.pose.orientation.w;
 
 	follower_odom.angle = getAngle(follower_odom.x, follower_odom.y, follower_odom.z, follower_odom.w);
-	// follower_odom.angle = atan2(2*(follower_odom.y*follower_odom.x+follower_odom.w*follower_odom.z), follower_odom.w*follower_odom.w+follower_odom.x*follower_odom.x-follower_odom.y*follower_odom.y-follower_odom.z*follower_odom.z);
 	
 	follower_odom_arrived = true;
+}
+
+// callback function for team management
+void teamStatusCallback(const co_coverage::Team::ConstPtr& msg)
+{
+	if (IDleaderstamp == IDstamp){
+		if (msg->team_id[IDstamp] == teams.team_id[IDstamp]){
+			teams.team_id = msg->team_id;
+			teams.team_num = msg->team_num;
+		} else {
+			return;
+		}
+
+	} else {
+		if (newCell){
+			teams.team_id = msg->team_id;
+			teams.team_num = msg->team_num;
+			teams.team_num += 1;
+			teams.team_id[IDstamp] = teams.team_num;
+			INleaderstampname = INstampname;
+			IDleaderstamp = IDstamp;
+			newCell = false;
+
+		} else if (msg->team_id[IDleaderstamp] != teams.team_id[IDstamp]){
+			teams.team_id = msg->team_id;
+			teams.team_id[IDstamp] = msg->team_id[IDleaderstamp];
+			teams.team_num = msg->team_num;
+
+		}else {
+			teams.team_id = msg->team_id;
+			teams.team_num = msg->team_num;
+		}
+	}	
 }
 
 // function to publish velocity command values
@@ -344,6 +376,7 @@ int main(int argc, char** argv){
 	pn.getParam("instampname", INstampname);
 	pn.getParam("idstamp", IDstamp);
 	pn.getParam("inleaderstampname", INleaderstampname);
+	pn.getParam("idleaderstamp", IDleaderstamp);
 	pn.getParam("inlid", INlid);
 	pn.getParam("inlambda", INlambda);
 	pn.getParam("intau_delta", INtau_delta);
@@ -359,31 +392,62 @@ int main(int argc, char** argv){
 	follower.setup(INcvrep, INcvatt);
 	targetColumn.setup(0, INlambda, INtau_delta);
 
+	// descriptor for which robot is sending to /status and /team 
+	status.header.frame_id = INstampname;
+	teams.header.frame_id = INstampname;
+
 	// subscribe to LRF, follower current command values, follower base_pose_ground_truth, leader base_pose_ground_truth and leader command values, 
-	ros::Subscriber follower_lrf_sub, follower_cv_sub, follower_bpgt_sub, leader_bpgt_sub, leader_cv_sub;
+	ros::Subscriber follower_lrf_sub, follower_cv_sub, follower_bpgt_sub, leader_bpgt_sub, leader_cv_sub, team_sub;
 
 	double angle;
 	x_goal = 1.0;
 	y_goal = 1.0;
-	// goToPoint = true;
+	goToPoint = true;
 	bool alreadyChanged = false;
+	status.status = 2; // Always start as not ready
+	status.leader = false; // Always start as not leader
+
+
 
 	// publish velocity command values
 	follower_cv_pub = node.advertise<geometry_msgs::Twist>(INstampname + "/cmd_vel", 1);
+
+	// publish robot status
+	ros::Publisher status_pub = node.advertise<co_coverage::Status>(INstampname + "/status", 1);
+
+	// publish team status
+	ros::Publisher teams_pub = node.advertise<co_coverage::Team>("/team", 1);
+
 	// Start with null velocity
 	publishVelocity(0, 0);
 
+	if(IDstamp == IDleaderstamp){
+		teams.team_id[IDstamp] += 1;
+		teams.team_num += 1;
+		teams_pub.publish(teams);
+		status.leader = true;
+	}
+
 	while(ros::ok()){
+		team_sub = node.subscribe("/team", 1, teamStatusCallback);
+		teams.header.stamp = ros::Time::now();
+		teams_pub.publish(teams);
+
+		status.header.stamp = ros::Time::now();
+		status_pub.publish(status);
 
 		angle = M_PI/2; //getBestCoverageAngle(); // TO DO
 
 		if (goToPoint){
+			status.status = 2;
 			if (initCoverage()){
 				if (standTurn(angle)){
 					goToPoint = false;
 					publishVelocity(0, 0);
 				} 
 			}
+		} else {
+			status.status = 1;
 		}
 
 		follower_lrf_sub  = node.subscribe(INstampname + "/base_scan", 1, scanReceived);

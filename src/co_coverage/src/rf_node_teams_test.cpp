@@ -36,7 +36,6 @@ tf::TransformListener* listenerscan = NULL;
 
 // topic to publish velocity commands
 ros::Publisher follower_cv_pub;
-ros::Publisher teams_pub;
 
 // define a follower, using the Follower class
 Follower follower;
@@ -276,7 +275,7 @@ int main(int argc, char** argv){
 
 	// publish velocity command values
 	follower_cv_pub = node.advertise<geometry_msgs::Twist>(INstampname + "/cmd_vel", 1);
-	teams_pub = node.advertise<co_coverage::Team>("/team", 1);
+	ros::Publisher teams_pub = node.advertise<co_coverage::Team>("/team", 1);
 	// Start with null velocity
 	publishVelocity(0, 0);
 

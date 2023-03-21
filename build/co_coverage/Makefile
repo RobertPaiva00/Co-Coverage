@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+co_coverage/CMakeFiles/rf_node_movement.dir/rule:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/rf_node_movement.dir/rule
+.PHONY : co_coverage/CMakeFiles/rf_node_movement.dir/rule
+
+# Convenience name for target.
+rf_node_movement: co_coverage/CMakeFiles/rf_node_movement.dir/rule
+
+.PHONY : rf_node_movement
+
+# fast build rule for target.
+rf_node_movement/fast:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_movement.dir/build.make co_coverage/CMakeFiles/rf_node_movement.dir/build
+.PHONY : rf_node_movement/fast
+
+# Convenience name for target.
 co_coverage/CMakeFiles/rf_node_co_coverage.dir/rule:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/rf_node_co_coverage.dir/rule
 .PHONY : co_coverage/CMakeFiles/rf_node_co_coverage.dir/rule
@@ -226,6 +241,21 @@ co_coverage_generate_messages_nodejs: co_coverage/CMakeFiles/co_coverage_generat
 co_coverage_generate_messages_nodejs/fast:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/co_coverage_generate_messages_nodejs.dir/build.make co_coverage/CMakeFiles/co_coverage_generate_messages_nodejs.dir/build
 .PHONY : co_coverage_generate_messages_nodejs/fast
+
+# Convenience name for target.
+co_coverage/CMakeFiles/co_coverage_genlisp.dir/rule:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/co_coverage_genlisp.dir/rule
+.PHONY : co_coverage/CMakeFiles/co_coverage_genlisp.dir/rule
+
+# Convenience name for target.
+co_coverage_genlisp: co_coverage/CMakeFiles/co_coverage_genlisp.dir/rule
+
+.PHONY : co_coverage_genlisp
+
+# fast build rule for target.
+co_coverage_genlisp/fast:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/co_coverage_genlisp.dir/build.make co_coverage/CMakeFiles/co_coverage_genlisp.dir/build
+.PHONY : co_coverage_genlisp/fast
 
 # Convenience name for target.
 co_coverage/CMakeFiles/co_coverage_generate_messages_lisp.dir/rule:
@@ -648,21 +678,6 @@ co_coverage_geneus/fast:
 .PHONY : co_coverage_geneus/fast
 
 # Convenience name for target.
-co_coverage/CMakeFiles/co_coverage_genlisp.dir/rule:
-	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/co_coverage_genlisp.dir/rule
-.PHONY : co_coverage/CMakeFiles/co_coverage_genlisp.dir/rule
-
-# Convenience name for target.
-co_coverage_genlisp: co_coverage/CMakeFiles/co_coverage_genlisp.dir/rule
-
-.PHONY : co_coverage_genlisp
-
-# fast build rule for target.
-co_coverage_genlisp/fast:
-	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/co_coverage_genlisp.dir/build.make co_coverage/CMakeFiles/co_coverage_genlisp.dir/build
-.PHONY : co_coverage_genlisp/fast
-
-# Convenience name for target.
 co_coverage/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
 .PHONY : co_coverage/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
@@ -841,6 +856,21 @@ co_coverage_generate_messages: co_coverage/CMakeFiles/co_coverage_generate_messa
 co_coverage_generate_messages/fast:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/co_coverage_generate_messages.dir/build.make co_coverage/CMakeFiles/co_coverage_generate_messages.dir/build
 .PHONY : co_coverage_generate_messages/fast
+
+# Convenience name for target.
+co_coverage/CMakeFiles/rf_node_team_management.dir/rule:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/rf_node_team_management.dir/rule
+.PHONY : co_coverage/CMakeFiles/rf_node_team_management.dir/rule
+
+# Convenience name for target.
+rf_node_team_management: co_coverage/CMakeFiles/rf_node_team_management.dir/rule
+
+.PHONY : rf_node_team_management
+
+# fast build rule for target.
+rf_node_team_management/fast:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_team_management.dir/build.make co_coverage/CMakeFiles/rf_node_team_management.dir/build
+.PHONY : rf_node_team_management/fast
 
 # Convenience name for target.
 co_coverage/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
@@ -1053,6 +1083,21 @@ _co_coverage_generate_messages_check_deps_Team/fast:
 .PHONY : _co_coverage_generate_messages_check_deps_Team/fast
 
 # Convenience name for target.
+co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Status.dir/rule:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Status.dir/rule
+.PHONY : co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Status.dir/rule
+
+# Convenience name for target.
+_co_coverage_generate_messages_check_deps_Status: co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Status.dir/rule
+
+.PHONY : _co_coverage_generate_messages_check_deps_Status
+
+# fast build rule for target.
+_co_coverage_generate_messages_check_deps_Status/fast:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Status.dir/build.make co_coverage/CMakeFiles/_co_coverage_generate_messages_check_deps_Status.dir/build
+.PHONY : _co_coverage_generate_messages_check_deps_Status/fast
+
+# Convenience name for target.
 co_coverage/CMakeFiles/rf_node_teams_test.dir/rule:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/rf_node_teams_test.dir/rule
 .PHONY : co_coverage/CMakeFiles/rf_node_teams_test.dir/rule
@@ -1169,6 +1214,60 @@ src/rf_node_co_coverage.cpp.s:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_co_coverage.dir/build.make co_coverage/CMakeFiles/rf_node_co_coverage.dir/src/rf_node_co_coverage.cpp.s
 .PHONY : src/rf_node_co_coverage.cpp.s
 
+src/rf_node_movement.o: src/rf_node_movement.cpp.o
+
+.PHONY : src/rf_node_movement.o
+
+# target to build an object file
+src/rf_node_movement.cpp.o:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_movement.dir/build.make co_coverage/CMakeFiles/rf_node_movement.dir/src/rf_node_movement.cpp.o
+.PHONY : src/rf_node_movement.cpp.o
+
+src/rf_node_movement.i: src/rf_node_movement.cpp.i
+
+.PHONY : src/rf_node_movement.i
+
+# target to preprocess a source file
+src/rf_node_movement.cpp.i:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_movement.dir/build.make co_coverage/CMakeFiles/rf_node_movement.dir/src/rf_node_movement.cpp.i
+.PHONY : src/rf_node_movement.cpp.i
+
+src/rf_node_movement.s: src/rf_node_movement.cpp.s
+
+.PHONY : src/rf_node_movement.s
+
+# target to generate assembly for a file
+src/rf_node_movement.cpp.s:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_movement.dir/build.make co_coverage/CMakeFiles/rf_node_movement.dir/src/rf_node_movement.cpp.s
+.PHONY : src/rf_node_movement.cpp.s
+
+src/rf_node_team_management.o: src/rf_node_team_management.cpp.o
+
+.PHONY : src/rf_node_team_management.o
+
+# target to build an object file
+src/rf_node_team_management.cpp.o:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_team_management.dir/build.make co_coverage/CMakeFiles/rf_node_team_management.dir/src/rf_node_team_management.cpp.o
+.PHONY : src/rf_node_team_management.cpp.o
+
+src/rf_node_team_management.i: src/rf_node_team_management.cpp.i
+
+.PHONY : src/rf_node_team_management.i
+
+# target to preprocess a source file
+src/rf_node_team_management.cpp.i:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_team_management.dir/build.make co_coverage/CMakeFiles/rf_node_team_management.dir/src/rf_node_team_management.cpp.i
+.PHONY : src/rf_node_team_management.cpp.i
+
+src/rf_node_team_management.s: src/rf_node_team_management.cpp.s
+
+.PHONY : src/rf_node_team_management.s
+
+# target to generate assembly for a file
+src/rf_node_team_management.cpp.s:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_team_management.dir/build.make co_coverage/CMakeFiles/rf_node_team_management.dir/src/rf_node_team_management.cpp.s
+.PHONY : src/rf_node_team_management.cpp.s
+
 src/rf_node_teams_test.o: src/rf_node_teams_test.cpp.o
 
 .PHONY : src/rf_node_teams_test.o
@@ -1207,10 +1306,12 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... rf_node_movement"
 	@echo "... rf_node_co_coverage"
 	@echo "... co_coverage_genpy"
 	@echo "... co_coverage_generate_messages_py"
 	@echo "... co_coverage_generate_messages_nodejs"
+	@echo "... co_coverage_genlisp"
 	@echo "... co_coverage_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_eus"
@@ -1239,7 +1340,6 @@ help:
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... co_coverage_geneus"
-	@echo "... co_coverage_genlisp"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... tf_generate_messages_cpp"
@@ -1252,6 +1352,7 @@ help:
 	@echo "... actionlib_generate_messages_eus"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... co_coverage_generate_messages"
+	@echo "... rf_node_team_management"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... nav_msgs_generate_messages_py"
@@ -1267,6 +1368,7 @@ help:
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... _co_coverage_generate_messages_check_deps_Team"
+	@echo "... _co_coverage_generate_messages_check_deps_Status"
 	@echo "... rf_node_teams_test"
 	@echo "... co_coverage_generate_messages_cpp"
 	@echo "... install/local"
@@ -1277,6 +1379,12 @@ help:
 	@echo "... src/rf_node_co_coverage.o"
 	@echo "... src/rf_node_co_coverage.i"
 	@echo "... src/rf_node_co_coverage.s"
+	@echo "... src/rf_node_movement.o"
+	@echo "... src/rf_node_movement.i"
+	@echo "... src/rf_node_movement.s"
+	@echo "... src/rf_node_team_management.o"
+	@echo "... src/rf_node_team_management.i"
+	@echo "... src/rf_node_team_management.s"
 	@echo "... src/rf_node_teams_test.o"
 	@echo "... src/rf_node_teams_test.i"
 	@echo "... src/rf_node_teams_test.s"

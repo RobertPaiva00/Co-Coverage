@@ -18,10 +18,11 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
  <!-- LEADER ROBOT -->
 <group ns="robot_0">
  <arg name="tf_prefix" value="robot_0" />
- <node pkg="co_coverage" type="rf_node_co_coverage" name="rf_node_co_coverage">
+ <node pkg="co_coverage" type="rf_node_movement" name="rf_node_movement">
     <param name="instampname" value="/robot_0" />
     <param name="idstamp" value="0" />
     <param name="inleaderstampname" value="/robot_0" />
+    <param name="idleaderstamp" value="0" />
     <param name="inlid" value="0.70711" />
     <param name="inlambda" value="1.0" />
     <param name="intau_delta" value="3.0" />
@@ -31,6 +32,13 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
     <param name="incvrep" value="0.9" />
     <param name="incvatt" value="0.5" />
     <remap from="scan" to="base_scan"/>
+  </node>
+  
+  <node pkg="co_coverage" type="rf_node_team_management" name="rf_node_team_management">
+    <param name="instampname" value="/robot_0" />
+    <param name="idstamp" value="0" />
+    <param name="inleaderstampname" value="/robot_0" />
+    <param name="idleaderstamp" value="0" />
   </node>
  
  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop" output="screen"> 
@@ -50,10 +58,11 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
 <!-- FOLLOWER ROBOTS -->
 <group ns="robot_1">
   <arg name="tf_prefix" value="robot_1" />
-  <node pkg="co_coverage" type="rf_node_co_coverage" name="rf_node_co_coverage">
+  <node pkg="co_coverage" type="rf_node_movement" name="rf_node_movement">
     <param name="instampname" value="/robot_1" />
     <param name="idstamp" value="1" />
     <param name="inleaderstampname" value="/robot_0" />
+    <param name="idleaderstamp" value="0" />
     <param name="inlid" value="0.70711" />
     <param name="inlambda" value="1.0" />
     <param name="intau_delta" value="3.0" />
@@ -63,6 +72,13 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
     <param name="incvrep" value="0.9" />
     <param name="incvatt" value="0.5" />
     <remap from="scan" to="base_scan"/>
+  </node>
+  
+  <node pkg="co_coverage" type="rf_node_team_management" name="rf_node_team_management">
+    <param name="instampname" value="/robot_1" />
+    <param name="idstamp" value="1" />
+    <param name="inleaderstampname" value="/robot_0" />
+    <param name="idleaderstamp" value="0" />
   </node>
 
   <include file="$(find p3dx_description)/launch/p3dx_description.launch">
@@ -79,10 +95,11 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
 
 <group ns="robot_2">
   <arg name="tf_prefix" value="robot_2" />
-  <node pkg="co_coverage" type="rf_node_co_coverage" name="rf_node_co_coverage">
+  <node pkg="co_coverage" type="rf_node_movement" name="rf_node_movement">
     <param name="instampname" value="/robot_2" />
     <param name="idstamp" value="2" />
     <param name="inleaderstampname" value="/robot_1" />
+    <param name="idleaderstamp" value="1" />
     <param name="inlid" value="0.70711" />
     <param name="inlambda" value="1.0" />
     <param name="intau_delta" value="3.0" />
@@ -92,6 +109,13 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
     <param name="incvrep" value="0.9" />
     <param name="incvatt" value="0.5" />
     <remap from="scan" to="base_scan"/>
+  </node>
+  
+  <node pkg="co_coverage" type="rf_node_team_management" name="rf_node_team_management">
+    <param name="instampname" value="/robot_2" />
+    <param name="idstamp" value="2" />
+    <param name="inleaderstampname" value="/robot_1" />
+    <param name="idleaderstamp" value="1" />
   </node>
 
   <include file="$(find p3dx_description)/launch/p3dx_description.launch">
@@ -108,10 +132,11 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
 
 <group ns="robot_3">
   <arg name="tf_prefix" value="robot_3" />
-  <node pkg="co_coverage" type="rf_node_co_coverage" name="rf_node_co_coverage">
+  <node pkg="co_coverage" type="rf_node_movement" name="rf_node_movement">
     <param name="instampname" value="/robot_3" />
     <param name="idstamp" value="3" />
     <param name="inleaderstampname" value="/robot_2" />
+    <param name="idleaderstamp" value="2" />
     <param name="inlid" value="0.70711" />
     <param name="inlambda" value="1.0" />
     <param name="intau_delta" value="3.0" />
@@ -121,6 +146,13 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
     <param name="incvrep" value="0.9" />
     <param name="incvatt" value="0.5" />
     <remap from="scan" to="base_scan"/>
+  </node>
+  
+  <node pkg="co_coverage" type="rf_node_team_management" name="rf_node_team_management">
+    <param name="instampname" value="/robot_3" />
+    <param name="idstamp" value="3" />
+    <param name="inleaderstampname" value="/robot_2" />
+    <param name="idleaderstamp" value="2" />
   </node>
 
   <include file="$(find p3dx_description)/launch/p3dx_description.launch">
@@ -137,10 +169,11 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
 
 <group ns="robot_4">
   <arg name="tf_prefix" value="robot_4" />
-  <node pkg="co_coverage" type="rf_node_co_coverage" name="rf_node_co_coverage">
+  <node pkg="co_coverage" type="rf_node_movement" name="rf_node_movement">
     <param name="instampname" value="/robot_4" />
     <param name="idstamp" value="4" />
     <param name="inleaderstampname" value="/robot_3" />
+    <param name="idleaderstamp" value="3" />
     <param name="inlid" value="0.70711" />
     <param name="inlambda" value="1.0" />
     <param name="intau_delta" value="3.0" />
@@ -150,6 +183,13 @@ args="$(find co_coverage)/launch/demo_5.world" respawn="false">
     <param name="incvrep" value="0.9" />
     <param name="incvatt" value="0.5" />
     <remap from="scan" to="base_scan"/>
+  </node>
+  
+  <node pkg="co_coverage" type="rf_node_team_management" name="rf_node_team_management">
+    <param name="instampname" value="/robot_4" />
+    <param name="idstamp" value="4" />
+    <param name="inleaderstampname" value="/robot_3" />
+    <param name="idleaderstamp" value="3" />
   </node>
 
   <include file="$(find p3dx_description)/launch/p3dx_description.launch">

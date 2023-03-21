@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "co_coverage: 1 messages, 0 services")
+message(STATUS "co_coverage: 2 messages, 0 services")
 
 set(MSG_I_FLAGS "-Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg;-Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg")
 
@@ -22,6 +22,11 @@ add_custom_target(_co_coverage_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "co_coverage" "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg" "std_msgs/Header"
 )
 
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
+add_custom_target(_co_coverage_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "co_coverage" "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" "std_msgs/Header"
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -30,6 +35,12 @@ add_custom_target(_co_coverage_generate_messages_check_deps_${_filename}
 ### Generating Messages
 _generate_msg_cpp(co_coverage
   "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/co_coverage
+)
+_generate_msg_cpp(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/co_coverage
@@ -51,6 +62,8 @@ add_dependencies(co_coverage_generate_messages co_coverage_generate_messages_cpp
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_cpp _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_cpp _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(co_coverage_gencpp)
@@ -63,6 +76,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS co_coverage_generate_messages_cpp)
 ### Generating Messages
 _generate_msg_eus(co_coverage
   "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/co_coverage
+)
+_generate_msg_eus(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/co_coverage
@@ -84,6 +103,8 @@ add_dependencies(co_coverage_generate_messages co_coverage_generate_messages_eus
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_eus _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_eus _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(co_coverage_geneus)
@@ -96,6 +117,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS co_coverage_generate_messages_eus)
 ### Generating Messages
 _generate_msg_lisp(co_coverage
   "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/co_coverage
+)
+_generate_msg_lisp(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/co_coverage
@@ -117,6 +144,8 @@ add_dependencies(co_coverage_generate_messages co_coverage_generate_messages_lis
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_lisp _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_lisp _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(co_coverage_genlisp)
@@ -129,6 +158,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS co_coverage_generate_messages_lisp)
 ### Generating Messages
 _generate_msg_nodejs(co_coverage
   "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/co_coverage
+)
+_generate_msg_nodejs(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/co_coverage
@@ -150,6 +185,8 @@ add_dependencies(co_coverage_generate_messages co_coverage_generate_messages_nod
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_nodejs _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_nodejs _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(co_coverage_gennodejs)
@@ -162,6 +199,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS co_coverage_generate_messages_nodej
 ### Generating Messages
 _generate_msg_py(co_coverage
   "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/co_coverage
+)
+_generate_msg_py(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/co_coverage
@@ -182,6 +225,8 @@ add_dependencies(co_coverage_generate_messages co_coverage_generate_messages_py)
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Team.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_py _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_py _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
