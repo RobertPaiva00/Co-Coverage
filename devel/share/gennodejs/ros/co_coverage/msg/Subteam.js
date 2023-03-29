@@ -20,8 +20,8 @@ class Subteam {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.header = null;
-      this.leader = null;
-      this.tail = null;
+      this.order = null;
+      this.num_robots = null;
       this.inlid = null;
       this.inlambda = null;
       this.intau_delta = null;
@@ -36,17 +36,17 @@ class Subteam {
       else {
         this.header = new std_msgs.msg.Header();
       }
-      if (initObj.hasOwnProperty('leader')) {
-        this.leader = initObj.leader
+      if (initObj.hasOwnProperty('order')) {
+        this.order = initObj.order
       }
       else {
-        this.leader = 0;
+        this.order = [];
       }
-      if (initObj.hasOwnProperty('tail')) {
-        this.tail = initObj.tail
+      if (initObj.hasOwnProperty('num_robots')) {
+        this.num_robots = initObj.num_robots
       }
       else {
-        this.tail = 0;
+        this.num_robots = 0;
       }
       if (initObj.hasOwnProperty('inlid')) {
         this.inlid = initObj.inlid
@@ -91,10 +91,10 @@ class Subteam {
     // Serializes a message object of type Subteam
     // Serialize message field [header]
     bufferOffset = std_msgs.msg.Header.serialize(obj.header, buffer, bufferOffset);
-    // Serialize message field [leader]
-    bufferOffset = _serializer.uint16(obj.leader, buffer, bufferOffset);
-    // Serialize message field [tail]
-    bufferOffset = _serializer.uint16(obj.tail, buffer, bufferOffset);
+    // Serialize message field [order]
+    bufferOffset = _arraySerializer.int32(obj.order, buffer, bufferOffset, null);
+    // Serialize message field [num_robots]
+    bufferOffset = _serializer.int32(obj.num_robots, buffer, bufferOffset);
     // Serialize message field [inlid]
     bufferOffset = _serializer.float32(obj.inlid, buffer, bufferOffset);
     // Serialize message field [inlambda]
@@ -116,10 +116,10 @@ class Subteam {
     let data = new Subteam(null);
     // Deserialize message field [header]
     data.header = std_msgs.msg.Header.deserialize(buffer, bufferOffset);
-    // Deserialize message field [leader]
-    data.leader = _deserializer.uint16(buffer, bufferOffset);
-    // Deserialize message field [tail]
-    data.tail = _deserializer.uint16(buffer, bufferOffset);
+    // Deserialize message field [order]
+    data.order = _arrayDeserializer.int32(buffer, bufferOffset, null)
+    // Deserialize message field [num_robots]
+    data.num_robots = _deserializer.int32(buffer, bufferOffset);
     // Deserialize message field [inlid]
     data.inlid = _deserializer.float32(buffer, bufferOffset);
     // Deserialize message field [inlambda]
@@ -138,7 +138,8 @@ class Subteam {
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 28;
+    length += 4 * object.order.length;
+    return length + 32;
   }
 
   static datatype() {
@@ -148,15 +149,15 @@ class Subteam {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'df19d51cae770470dc9d16a79a7e7659';
+    return '01d15b4fb8b52d79a988fadb9fea105f';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     Header header
-    uint16 leader
-    uint16 tail
+    int32[] order
+    int32 num_robots
     float32 inlid
     float32 inlambda
     float32 intau_delta
@@ -196,18 +197,18 @@ class Subteam {
       resolved.header = new std_msgs.msg.Header()
     }
 
-    if (msg.leader !== undefined) {
-      resolved.leader = msg.leader;
+    if (msg.order !== undefined) {
+      resolved.order = msg.order;
     }
     else {
-      resolved.leader = 0
+      resolved.order = []
     }
 
-    if (msg.tail !== undefined) {
-      resolved.tail = msg.tail;
+    if (msg.num_robots !== undefined) {
+      resolved.num_robots = msg.num_robots;
     }
     else {
-      resolved.tail = 0
+      resolved.num_robots = 0
     }
 
     if (msg.inlid !== undefined) {

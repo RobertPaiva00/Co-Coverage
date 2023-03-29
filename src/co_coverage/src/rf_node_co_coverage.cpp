@@ -402,7 +402,7 @@ int main(int argc, char** argv){
 	double angle;
 	x_goal = 1.0;
 	y_goal = 1.0;
-	goToPoint = true;
+	// goToPoint = true;
 	bool alreadyChanged = false;
 	status.status = 2; // Always start as not ready
 	status.following = IDleaderstamp; // Always start as not leader
@@ -428,6 +428,7 @@ int main(int argc, char** argv){
 		teams_pub.publish(teams);
 		status.subteam = teams.team_id[IDstamp];
 		curr_subteam = "/subteam_" + to_string(status.subteam);
+		subteam_info_pub = node.advertise<co_coverage::Subteam>(curr_subteam, 1);
 	}
 
 	while(ros::ok()){
@@ -466,17 +467,17 @@ int main(int argc, char** argv){
 				alreadyChanged = true;
 			}
 
-			if (changed_subteam){
-				subteam_info_sub.shutdown();
-				changed_subteam = false;
-			}
+			// if (changed_subteam){
+			// 	subteam_info_sub.shutdown();
+			// 	changed_subteam = false;
+			// }
 
-			subteam_info_sub = node.subscribe<co_coverage::Subteam>(curr_subteam, 1, &subteamCallback);
+			// subteam_info_sub = node.subscribe<co_coverage::Subteam>(curr_subteam, 1, &subteamCallback);
 
-			if (parameters_changed){
-				targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
-				parameters_changed = false;
-			}
+			// if (parameters_changed){
+			// 	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
+			// 	parameters_changed = false;
+			// }
 			
 			leader_bpgt_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(INleaderstampname + "/amcl_pose", 1, &odom_leaderCallback);
 			leader_cv_sub = node.subscribe(INleaderstampname + "/cmd_vel", 1, vel_leaderCallback);
@@ -488,17 +489,30 @@ int main(int argc, char** argv){
 				changed_subteam = false;
 			}
 
-			if (parameters_changed){
-				subteam_info.inlid = INlid;
-				subteam_info.inlambda = INlambda;
-				subteam_info.intau_delta = INtau_delta;
-				subteam_info.inmu = INmu;
-				subteam_info.ingamma = INgamma;
-				subteam_info.inangle_desired = -INangle_desired;
-				subteam_info_pub = node.advertise<co_coverage::Subteam>(curr_subteam, 1);
-				subteam_info.header.stamp = ros::Time::now();
-				subteam_info_pub.publish(subteam_info);
-			}
+			// subteam_info.leader = IDstamp;
+			subteam_info.inlid = INlid;
+			subteam_info.inlambda = INlambda;
+			subteam_info.intau_delta = INtau_delta;
+			subteam_info.inmu = INmu;
+			subteam_info.ingamma = INgamma;
+			subteam_info.inangle_desired = INangle_desired;
+
+			subteam_info.header.stamp = ros::Time::now();
+			subteam_info_pub.publish(subteam_info);
+
+			// if (parameters_changed){
+			// 	subteam_info.leader = IDstamp;
+			// 	subteam_info.inlid = INlid;
+			// 	subteam_info.inlambda = INlambda;
+			// 	subteam_info.intau_delta = INtau_delta;
+			// 	subteam_info.inmu = INmu;
+			// 	subteam_info.ingamma = INgamma;
+			// 	subteam_info.inangle_desired = INangle_desired;
+
+			// 	subteam_info_pub = node.advertise<co_coverage::Subteam>(curr_subteam, 1);
+			// 	subteam_info.header.stamp = ros::Time::now();
+			// 	subteam_info_pub.publish(subteam_info);
+			// }
 
 		}
 

@@ -16,14 +16,14 @@
 
 (defclass co_coverage::Subteam
   :super ros::object
-  :slots (_header _leader _tail _inlid _inlambda _intau_delta _inmu _ingamma _inangle_desired ))
+  :slots (_header _order _num_robots _inlid _inlambda _intau_delta _inmu _ingamma _inangle_desired ))
 
 (defmethod co_coverage::Subteam
   (:init
    (&key
     ((:header __header) (instance std_msgs::Header :init))
-    ((:leader __leader) 0)
-    ((:tail __tail) 0)
+    ((:order __order) (make-array 0 :initial-element 0 :element-type :integer))
+    ((:num_robots __num_robots) 0)
     ((:inlid __inlid) 0.0)
     ((:inlambda __inlambda) 0.0)
     ((:intau_delta __intau_delta) 0.0)
@@ -33,8 +33,8 @@
     )
    (send-super :init)
    (setq _header __header)
-   (setq _leader (round __leader))
-   (setq _tail (round __tail))
+   (setq _order __order)
+   (setq _num_robots (round __num_robots))
    (setq _inlid (float __inlid))
    (setq _inlambda (float __inlambda))
    (setq _intau_delta (float __intau_delta))
@@ -49,12 +49,12 @@
      (progn
        (if __header (setq _header (car __header)))
        _header)))
-  (:leader
-   (&optional __leader)
-   (if __leader (setq _leader __leader)) _leader)
-  (:tail
-   (&optional __tail)
-   (if __tail (setq _tail __tail)) _tail)
+  (:order
+   (&optional __order)
+   (if __order (setq _order __order)) _order)
+  (:num_robots
+   (&optional __num_robots)
+   (if __num_robots (setq _num_robots __num_robots)) _num_robots)
   (:inlid
    (&optional __inlid)
    (if __inlid (setq _inlid __inlid)) _inlid)
@@ -78,10 +78,10 @@
    (+
     ;; std_msgs/Header _header
     (send _header :serialization-length)
-    ;; uint16 _leader
-    2
-    ;; uint16 _tail
-    2
+    ;; int32[] _order
+    (* 4    (length _order)) 4
+    ;; int32 _num_robots
+    4
     ;; float32 _inlid
     4
     ;; float32 _inlambda
@@ -101,10 +101,13 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; std_msgs/Header _header
        (send _header :serialize s)
-     ;; uint16 _leader
-       (write-word _leader s)
-     ;; uint16 _tail
-       (write-word _tail s)
+     ;; int32[] _order
+     (write-long (length _order) s)
+     (dotimes (i (length _order))
+       (write-long (elt _order i) s)
+       )
+     ;; int32 _num_robots
+       (write-long _num_robots s)
      ;; float32 _inlid
        (sys::poke _inlid (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
      ;; float32 _inlambda
@@ -123,10 +126,15 @@
    (buf &optional (ptr- 0))
    ;; std_msgs/Header _header
      (send _header :deserialize buf ptr-) (incf ptr- (send _header :serialization-length))
-   ;; uint16 _leader
-     (setq _leader (sys::peek buf ptr- :short)) (incf ptr- 2)
-   ;; uint16 _tail
-     (setq _tail (sys::peek buf ptr- :short)) (incf ptr- 2)
+   ;; int32[] _order
+   (let (n)
+     (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     (setq _order (instantiate integer-vector n))
+     (dotimes (i n)
+     (setf (elt _order i) (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     ))
+   ;; int32 _num_robots
+     (setq _num_robots (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; float32 _inlid
      (setq _inlid (sys::peek buf ptr- :float)) (incf ptr- 4)
    ;; float32 _inlambda
@@ -143,12 +151,12 @@
    self)
   )
 
-(setf (get co_coverage::Subteam :md5sum-) "df19d51cae770470dc9d16a79a7e7659")
+(setf (get co_coverage::Subteam :md5sum-) "01d15b4fb8b52d79a988fadb9fea105f")
 (setf (get co_coverage::Subteam :datatype-) "co_coverage/Subteam")
 (setf (get co_coverage::Subteam :definition-)
       "Header header
-uint16 leader
-uint16 tail
+int32[] order
+int32 num_robots
 float32 inlid
 float32 inlambda
 float32 intau_delta
@@ -176,6 +184,6 @@ string frame_id
 
 
 
-(provide :co_coverage/Subteam "df19d51cae770470dc9d16a79a7e7659")
+(provide :co_coverage/Subteam "01d15b4fb8b52d79a988fadb9fea105f")
 
 

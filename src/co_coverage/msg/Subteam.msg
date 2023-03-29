@@ -1,6 +1,6 @@
 Header header
-uint16 leader
-uint16 tail
+int32[] order
+int32 num_robots
 float32 inlid
 float32 inlambda
 float32 intau_delta

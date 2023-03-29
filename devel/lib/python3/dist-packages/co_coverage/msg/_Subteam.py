@@ -9,12 +9,12 @@ import struct
 import std_msgs.msg
 
 class Subteam(genpy.Message):
-  _md5sum = "df19d51cae770470dc9d16a79a7e7659"
+  _md5sum = "01d15b4fb8b52d79a988fadb9fea105f"
   _type = "co_coverage/Subteam"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
-uint16 leader
-uint16 tail
+int32[] order
+int32 num_robots
 float32 inlid
 float32 inlambda
 float32 intau_delta
@@ -38,8 +38,8 @@ time stamp
 #Frame this data is associated with
 string frame_id
 """
-  __slots__ = ['header','leader','tail','inlid','inlambda','intau_delta','inmu','ingamma','inangle_desired']
-  _slot_types = ['std_msgs/Header','uint16','uint16','float32','float32','float32','float32','float32','float32']
+  __slots__ = ['header','order','num_robots','inlid','inlambda','intau_delta','inmu','ingamma','inangle_desired']
+  _slot_types = ['std_msgs/Header','int32[]','int32','float32','float32','float32','float32','float32','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -49,7 +49,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,leader,tail,inlid,inlambda,intau_delta,inmu,ingamma,inangle_desired
+       header,order,num_robots,inlid,inlambda,intau_delta,inmu,ingamma,inangle_desired
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -60,10 +60,10 @@ string frame_id
       # message fields cannot be None, assign default values for those that are
       if self.header is None:
         self.header = std_msgs.msg.Header()
-      if self.leader is None:
-        self.leader = 0
-      if self.tail is None:
-        self.tail = 0
+      if self.order is None:
+        self.order = []
+      if self.num_robots is None:
+        self.num_robots = 0
       if self.inlid is None:
         self.inlid = 0.
       if self.inlambda is None:
@@ -78,8 +78,8 @@ string frame_id
         self.inangle_desired = 0.
     else:
       self.header = std_msgs.msg.Header()
-      self.leader = 0
-      self.tail = 0
+      self.order = []
+      self.num_robots = 0
       self.inlid = 0.
       self.inlambda = 0.
       self.intau_delta = 0.
@@ -107,8 +107,12 @@ string frame_id
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
+      length = len(self.order)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%si'%length
+      buff.write(struct.Struct(pattern).pack(*self.order))
       _x = self
-      buff.write(_get_struct_2H6f().pack(_x.leader, _x.tail, _x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired))
+      buff.write(_get_struct_i6f().pack(_x.num_robots, _x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -136,10 +140,18 @@ string frame_id
         self.header.frame_id = str[start:end].decode('utf-8', 'rosmsg')
       else:
         self.header.frame_id = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%si'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.order = s.unpack(str[start:end])
       _x = self
       start = end
       end += 28
-      (_x.leader, _x.tail, _x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired,) = _get_struct_2H6f().unpack(str[start:end])
+      (_x.num_robots, _x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired,) = _get_struct_i6f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -160,8 +172,12 @@ string frame_id
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
+      length = len(self.order)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%si'%length
+      buff.write(self.order.tostring())
       _x = self
-      buff.write(_get_struct_2H6f().pack(_x.leader, _x.tail, _x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired))
+      buff.write(_get_struct_i6f().pack(_x.num_robots, _x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -190,10 +206,18 @@ string frame_id
         self.header.frame_id = str[start:end].decode('utf-8', 'rosmsg')
       else:
         self.header.frame_id = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%si'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.order = numpy.frombuffer(str[start:end], dtype=numpy.int32, count=length)
       _x = self
       start = end
       end += 28
-      (_x.leader, _x.tail, _x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired,) = _get_struct_2H6f().unpack(str[start:end])
+      (_x.num_robots, _x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired,) = _get_struct_i6f().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -202,15 +226,15 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_2H6f = None
-def _get_struct_2H6f():
-    global _struct_2H6f
-    if _struct_2H6f is None:
-        _struct_2H6f = struct.Struct("<2H6f")
-    return _struct_2H6f
 _struct_3I = None
 def _get_struct_3I():
     global _struct_3I
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
+_struct_i6f = None
+def _get_struct_i6f():
+    global _struct_i6f
+    if _struct_i6f is None:
+        _struct_i6f = struct.Struct("<i6f")
+    return _struct_i6f

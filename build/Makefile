@@ -766,6 +766,19 @@ tf_generate_messages_cpp/fast:
 .PHONY : tf_generate_messages_cpp/fast
 
 #=============================================================================
+# Target rules for targets named rf_node_subteam_descriptor
+
+# Build rule for target.
+rf_node_subteam_descriptor: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 rf_node_subteam_descriptor
+.PHONY : rf_node_subteam_descriptor
+
+# fast build rule for target.
+rf_node_subteam_descriptor/fast:
+	$(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/build
+.PHONY : rf_node_subteam_descriptor/fast
+
+#=============================================================================
 # Target rules for targets named tf_generate_messages_py
 
 # Build rule for target.
@@ -1240,6 +1253,7 @@ help:
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... tf_generate_messages_cpp"
+	@echo "... rf_node_subteam_descriptor"
 	@echo "... tf_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
 	@echo "... actionlib_msgs_generate_messages_lisp"

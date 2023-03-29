@@ -723,6 +723,21 @@ tf_generate_messages_cpp/fast:
 .PHONY : tf_generate_messages_cpp/fast
 
 # Convenience name for target.
+co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/rule:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/rule
+.PHONY : co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/rule
+
+# Convenience name for target.
+rf_node_subteam_descriptor: co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/rule
+
+.PHONY : rf_node_subteam_descriptor
+
+# fast build rule for target.
+rf_node_subteam_descriptor/fast:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/build
+.PHONY : rf_node_subteam_descriptor/fast
+
+# Convenience name for target.
 co_coverage/CMakeFiles/tf_generate_messages_py.dir/rule:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/tf_generate_messages_py.dir/rule
 .PHONY : co_coverage/CMakeFiles/tf_generate_messages_py.dir/rule
@@ -1256,6 +1271,33 @@ src/rf_node_movement.cpp.s:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_movement.dir/build.make co_coverage/CMakeFiles/rf_node_movement.dir/src/rf_node_movement.cpp.s
 .PHONY : src/rf_node_movement.cpp.s
 
+src/rf_node_subteam_descriptor.o: src/rf_node_subteam_descriptor.cpp.o
+
+.PHONY : src/rf_node_subteam_descriptor.o
+
+# target to build an object file
+src/rf_node_subteam_descriptor.cpp.o:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/src/rf_node_subteam_descriptor.cpp.o
+.PHONY : src/rf_node_subteam_descriptor.cpp.o
+
+src/rf_node_subteam_descriptor.i: src/rf_node_subteam_descriptor.cpp.i
+
+.PHONY : src/rf_node_subteam_descriptor.i
+
+# target to preprocess a source file
+src/rf_node_subteam_descriptor.cpp.i:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/src/rf_node_subteam_descriptor.cpp.i
+.PHONY : src/rf_node_subteam_descriptor.cpp.i
+
+src/rf_node_subteam_descriptor.s: src/rf_node_subteam_descriptor.cpp.s
+
+.PHONY : src/rf_node_subteam_descriptor.s
+
+# target to generate assembly for a file
+src/rf_node_subteam_descriptor.cpp.s:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/src/rf_node_subteam_descriptor.cpp.s
+.PHONY : src/rf_node_subteam_descriptor.cpp.s
+
 src/rf_node_team_management.o: src/rf_node_team_management.cpp.o
 
 .PHONY : src/rf_node_team_management.o
@@ -1358,6 +1400,7 @@ help:
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... tf_generate_messages_cpp"
+	@echo "... rf_node_subteam_descriptor"
 	@echo "... tf_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
 	@echo "... actionlib_msgs_generate_messages_lisp"
@@ -1398,6 +1441,9 @@ help:
 	@echo "... src/rf_node_movement.o"
 	@echo "... src/rf_node_movement.i"
 	@echo "... src/rf_node_movement.s"
+	@echo "... src/rf_node_subteam_descriptor.o"
+	@echo "... src/rf_node_subteam_descriptor.i"
+	@echo "... src/rf_node_subteam_descriptor.s"
 	@echo "... src/rf_node_team_management.o"
 	@echo "... src/rf_node_team_management.i"
 	@echo "... src/rf_node_team_management.s"

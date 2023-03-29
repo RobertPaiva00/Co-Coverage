@@ -26,8 +26,8 @@ struct Subteam_
 
   Subteam_()
     : header()
-    , leader(0)
-    , tail(0)
+    , order()
+    , num_robots(0)
     , inlid(0.0)
     , inlambda(0.0)
     , intau_delta(0.0)
@@ -37,8 +37,8 @@ struct Subteam_
     }
   Subteam_(const ContainerAllocator& _alloc)
     : header(_alloc)
-    , leader(0)
-    , tail(0)
+    , order(_alloc)
+    , num_robots(0)
     , inlid(0.0)
     , inlambda(0.0)
     , intau_delta(0.0)
@@ -53,11 +53,11 @@ struct Subteam_
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef uint16_t _leader_type;
-  _leader_type leader;
+   typedef std::vector<int32_t, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<int32_t>> _order_type;
+  _order_type order;
 
-   typedef uint16_t _tail_type;
-  _tail_type tail;
+   typedef int32_t _num_robots_type;
+  _num_robots_type num_robots;
 
    typedef float _inlid_type;
   _inlid_type inlid;
@@ -107,8 +107,8 @@ template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::co_coverage::Subteam_<ContainerAllocator1> & lhs, const ::co_coverage::Subteam_<ContainerAllocator2> & rhs)
 {
   return lhs.header == rhs.header &&
-    lhs.leader == rhs.leader &&
-    lhs.tail == rhs.tail &&
+    lhs.order == rhs.order &&
+    lhs.num_robots == rhs.num_robots &&
     lhs.inlid == rhs.inlid &&
     lhs.inlambda == rhs.inlambda &&
     lhs.intau_delta == rhs.intau_delta &&
@@ -171,12 +171,12 @@ struct MD5Sum< ::co_coverage::Subteam_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "df19d51cae770470dc9d16a79a7e7659";
+    return "01d15b4fb8b52d79a988fadb9fea105f";
   }
 
   static const char* value(const ::co_coverage::Subteam_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xdf19d51cae770470ULL;
-  static const uint64_t static_value2 = 0xdc9d16a79a7e7659ULL;
+  static const uint64_t static_value1 = 0x01d15b4fb8b52d79ULL;
+  static const uint64_t static_value2 = 0xa988fadb9fea105fULL;
 };
 
 template<class ContainerAllocator>
@@ -196,8 +196,8 @@ struct Definition< ::co_coverage::Subteam_<ContainerAllocator> >
   static const char* value()
   {
     return "Header header\n"
-"uint16 leader\n"
-"uint16 tail\n"
+"int32[] order\n"
+"int32 num_robots\n"
 "float32 inlid\n"
 "float32 inlambda\n"
 "float32 intau_delta\n"
@@ -239,8 +239,8 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.header);
-      stream.next(m.leader);
-      stream.next(m.tail);
+      stream.next(m.order);
+      stream.next(m.num_robots);
       stream.next(m.inlid);
       stream.next(m.inlambda);
       stream.next(m.intau_delta);
@@ -268,10 +268,14 @@ struct Printer< ::co_coverage::Subteam_<ContainerAllocator> >
     s << indent << "header: ";
     s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "leader: ";
-    Printer<uint16_t>::stream(s, indent + "  ", v.leader);
-    s << indent << "tail: ";
-    Printer<uint16_t>::stream(s, indent + "  ", v.tail);
+    s << indent << "order[]" << std::endl;
+    for (size_t i = 0; i < v.order.size(); ++i)
+    {
+      s << indent << "  order[" << i << "]: ";
+      Printer<int32_t>::stream(s, indent + "  ", v.order[i]);
+    }
+    s << indent << "num_robots: ";
+    Printer<int32_t>::stream(s, indent + "  ", v.num_robots);
     s << indent << "inlid: ";
     Printer<float>::stream(s, indent + "  ", v.inlid);
     s << indent << "inlambda: ";

@@ -77,6 +77,7 @@
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/roscpp_generate_messages_nodejs.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/geometry_msgs_generate_messages_lisp.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/tf_generate_messages_cpp.dir
+/home/roberto/COverage_ws/build/co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/tf_generate_messages_py.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir

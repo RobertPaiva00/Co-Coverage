@@ -143,6 +143,7 @@ add_executable(rf_node_co_coverage src/rf_node_co_coverage.cpp)
 add_executable(rf_node_teams_test src/rf_node_teams_test.cpp)
 add_executable(rf_node_team_management src/rf_node_team_management.cpp)
 add_executable(rf_node_movement src/rf_node_movement.cpp)
+add_executable(rf_node_subteam_descriptor src/rf_node_subteam_descriptor.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -163,6 +164,7 @@ target_link_libraries(rf_node_co_coverage ${catkin_LIBRARIES})
 target_link_libraries(rf_node_teams_test ${catkin_LIBRARIES})
 target_link_libraries(rf_node_team_management ${catkin_LIBRARIES})
 target_link_libraries(rf_node_movement ${catkin_LIBRARIES})
+target_link_libraries(rf_node_subteam_descriptor ${catkin_LIBRARIES})
 
 
 #############
