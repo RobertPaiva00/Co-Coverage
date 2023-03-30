@@ -54,7 +54,8 @@ add_message_files(
   FILES
   Team.msg
   Status.msg
-  Subteam.msg
+  SubteamOrder.msg
+  SubteamParameters.msg
 )
 
 ## Generate services in the 'srv' folder

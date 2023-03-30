@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "/home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Status.lisp"
-  "/home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Subteam.lisp"
+  "/home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/SubteamOrder.lisp"
+  "/home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/SubteamParameters.lisp"
   "/home/roberto/COverage_ws/devel/share/common-lisp/ros/co_coverage/msg/Team.lisp"
   "CMakeFiles/co_coverage_generate_messages_lisp"
 )

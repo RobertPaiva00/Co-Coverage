@@ -55,7 +55,8 @@ include co_coverage/CMakeFiles/co_coverage_generate_messages_py.dir/progress.mak
 
 co_coverage/CMakeFiles/co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Team.py
 co_coverage/CMakeFiles/co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Status.py
-co_coverage/CMakeFiles/co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Subteam.py
+co_coverage/CMakeFiles/co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamOrder.py
+co_coverage/CMakeFiles/co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamParameters.py
 co_coverage/CMakeFiles/co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py
 
 
@@ -71,23 +72,31 @@ co_coverage/CMakeFiles/co_coverage_generate_messages_py: /home/roberto/COverage_
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG co_coverage/Status"
 	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/roberto/COverage_ws/src/co_coverage/msg/Status.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg
 
-/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Subteam.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
-/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Subteam.py: /home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg
-/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Subteam.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG co_coverage/Subteam"
-	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg
+/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamOrder.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamOrder.py: /home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg
+/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamOrder.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG co_coverage/SubteamOrder"
+	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg
+
+/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamParameters.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamParameters.py: /home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg
+/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamParameters.py: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python from MSG co_coverage/SubteamParameters"
+	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg
 
 /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Team.py
 /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Status.py
-/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Subteam.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python msg __init__.py for co_coverage"
+/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamOrder.py
+/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamParameters.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python msg __init__.py for co_coverage"
 	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg --initpy
 
 co_coverage_generate_messages_py: co_coverage/CMakeFiles/co_coverage_generate_messages_py
 co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Team.py
 co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Status.py
-co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Subteam.py
+co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamOrder.py
+co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamParameters.py
 co_coverage_generate_messages_py: /home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py
 co_coverage_generate_messages_py: co_coverage/CMakeFiles/co_coverage_generate_messages_py.dir/build.make
 

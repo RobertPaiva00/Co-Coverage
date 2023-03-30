@@ -55,7 +55,8 @@ include co_coverage/CMakeFiles/co_coverage_generate_messages_eus.dir/progress.ma
 
 co_coverage/CMakeFiles/co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Team.l
 co_coverage/CMakeFiles/co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Status.l
-co_coverage/CMakeFiles/co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Subteam.l
+co_coverage/CMakeFiles/co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamOrder.l
+co_coverage/CMakeFiles/co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamParameters.l
 co_coverage/CMakeFiles/co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/manifest.l
 
 
@@ -71,20 +72,27 @@ co_coverage/CMakeFiles/co_coverage_generate_messages_eus: /home/roberto/COverage
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from co_coverage/Status.msg"
 	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/roberto/COverage_ws/src/co_coverage/msg/Status.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg
 
-/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Subteam.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Subteam.l: /home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg
-/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Subteam.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from co_coverage/Subteam.msg"
-	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg
+/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamOrder.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamOrder.l: /home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg
+/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamOrder.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from co_coverage/SubteamOrder.msg"
+	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg
+
+/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamParameters.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamParameters.l: /home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg
+/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamParameters.l: /opt/ros/noetic/share/std_msgs/msg/Header.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp code from co_coverage/SubteamParameters.msg"
+	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg -Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg -Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg -p co_coverage -o /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg
 
 /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp manifest code for co_coverage"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/COverage_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating EusLisp manifest code for co_coverage"
 	cd /home/roberto/COverage_ws/build/co_coverage && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage co_coverage nav_msgs std_msgs
 
 co_coverage_generate_messages_eus: co_coverage/CMakeFiles/co_coverage_generate_messages_eus
 co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Team.l
 co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Status.l
-co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Subteam.l
+co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamOrder.l
+co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamParameters.l
 co_coverage_generate_messages_eus: /home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/manifest.l
 co_coverage_generate_messages_eus: co_coverage/CMakeFiles/co_coverage_generate_messages_eus.dir/build.make
 

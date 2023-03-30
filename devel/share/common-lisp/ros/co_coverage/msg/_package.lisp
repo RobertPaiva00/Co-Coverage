@@ -3,8 +3,10 @@
   (:export
    "<STATUS>"
    "STATUS"
-   "<SUBTEAM>"
-   "SUBTEAM"
+   "<SUBTEAMORDER>"
+   "SUBTEAMORDER"
+   "<SUBTEAMPARAMETERS>"
+   "SUBTEAMPARAMETERS"
    "<TEAM>"
    "TEAM"
   ))

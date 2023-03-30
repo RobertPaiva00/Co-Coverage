@@ -53,12 +53,12 @@
    (+
     ;; std_msgs/Header _header
     (send _header :serialization-length)
-    ;; uint16 _status
-    2
-    ;; uint16 _subteam
-    2
-    ;; uint16 _following
-    2
+    ;; uint32 _status
+    4
+    ;; uint32 _subteam
+    4
+    ;; uint32 _following
+    4
     ))
   (:serialize
    (&optional strm)
@@ -66,35 +66,35 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; std_msgs/Header _header
        (send _header :serialize s)
-     ;; uint16 _status
-       (write-word _status s)
-     ;; uint16 _subteam
-       (write-word _subteam s)
-     ;; uint16 _following
-       (write-word _following s)
+     ;; uint32 _status
+       (write-long _status s)
+     ;; uint32 _subteam
+       (write-long _subteam s)
+     ;; uint32 _following
+       (write-long _following s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
    ;; std_msgs/Header _header
      (send _header :deserialize buf ptr-) (incf ptr- (send _header :serialization-length))
-   ;; uint16 _status
-     (setq _status (sys::peek buf ptr- :short)) (incf ptr- 2)
-   ;; uint16 _subteam
-     (setq _subteam (sys::peek buf ptr- :short)) (incf ptr- 2)
-   ;; uint16 _following
-     (setq _following (sys::peek buf ptr- :short)) (incf ptr- 2)
+   ;; uint32 _status
+     (setq _status (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; uint32 _subteam
+     (setq _subteam (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; uint32 _following
+     (setq _following (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get co_coverage::Status :md5sum-) "01fac872dcc68ecc6194e383a5d188a0")
+(setf (get co_coverage::Status :md5sum-) "4d6c48ebb3172b53dd09390ff82f7d7a")
 (setf (get co_coverage::Status :datatype-) "co_coverage/Status")
 (setf (get co_coverage::Status :definition-)
       "Header header
-uint16 status
-uint16 subteam
-uint16 following
+uint32 status
+uint32 subteam
+uint32 following
 
 ================================================================================
 MSG: std_msgs/Header
@@ -116,6 +116,6 @@ string frame_id
 
 
 
-(provide :co_coverage/Status "01fac872dcc68ecc6194e383a5d188a0")
+(provide :co_coverage/Status "4d6c48ebb3172b53dd09390ff82f7d7a")
 
 

@@ -57,11 +57,11 @@ class Status {
     // Serialize message field [header]
     bufferOffset = std_msgs.msg.Header.serialize(obj.header, buffer, bufferOffset);
     // Serialize message field [status]
-    bufferOffset = _serializer.uint16(obj.status, buffer, bufferOffset);
+    bufferOffset = _serializer.uint32(obj.status, buffer, bufferOffset);
     // Serialize message field [subteam]
-    bufferOffset = _serializer.uint16(obj.subteam, buffer, bufferOffset);
+    bufferOffset = _serializer.uint32(obj.subteam, buffer, bufferOffset);
     // Serialize message field [following]
-    bufferOffset = _serializer.uint16(obj.following, buffer, bufferOffset);
+    bufferOffset = _serializer.uint32(obj.following, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -72,18 +72,18 @@ class Status {
     // Deserialize message field [header]
     data.header = std_msgs.msg.Header.deserialize(buffer, bufferOffset);
     // Deserialize message field [status]
-    data.status = _deserializer.uint16(buffer, bufferOffset);
+    data.status = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [subteam]
-    data.subteam = _deserializer.uint16(buffer, bufferOffset);
+    data.subteam = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [following]
-    data.following = _deserializer.uint16(buffer, bufferOffset);
+    data.following = _deserializer.uint32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 6;
+    return length + 12;
   }
 
   static datatype() {
@@ -93,16 +93,16 @@ class Status {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '01fac872dcc68ecc6194e383a5d188a0';
+    return '4d6c48ebb3172b53dd09390ff82f7d7a';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     Header header
-    uint16 status
-    uint16 subteam
-    uint16 following
+    uint32 status
+    uint32 subteam
+    uint32 following
     
     ================================================================================
     MSG: std_msgs/Header

@@ -43,13 +43,13 @@ struct Status_
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef uint16_t _status_type;
+   typedef uint32_t _status_type;
   _status_type status;
 
-   typedef uint16_t _subteam_type;
+   typedef uint32_t _subteam_type;
   _subteam_type subteam;
 
-   typedef uint16_t _following_type;
+   typedef uint32_t _following_type;
   _following_type following;
 
 
@@ -141,12 +141,12 @@ struct MD5Sum< ::co_coverage::Status_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "01fac872dcc68ecc6194e383a5d188a0";
+    return "4d6c48ebb3172b53dd09390ff82f7d7a";
   }
 
   static const char* value(const ::co_coverage::Status_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x01fac872dcc68eccULL;
-  static const uint64_t static_value2 = 0x6194e383a5d188a0ULL;
+  static const uint64_t static_value1 = 0x4d6c48ebb3172b53ULL;
+  static const uint64_t static_value2 = 0xdd09390ff82f7d7aULL;
 };
 
 template<class ContainerAllocator>
@@ -166,9 +166,9 @@ struct Definition< ::co_coverage::Status_<ContainerAllocator> >
   static const char* value()
   {
     return "Header header\n"
-"uint16 status\n"
-"uint16 subteam\n"
-"uint16 following\n"
+"uint32 status\n"
+"uint32 subteam\n"
+"uint32 following\n"
 "\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
@@ -229,11 +229,11 @@ struct Printer< ::co_coverage::Status_<ContainerAllocator> >
     s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
     s << indent << "status: ";
-    Printer<uint16_t>::stream(s, indent + "  ", v.status);
+    Printer<uint32_t>::stream(s, indent + "  ", v.status);
     s << indent << "subteam: ";
-    Printer<uint16_t>::stream(s, indent + "  ", v.subteam);
+    Printer<uint32_t>::stream(s, indent + "  ", v.subteam);
     s << indent << "following: ";
-    Printer<uint16_t>::stream(s, indent + "  ", v.following);
+    Printer<uint32_t>::stream(s, indent + "  ", v.following);
   }
 };
 

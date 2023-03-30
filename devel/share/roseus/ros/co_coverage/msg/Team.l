@@ -48,10 +48,10 @@
    (+
     ;; std_msgs/Header _header
     (send _header :serialization-length)
-    ;; uint16[100] _team_id
-    (* 2    100)
-    ;; uint16 _team_num
-    2
+    ;; uint32[100] _team_id
+    (* 4    100)
+    ;; uint32 _team_num
+    4
     ))
   (:serialize
    (&optional strm)
@@ -59,34 +59,34 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; std_msgs/Header _header
        (send _header :serialize s)
-     ;; uint16[100] _team_id
+     ;; uint32[100] _team_id
      (dotimes (i 100)
-       (write-word (elt _team_id i) s)
+       (write-long (elt _team_id i) s)
        )
-     ;; uint16 _team_num
-       (write-word _team_num s)
+     ;; uint32 _team_num
+       (write-long _team_num s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
    ;; std_msgs/Header _header
      (send _header :deserialize buf ptr-) (incf ptr- (send _header :serialization-length))
-   ;; uint16[100] _team_id
+   ;; uint32[100] _team_id
    (dotimes (i (length _team_id))
-     (setf (elt _team_id i) (sys::peek buf ptr- :short)) (incf ptr- 2)
+     (setf (elt _team_id i) (sys::peek buf ptr- :integer)) (incf ptr- 4)
      )
-   ;; uint16 _team_num
-     (setq _team_num (sys::peek buf ptr- :short)) (incf ptr- 2)
+   ;; uint32 _team_num
+     (setq _team_num (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get co_coverage::Team :md5sum-) "dd22fca32791e7894505069c9143e854")
+(setf (get co_coverage::Team :md5sum-) "0de80fe56a3402e56a427da4690e4ede")
 (setf (get co_coverage::Team :datatype-) "co_coverage/Team")
 (setf (get co_coverage::Team :definition-)
       "Header header
-uint16[100] team_id
-uint16 team_num
+uint32[100] team_id
+uint32 team_num
 
 ================================================================================
 MSG: std_msgs/Header
@@ -108,6 +108,6 @@ string frame_id
 
 
 
-(provide :co_coverage/Team "dd22fca32791e7894505069c9143e854")
+(provide :co_coverage/Team "0de80fe56a3402e56a427da4690e4ede")
 
 

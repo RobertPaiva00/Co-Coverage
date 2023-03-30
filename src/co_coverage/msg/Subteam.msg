@@ -1,9 +1,0 @@
-Header header
-int32[] order
-int32 num_robots
-float32 inlid
-float32 inlambda
-float32 intau_delta
-float32 inmu
-float32 ingamma
-float32 inangle_desired

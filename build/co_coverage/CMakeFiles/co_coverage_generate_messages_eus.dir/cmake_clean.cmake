@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
   "/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/manifest.l"
   "/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Status.l"
-  "/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Subteam.l"
+  "/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamOrder.l"
+  "/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/SubteamParameters.l"
   "/home/roberto/COverage_ws/devel/share/roseus/ros/co_coverage/msg/Team.l"
   "CMakeFiles/co_coverage_generate_messages_eus"
 )

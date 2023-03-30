@@ -54,9 +54,9 @@ class Team {
       throw new Error('Unable to serialize array field team_id - length must be 100')
     }
     // Serialize message field [team_id]
-    bufferOffset = _arraySerializer.uint16(obj.team_id, buffer, bufferOffset, 100);
+    bufferOffset = _arraySerializer.uint32(obj.team_id, buffer, bufferOffset, 100);
     // Serialize message field [team_num]
-    bufferOffset = _serializer.uint16(obj.team_num, buffer, bufferOffset);
+    bufferOffset = _serializer.uint32(obj.team_num, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -67,16 +67,16 @@ class Team {
     // Deserialize message field [header]
     data.header = std_msgs.msg.Header.deserialize(buffer, bufferOffset);
     // Deserialize message field [team_id]
-    data.team_id = _arrayDeserializer.uint16(buffer, bufferOffset, 100)
+    data.team_id = _arrayDeserializer.uint32(buffer, bufferOffset, 100)
     // Deserialize message field [team_num]
-    data.team_num = _deserializer.uint16(buffer, bufferOffset);
+    data.team_num = _deserializer.uint32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 202;
+    return length + 404;
   }
 
   static datatype() {
@@ -86,15 +86,15 @@ class Team {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'dd22fca32791e7894505069c9143e854';
+    return '0de80fe56a3402e56a427da4690e4ede';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     Header header
-    uint16[100] team_id
-    uint16 team_num
+    uint32[100] team_id
+    uint32 team_num
     
     ================================================================================
     MSG: std_msgs/Header

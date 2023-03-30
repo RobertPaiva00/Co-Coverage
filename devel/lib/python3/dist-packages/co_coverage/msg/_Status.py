@@ -9,13 +9,13 @@ import struct
 import std_msgs.msg
 
 class Status(genpy.Message):
-  _md5sum = "01fac872dcc68ecc6194e383a5d188a0"
+  _md5sum = "4d6c48ebb3172b53dd09390ff82f7d7a"
   _type = "co_coverage/Status"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
-uint16 status
-uint16 subteam
-uint16 following
+uint32 status
+uint32 subteam
+uint32 following
 
 ================================================================================
 MSG: std_msgs/Header
@@ -34,7 +34,7 @@ time stamp
 string frame_id
 """
   __slots__ = ['header','status','subteam','following']
-  _slot_types = ['std_msgs/Header','uint16','uint16','uint16']
+  _slot_types = ['std_msgs/Header','uint32','uint32','uint32']
 
   def __init__(self, *args, **kwds):
     """
@@ -88,7 +88,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_3H().pack(_x.status, _x.subteam, _x.following))
+      buff.write(_get_struct_3I().pack(_x.status, _x.subteam, _x.following))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -118,8 +118,8 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 6
-      (_x.status, _x.subteam, _x.following,) = _get_struct_3H().unpack(str[start:end])
+      end += 12
+      (_x.status, _x.subteam, _x.following,) = _get_struct_3I().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -141,7 +141,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_3H().pack(_x.status, _x.subteam, _x.following))
+      buff.write(_get_struct_3I().pack(_x.status, _x.subteam, _x.following))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -172,8 +172,8 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 6
-      (_x.status, _x.subteam, _x.following,) = _get_struct_3H().unpack(str[start:end])
+      end += 12
+      (_x.status, _x.subteam, _x.following,) = _get_struct_3I().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -182,12 +182,6 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_3H = None
-def _get_struct_3H():
-    global _struct_3H
-    if _struct_3H is None:
-        _struct_3H = struct.Struct("<3H")
-    return _struct_3H
 _struct_3I = None
 def _get_struct_3I():
     global _struct_3I

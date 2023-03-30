@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Status.py"
-  "/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Subteam.py"
+  "/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamOrder.py"
+  "/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_SubteamParameters.py"
   "/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/_Team.py"
   "/home/roberto/COverage_ws/devel/lib/python3/dist-packages/co_coverage/msg/__init__.py"
   "CMakeFiles/co_coverage_generate_messages_py"

@@ -43,10 +43,10 @@ struct Team_
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef boost::array<uint16_t, 100>  _team_id_type;
+   typedef boost::array<uint32_t, 100>  _team_id_type;
   _team_id_type team_id;
 
-   typedef uint16_t _team_num_type;
+   typedef uint32_t _team_num_type;
   _team_num_type team_num;
 
 
@@ -137,12 +137,12 @@ struct MD5Sum< ::co_coverage::Team_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "dd22fca32791e7894505069c9143e854";
+    return "0de80fe56a3402e56a427da4690e4ede";
   }
 
   static const char* value(const ::co_coverage::Team_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xdd22fca32791e789ULL;
-  static const uint64_t static_value2 = 0x4505069c9143e854ULL;
+  static const uint64_t static_value1 = 0x0de80fe56a3402e5ULL;
+  static const uint64_t static_value2 = 0x6a427da4690e4edeULL;
 };
 
 template<class ContainerAllocator>
@@ -162,8 +162,8 @@ struct Definition< ::co_coverage::Team_<ContainerAllocator> >
   static const char* value()
   {
     return "Header header\n"
-"uint16[100] team_id\n"
-"uint16 team_num\n"
+"uint32[100] team_id\n"
+"uint32 team_num\n"
 "\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
@@ -226,10 +226,10 @@ struct Printer< ::co_coverage::Team_<ContainerAllocator> >
     for (size_t i = 0; i < v.team_id.size(); ++i)
     {
       s << indent << "  team_id[" << i << "]: ";
-      Printer<uint16_t>::stream(s, indent + "  ", v.team_id[i]);
+      Printer<uint32_t>::stream(s, indent + "  ", v.team_id[i]);
     }
     s << indent << "team_num: ";
-    Printer<uint16_t>::stream(s, indent + "  ", v.team_num);
+    Printer<uint32_t>::stream(s, indent + "  ", v.team_num);
   }
 };
 

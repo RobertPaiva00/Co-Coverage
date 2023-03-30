@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "co_coverage: 3 messages, 0 services")
+message(STATUS "co_coverage: 4 messages, 0 services")
 
 set(MSG_I_FLAGS "-Ico_coverage:/home/roberto/COverage_ws/src/co_coverage/msg;-Inav_msgs:/opt/ros/noetic/share/nav_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Iactionlib_msgs:/opt/ros/noetic/share/actionlib_msgs/cmake/../msg")
 
@@ -27,9 +27,14 @@ add_custom_target(_co_coverage_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "co_coverage" "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" "std_msgs/Header"
 )
 
-get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg" NAME_WE)
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg" NAME_WE)
 add_custom_target(_co_coverage_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "co_coverage" "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg" "std_msgs/Header"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "co_coverage" "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg" "std_msgs/Header"
+)
+
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg" NAME_WE)
+add_custom_target(_co_coverage_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "co_coverage" "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg" "std_msgs/Header"
 )
 
 #
@@ -51,7 +56,13 @@ _generate_msg_cpp(co_coverage
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/co_coverage
 )
 _generate_msg_cpp(co_coverage
-  "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg"
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/co_coverage
+)
+_generate_msg_cpp(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/co_coverage
@@ -75,7 +86,9 @@ get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/
 add_dependencies(co_coverage_generate_messages_cpp _co_coverage_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_cpp _co_coverage_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg" NAME_WE)
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_cpp _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_cpp _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -100,7 +113,13 @@ _generate_msg_eus(co_coverage
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/co_coverage
 )
 _generate_msg_eus(co_coverage
-  "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg"
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/co_coverage
+)
+_generate_msg_eus(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/co_coverage
@@ -124,7 +143,9 @@ get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/
 add_dependencies(co_coverage_generate_messages_eus _co_coverage_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_eus _co_coverage_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg" NAME_WE)
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_eus _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_eus _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -149,7 +170,13 @@ _generate_msg_lisp(co_coverage
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/co_coverage
 )
 _generate_msg_lisp(co_coverage
-  "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg"
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/co_coverage
+)
+_generate_msg_lisp(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/co_coverage
@@ -173,7 +200,9 @@ get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/
 add_dependencies(co_coverage_generate_messages_lisp _co_coverage_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_lisp _co_coverage_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg" NAME_WE)
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_lisp _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_lisp _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -198,7 +227,13 @@ _generate_msg_nodejs(co_coverage
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/co_coverage
 )
 _generate_msg_nodejs(co_coverage
-  "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg"
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/co_coverage
+)
+_generate_msg_nodejs(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/co_coverage
@@ -222,7 +257,9 @@ get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/
 add_dependencies(co_coverage_generate_messages_nodejs _co_coverage_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_nodejs _co_coverage_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg" NAME_WE)
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_nodejs _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_nodejs _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -247,7 +284,13 @@ _generate_msg_py(co_coverage
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/co_coverage
 )
 _generate_msg_py(co_coverage
-  "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg"
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/co_coverage
+)
+_generate_msg_py(co_coverage
+  "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg"
   "${MSG_I_FLAGS}"
   "/opt/ros/noetic/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/co_coverage
@@ -271,7 +314,9 @@ get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/
 add_dependencies(co_coverage_generate_messages_py _co_coverage_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Status.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_py _co_coverage_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/Subteam.msg" NAME_WE)
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamOrder.msg" NAME_WE)
+add_dependencies(co_coverage_generate_messages_py _co_coverage_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/COverage_ws/src/co_coverage/msg/SubteamParameters.msg" NAME_WE)
 add_dependencies(co_coverage_generate_messages_py _co_coverage_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

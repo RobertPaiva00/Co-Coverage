@@ -1,4 +1,4 @@
 Header header
-uint16 status
-uint16 subteam
-uint16 following
+uint32 status
+uint32 subteam
+uint32 following

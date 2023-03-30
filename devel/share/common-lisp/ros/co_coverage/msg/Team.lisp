@@ -15,12 +15,12 @@
    (team_id
     :reader team_id
     :initarg :team_id
-    :type (cl:vector cl:fixnum)
-   :initform (cl:make-array 100 :element-type 'cl:fixnum :initial-element 0))
+    :type (cl:vector cl:integer)
+   :initform (cl:make-array 100 :element-type 'cl:integer :initial-element 0))
    (team_num
     :reader team_num
     :initarg :team_num
-    :type cl:fixnum
+    :type cl:integer
     :initform 0))
 )
 
@@ -50,10 +50,14 @@
   "Serializes a message object of type '<Team>"
   (roslisp-msg-protocol:serialize (cl:slot-value msg 'header) ostream)
   (cl:map cl:nil #'(cl:lambda (ele) (cl:write-byte (cl:ldb (cl:byte 8 0) ele) ostream)
-  (cl:write-byte (cl:ldb (cl:byte 8 8) ele) ostream))
+  (cl:write-byte (cl:ldb (cl:byte 8 8) ele) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 16) ele) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 24) ele) ostream))
    (cl:slot-value msg 'team_id))
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'team_num)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'team_num)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 16) (cl:slot-value msg 'team_num)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 24) (cl:slot-value msg 'team_num)) ostream)
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <Team>) istream)
   "Deserializes a message object of type '<Team>"
@@ -62,9 +66,13 @@
   (cl:let ((vals (cl:slot-value msg 'team_id)))
     (cl:dotimes (i 100)
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:aref vals i)) (cl:read-byte istream))
-    (cl:setf (cl:ldb (cl:byte 8 8) (cl:aref vals i)) (cl:read-byte istream))))
+    (cl:setf (cl:ldb (cl:byte 8 8) (cl:aref vals i)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 16) (cl:aref vals i)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 24) (cl:aref vals i)) (cl:read-byte istream))))
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'team_num)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'team_num)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 16) (cl:slot-value msg 'team_num)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 24) (cl:slot-value msg 'team_num)) (cl:read-byte istream))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<Team>)))
@@ -75,21 +83,21 @@
   "co_coverage/Team")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Team>)))
   "Returns md5sum for a message object of type '<Team>"
-  "dd22fca32791e7894505069c9143e854")
+  "0de80fe56a3402e56a427da4690e4ede")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Team)))
   "Returns md5sum for a message object of type 'Team"
-  "dd22fca32791e7894505069c9143e854")
+  "0de80fe56a3402e56a427da4690e4ede")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Team>)))
   "Returns full string definition for message of type '<Team>"
-  (cl:format cl:nil "Header header~%uint16[100] team_id~%uint16 team_num~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%uint32[100] team_id~%uint32 team_num~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Team)))
   "Returns full string definition for message of type 'Team"
-  (cl:format cl:nil "Header header~%uint16[100] team_id~%uint16 team_num~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%uint32[100] team_id~%uint32 team_num~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Team>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'header))
-     0 (cl:reduce #'cl:+ (cl:slot-value msg 'team_id) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 2)))
-     2
+     0 (cl:reduce #'cl:+ (cl:slot-value msg 'team_id) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4)))
+     4
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <Team>))
   "Converts a ROS message object to a list"
