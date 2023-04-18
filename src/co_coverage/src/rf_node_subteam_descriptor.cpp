@@ -187,18 +187,18 @@ void subteam_orderCallback(const co_coverage::SubteamOrder::ConstPtr& msg)
 	}
 }
 
-void subteam_parametersCallback(co_coverage::SubteamParameters::ConstPtr& msg)
+void subteam_parametersCallback(const co_coverage::SubteamParameters::ConstPtr& msg)
 {
-	if (IDstamp != IDleaderstamp) {
-		INlid = msg->inlid;
-		INlambda = msg->inlambda;
-		INtau_delta = msg->intau_delta;
-		INmu = msg->inmu;
-		INgamma = msg->ingamma; 
-		INangle_desired = msg->inangle_desired;
+	// if (IDstamp != IDleaderstamp) {
+	// 	INlid = msg->inlid;
+	// 	INlambda = msg->inlambda;
+	// 	INtau_delta = msg->intau_delta;
+	// 	INmu = msg->inmu;
+	// 	INgamma = msg->ingamma; 
+	// 	INangle_desired = msg->inangle_desired;
 
-		targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
-	}
+	// 	// targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
+	// }
 }
 
 int main(int argc, char** argv){
@@ -257,10 +257,9 @@ int main(int argc, char** argv){
 		teams_pub.publish(teams);
 
 		subteam_order_sub = node.subscribe(curr_subteam + "/order", 1, subteam_orderCallback);
+		// subteam_order_sub = node.subscribe(curr_subteam + "/parameters", 1, subteam_parametersCallback);
 		subteam_order.header.stamp = ros::Time::now();
 		subteam_order_pub.publish(subteam_order);
-
-		subteam_order_sub = node.subscribe(curr_subteam + "/parameters", 1, subteam_parametersCallback);
 
 		follower_bpgt_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(INstampname + "/amcl_pose", 10, &odom_followerCallback);
 		leader_bpgt_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(INleaderstampname + "/amcl_pose", 1, &odom_leaderCallback);
@@ -273,6 +272,12 @@ int main(int argc, char** argv){
 			subteam_parameters_pub.shutdown();
 			subteam_order_pub = node.advertise<co_coverage::SubteamOrder>(curr_subteam + "/order", 1);
 			subteam_parameters_pub = node.advertise<co_coverage::SubteamParameters>(curr_subteam + "/parameters", 1);
+		}
+
+		if (IDleaderstamp == IDstamp){
+			subteam_parameters_pub.publish(subteam_parameters);
+		} else {
+			subteam_parameters_sub = node.subscribe<co_coverage::SubteamParameters>(curr_subteam + "/parameters", 1, subteam_parametersCallback);
 		}
 
 		ros::spinOnce();
