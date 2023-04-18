@@ -16,7 +16,7 @@
 
 (defclass co_coverage::SubteamOrder
   :super ros::object
-  :slots (_header _order _num_robots ))
+  :slots (_header _order _num_robots _subteamstampid ))
 
 (defmethod co_coverage::SubteamOrder
   (:init
@@ -24,11 +24,13 @@
     ((:header __header) (instance std_msgs::Header :init))
     ((:order __order) (make-array 0 :initial-element 0 :element-type :integer))
     ((:num_robots __num_robots) 0)
+    ((:subteamstampid __subteamstampid) 0)
     )
    (send-super :init)
    (setq _header __header)
    (setq _order __order)
    (setq _num_robots (round __num_robots))
+   (setq _subteamstampid (round __subteamstampid))
    self)
   (:header
    (&rest __header)
@@ -43,6 +45,9 @@
   (:num_robots
    (&optional __num_robots)
    (if __num_robots (setq _num_robots __num_robots)) _num_robots)
+  (:subteamstampid
+   (&optional __subteamstampid)
+   (if __subteamstampid (setq _subteamstampid __subteamstampid)) _subteamstampid)
   (:serialization-length
    ()
    (+
@@ -51,6 +56,8 @@
     ;; int32[] _order
     (* 4    (length _order)) 4
     ;; int32 _num_robots
+    4
+    ;; int32 _subteamstampid
     4
     ))
   (:serialize
@@ -66,6 +73,8 @@
        )
      ;; int32 _num_robots
        (write-long _num_robots s)
+     ;; int32 _subteamstampid
+       (write-long _subteamstampid s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -81,16 +90,19 @@
      ))
    ;; int32 _num_robots
      (setq _num_robots (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int32 _subteamstampid
+     (setq _subteamstampid (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get co_coverage::SubteamOrder :md5sum-) "5287d70d5cae641d69251c73b5adda1e")
+(setf (get co_coverage::SubteamOrder :md5sum-) "5e9a5ecf0642328cf77124695091810b")
 (setf (get co_coverage::SubteamOrder :datatype-) "co_coverage/SubteamOrder")
 (setf (get co_coverage::SubteamOrder :definition-)
       "Header header
 int32[] order
 int32 num_robots
+int32 subteamstampid
 
 ================================================================================
 MSG: std_msgs/Header
@@ -112,6 +124,6 @@ string frame_id
 
 
 
-(provide :co_coverage/SubteamOrder "5287d70d5cae641d69251c73b5adda1e")
+(provide :co_coverage/SubteamOrder "5e9a5ecf0642328cf77124695091810b")
 
 

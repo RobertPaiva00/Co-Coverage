@@ -5,4 +5,6 @@
           ORDER
           NUM_ROBOTS-VAL
           NUM_ROBOTS
+          SUBTEAMSTAMPID-VAL
+          SUBTEAMSTAMPID
 ))

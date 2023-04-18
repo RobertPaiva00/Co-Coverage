@@ -432,19 +432,19 @@ int main(int argc, char** argv){
 	ros::NodeHandle node;
 
 	// read parameters
+	pn.getParam("instampname", INstampname);
 	pn.getParam("idstamp", IDstamp);
+	pn.getParam("inleaderstampname", INleaderstampname);
 	pn.getParam("idleaderstamp", IDleaderstamp);
-
-	INstampname = "/robot_" + to_string(IDstamp);
-	INleaderstampname = "/robot_" + to_string(IDleaderstamp);
-	INlid = 0.70711;
-	INlambda = 1.0;
-	INtau_delta = 3.0;
-	INmu = 1.0;
-	INgamma = 0.0;
-	INangle_desired = -0.5;
-	INcvrep = 0.9;
-	INcvatt = 0.5;	
+	pn.getParam("inlid", INlid);
+	pn.getParam("inlambda", INlambda);
+	pn.getParam("intau_delta", INtau_delta);
+	pn.getParam("inmu", INmu);
+	pn.getParam("ingamma", INgamma);
+	pn.getParam("inangle_desired", INangle_desired);
+	pn.getParam("incvrep", INcvrep);
+	pn.getParam("incvatt", INcvatt);
+	
 
 	// set up target and follower class
 	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
