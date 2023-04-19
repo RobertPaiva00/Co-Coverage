@@ -55,7 +55,7 @@ using namespace std;
 std::string INstampname, INleaderstampname, curr_subteam;
 
 // define doubles to save the formation parameters
-double INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired, INcvrep, INcvatt;
+double INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired, cvrep, cvatt;
 int IDstamp, IDleaderstamp;
 
 double dist_threshold = 0.05, vel_points = 0.2, midpoint = 1.0;
@@ -393,9 +393,9 @@ void robotMovement(const sensor_msgs::LaserScan::ConstPtr& pt){
 // function to receive LRF messages and update target information
 void scanReceived(const sensor_msgs::LaserScan::ConstPtr& pt)
 {
-	// if (IDstamp != IDleaderstamp){
+	if (IDstamp != IDleaderstamp){
 		robotMovement(pt);
-	// }
+	}
 }
 
 bool initCoverage(){
@@ -443,12 +443,12 @@ int main(int argc, char** argv){
 	INmu = 1.0;
 	INgamma = 0.0;
 	INangle_desired = -0.5;
-	INcvrep = 0.9;
-	INcvatt = 0.5;	
+	cvrep = 0.9;
+	cvatt = 0.5;	
 
 	// set up target and follower class
 	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
-	follower.setup(INcvrep, INcvatt);
+	follower.setup(cvrep, cvatt);
 	targetColumn.setup(0, INlambda, INtau_delta);
 
 	// descriptor for which robot is sending to /status and /team 
