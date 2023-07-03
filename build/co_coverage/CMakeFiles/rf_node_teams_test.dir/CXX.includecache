@@ -67,6 +67,8 @@ std_msgs/String.h
 /home/roberto/COverage_ws/src/co_coverage/src/std_msgs/String.h
 cmath
 -
+vector
+-
 math_rf.h
 /home/roberto/COverage_ws/src/co_coverage/src/math_rf.h
 attractoroblique.h

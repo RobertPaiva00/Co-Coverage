@@ -27,14 +27,12 @@ struct SubteamOrder_
   SubteamOrder_()
     : header()
     , order()
-    , num_robots(0)
-    , subteamstampid(0)  {
+    , num_robots(0)  {
     }
   SubteamOrder_(const ContainerAllocator& _alloc)
     : header(_alloc)
     , order(_alloc)
-    , num_robots(0)
-    , subteamstampid(0)  {
+    , num_robots(0)  {
   (void)_alloc;
     }
 
@@ -48,9 +46,6 @@ struct SubteamOrder_
 
    typedef int32_t _num_robots_type;
   _num_robots_type num_robots;
-
-   typedef int32_t _subteamstampid_type;
-  _subteamstampid_type subteamstampid;
 
 
 
@@ -83,8 +78,7 @@ bool operator==(const ::co_coverage::SubteamOrder_<ContainerAllocator1> & lhs, c
 {
   return lhs.header == rhs.header &&
     lhs.order == rhs.order &&
-    lhs.num_robots == rhs.num_robots &&
-    lhs.subteamstampid == rhs.subteamstampid;
+    lhs.num_robots == rhs.num_robots;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -141,12 +135,12 @@ struct MD5Sum< ::co_coverage::SubteamOrder_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "5e9a5ecf0642328cf77124695091810b";
+    return "5287d70d5cae641d69251c73b5adda1e";
   }
 
   static const char* value(const ::co_coverage::SubteamOrder_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x5e9a5ecf0642328cULL;
-  static const uint64_t static_value2 = 0xf77124695091810bULL;
+  static const uint64_t static_value1 = 0x5287d70d5cae641dULL;
+  static const uint64_t static_value2 = 0x69251c73b5adda1eULL;
 };
 
 template<class ContainerAllocator>
@@ -168,7 +162,6 @@ struct Definition< ::co_coverage::SubteamOrder_<ContainerAllocator> >
     return "Header header\n"
 "int32[] order\n"
 "int32 num_robots\n"
-"int32 subteamstampid\n"
 "\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
@@ -206,7 +199,6 @@ namespace serialization
       stream.next(m.header);
       stream.next(m.order);
       stream.next(m.num_robots);
-      stream.next(m.subteamstampid);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -236,8 +228,6 @@ struct Printer< ::co_coverage::SubteamOrder_<ContainerAllocator> >
     }
     s << indent << "num_robots: ";
     Printer<int32_t>::stream(s, indent + "  ", v.num_robots);
-    s << indent << "subteamstampid: ";
-    Printer<int32_t>::stream(s, indent + "  ", v.subteamstampid);
   }
 };
 

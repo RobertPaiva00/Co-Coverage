@@ -8,6 +8,8 @@
 #include <iostream>
 #include <string>
 #include <ros/ros.h>
+#include <vector>
+#include <algorithm>
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2/LinearMath/Matrix3x3.h>
 #include <tf/transform_listener.h>
@@ -41,6 +43,8 @@ AttractorColumn targetColumn;
 // define strings to save tf topics of follower and leader
 using namespace std;
 std::string INstampname, INleaderstampname, curr_subteam;
+
+std::vector<int> subteam_order_aux;
 
 // define int to save the ID from of follower and leader 
 int IDstamp, IDleaderstamp;
@@ -149,7 +153,7 @@ void subteam_leader_num_robots()
 
 	subteam_order.num_robots = count;
 
-	if (subteam_order.num_robots != subteam_order.order.size()){
+	if (subteam_order.num_robots != subteam_order.order.size() || subteam_order.order[0] != IDstamp){
 		subteam_order.order.resize(count, -1);
 		subteam_order.order[0] = IDstamp;
 	}
@@ -187,17 +191,37 @@ void subteam_orderCallback(const co_coverage::SubteamOrder::ConstPtr& msg)
 	}
 }
 
+void invertSubteam()
+{
+	subteam_order_aux = subteam_order.order;
+
+	subteam_order.header.frame_id = INstampname + "_inverted_" + to_string(subteam_order_aux[0]) + to_string(subteam_order_aux[1])  + to_string(subteam_order_aux[2]) + to_string(subteam_order_aux[3]) + to_string(subteam_order_aux[4]);
+
+	std::reverse(subteam_order_aux.begin(), subteam_order_aux.end());
+
+	for(int i = 0; i < subteam_order.num_robots - 1; i++){
+		if (subteam_order_aux[i] == IDstamp){
+			if (i == 0){
+				IDleaderstamp = IDstamp;
+				INangle_desired = -INangle_desired;
+			} else {
+				IDleaderstamp = subteam_order_aux[i-1];
+			}
+		}
+	}
+}
+
 void subteam_parametersCallback(const co_coverage::SubteamParameters::ConstPtr& msg)
 {
 	// if (IDstamp != IDleaderstamp) {
-	// 	INlid = msg->inlid;
-	// 	INlambda = msg->inlambda;
-	// 	INtau_delta = msg->intau_delta;
-	// 	INmu = msg->inmu;
-	// 	INgamma = msg->ingamma; 
-	// 	INangle_desired = msg->inangle_desired;
+	// 	INlid = msg->lid;
+	// 	INlambda = msg->lambda;
+	// 	INtau_delta = msg->tau_delta;
+	// 	INmu = msg->mu;
+	// 	INgamma = msg->gamma; 
+	// 	INangle_desired = msg->angle_desired;
 
-	// 	// targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
+	// 	targetOblique.setup(INlid, INlambda, INtau_delta, INmu, INgamma, INangle_desired);
 	// }
 }
 
@@ -251,6 +275,8 @@ int main(int argc, char** argv){
 		teams_pub.publish(teams);
 	}
 
+	int count = 0;
+
 	while(ros::ok()){
 		team_sub = node.subscribe("/team", 1, teamStatusCallback);
 		teams.header.stamp = ros::Time::now();
@@ -279,6 +305,12 @@ int main(int argc, char** argv){
 		} else {
 			subteam_parameters_sub = node.subscribe<co_coverage::SubteamParameters>(curr_subteam + "/parameters", 1, subteam_parametersCallback);
 		}
+
+		count++;
+
+		if (count == 50){
+			invertSubteam();
+		} 
 
 		ros::spinOnce();
 	}

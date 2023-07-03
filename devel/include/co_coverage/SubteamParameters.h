@@ -26,21 +26,25 @@ struct SubteamParameters_
 
   SubteamParameters_()
     : header()
-    , inlid(0.0)
-    , inlambda(0.0)
-    , intau_delta(0.0)
-    , inmu(0.0)
-    , ingamma(0.0)
-    , inangle_desired(0.0)  {
+    , lid(0.0)
+    , lambda(0.0)
+    , tau_delta(0.0)
+    , mu(0.0)
+    , gamma(0.0)
+    , angle_desired(0.0)
+    , curve(0)
+    , order_inv()  {
     }
   SubteamParameters_(const ContainerAllocator& _alloc)
     : header(_alloc)
-    , inlid(0.0)
-    , inlambda(0.0)
-    , intau_delta(0.0)
-    , inmu(0.0)
-    , ingamma(0.0)
-    , inangle_desired(0.0)  {
+    , lid(0.0)
+    , lambda(0.0)
+    , tau_delta(0.0)
+    , mu(0.0)
+    , gamma(0.0)
+    , angle_desired(0.0)
+    , curve(0)
+    , order_inv(_alloc)  {
   (void)_alloc;
     }
 
@@ -49,23 +53,29 @@ struct SubteamParameters_
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef double _inlid_type;
-  _inlid_type inlid;
+   typedef double _lid_type;
+  _lid_type lid;
 
-   typedef double _inlambda_type;
-  _inlambda_type inlambda;
+   typedef double _lambda_type;
+  _lambda_type lambda;
 
-   typedef double _intau_delta_type;
-  _intau_delta_type intau_delta;
+   typedef double _tau_delta_type;
+  _tau_delta_type tau_delta;
 
-   typedef double _inmu_type;
-  _inmu_type inmu;
+   typedef double _mu_type;
+  _mu_type mu;
 
-   typedef double _ingamma_type;
-  _ingamma_type ingamma;
+   typedef double _gamma_type;
+  _gamma_type gamma;
 
-   typedef double _inangle_desired_type;
-  _inangle_desired_type inangle_desired;
+   typedef double _angle_desired_type;
+  _angle_desired_type angle_desired;
+
+   typedef uint8_t _curve_type;
+  _curve_type curve;
+
+   typedef std::vector<int32_t, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<int32_t>> _order_inv_type;
+  _order_inv_type order_inv;
 
 
 
@@ -97,12 +107,14 @@ template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::co_coverage::SubteamParameters_<ContainerAllocator1> & lhs, const ::co_coverage::SubteamParameters_<ContainerAllocator2> & rhs)
 {
   return lhs.header == rhs.header &&
-    lhs.inlid == rhs.inlid &&
-    lhs.inlambda == rhs.inlambda &&
-    lhs.intau_delta == rhs.intau_delta &&
-    lhs.inmu == rhs.inmu &&
-    lhs.ingamma == rhs.ingamma &&
-    lhs.inangle_desired == rhs.inangle_desired;
+    lhs.lid == rhs.lid &&
+    lhs.lambda == rhs.lambda &&
+    lhs.tau_delta == rhs.tau_delta &&
+    lhs.mu == rhs.mu &&
+    lhs.gamma == rhs.gamma &&
+    lhs.angle_desired == rhs.angle_desired &&
+    lhs.curve == rhs.curve &&
+    lhs.order_inv == rhs.order_inv;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -159,12 +171,12 @@ struct MD5Sum< ::co_coverage::SubteamParameters_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "3960caeb2a960469bd33c37683b0c1f3";
+    return "d9c99d86e077aca9b38aebac11d6f8df";
   }
 
   static const char* value(const ::co_coverage::SubteamParameters_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x3960caeb2a960469ULL;
-  static const uint64_t static_value2 = 0xbd33c37683b0c1f3ULL;
+  static const uint64_t static_value1 = 0xd9c99d86e077aca9ULL;
+  static const uint64_t static_value2 = 0xb38aebac11d6f8dfULL;
 };
 
 template<class ContainerAllocator>
@@ -184,12 +196,14 @@ struct Definition< ::co_coverage::SubteamParameters_<ContainerAllocator> >
   static const char* value()
   {
     return "Header header\n"
-"float64 inlid\n"
-"float64 inlambda\n"
-"float64 intau_delta\n"
-"float64 inmu\n"
-"float64 ingamma\n"
-"float64 inangle_desired\n"
+"float64 lid\n"
+"float64 lambda\n"
+"float64 tau_delta\n"
+"float64 mu\n"
+"float64 gamma\n"
+"float64 angle_desired\n"
+"uint8 curve\n"
+"int32[] order_inv\n"
 "\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
@@ -225,12 +239,14 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.header);
-      stream.next(m.inlid);
-      stream.next(m.inlambda);
-      stream.next(m.intau_delta);
-      stream.next(m.inmu);
-      stream.next(m.ingamma);
-      stream.next(m.inangle_desired);
+      stream.next(m.lid);
+      stream.next(m.lambda);
+      stream.next(m.tau_delta);
+      stream.next(m.mu);
+      stream.next(m.gamma);
+      stream.next(m.angle_desired);
+      stream.next(m.curve);
+      stream.next(m.order_inv);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -252,18 +268,26 @@ struct Printer< ::co_coverage::SubteamParameters_<ContainerAllocator> >
     s << indent << "header: ";
     s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "inlid: ";
-    Printer<double>::stream(s, indent + "  ", v.inlid);
-    s << indent << "inlambda: ";
-    Printer<double>::stream(s, indent + "  ", v.inlambda);
-    s << indent << "intau_delta: ";
-    Printer<double>::stream(s, indent + "  ", v.intau_delta);
-    s << indent << "inmu: ";
-    Printer<double>::stream(s, indent + "  ", v.inmu);
-    s << indent << "ingamma: ";
-    Printer<double>::stream(s, indent + "  ", v.ingamma);
-    s << indent << "inangle_desired: ";
-    Printer<double>::stream(s, indent + "  ", v.inangle_desired);
+    s << indent << "lid: ";
+    Printer<double>::stream(s, indent + "  ", v.lid);
+    s << indent << "lambda: ";
+    Printer<double>::stream(s, indent + "  ", v.lambda);
+    s << indent << "tau_delta: ";
+    Printer<double>::stream(s, indent + "  ", v.tau_delta);
+    s << indent << "mu: ";
+    Printer<double>::stream(s, indent + "  ", v.mu);
+    s << indent << "gamma: ";
+    Printer<double>::stream(s, indent + "  ", v.gamma);
+    s << indent << "angle_desired: ";
+    Printer<double>::stream(s, indent + "  ", v.angle_desired);
+    s << indent << "curve: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.curve);
+    s << indent << "order_inv[]" << std::endl;
+    for (size_t i = 0; i < v.order_inv.size(); ++i)
+    {
+      s << indent << "  order_inv[" << i << "]: ";
+      Printer<int32_t>::stream(s, indent + "  ", v.order_inv[i]);
+    }
   }
 };
 

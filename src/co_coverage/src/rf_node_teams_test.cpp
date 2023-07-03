@@ -21,6 +21,7 @@
 #include "geometry_msgs/PoseWithCovarianceStamped.h"
 #include "std_msgs/String.h"
 #include <cmath>
+#include <vector>
 #include "math_rf.h"
 #include "attractoroblique.h"
 #include "attractorcolumn.h"
@@ -181,7 +182,7 @@ void vel_leaderCallback(const geometry_msgs::Twist::ConstPtr& vel_msg)
 
 void teamStatusCallback(const co_coverage::Team::ConstPtr& msg)
 {
-	if (strcmp(INleaderstampname.c_str(), INstampname.c_str()) == 0){
+	if (IDstamp == IDleaderstamp){
 		if (msg->team_id[IDstamp] == teams.team_id[IDstamp]){
 			teams.team_id = msg->team_id;
 			teams.team_num = msg->team_num;
@@ -210,26 +211,9 @@ void teamStatusCallback(const co_coverage::Team::ConstPtr& msg)
 		}
 	}	
 
-	// if(newCell && strcmp(INleaderstampname.c_str(), INstampname.c_str()) != 0){
-	// 	teams.team_id = msg->team_id;
-	// 	teams.team_num = msg->team_num;
-	// 	teams.team_num += 1;
-	// 	teams.team_id[IDstamp] = teams.team_num;
-	// 	// INleaderstampname = INstampname;
-	// 	// IDleaderstamp = IDstamp;
-	// 	newCell = false;
-	
-	// } else{
-
-	// 	if(msg->team_id[IDleaderstamp] != teams.team_id[IDstamp] && strcmp(INleaderstampname.c_str(), INstampname.c_str()) != 0){
-	// 		teams.team_id = msg->team_id;
-	// 		teams.team_id[IDstamp] = msg->team_id[IDleaderstamp];
-	// 		teams.team_num = msg->team_num;
-	// 	} else {
-	// 		teams.team_id = msg->team_id;
-	// 		teams.team_num = msg->team_num;
-	// 	}
-	// }
+	if(teams.team_id.size() < (IDstamp + 1)){
+		teams.team_id.resize((IDstamp + 1), -1);
+	}
 
 }
 
@@ -258,6 +242,7 @@ int main(int argc, char** argv){
 
 	// descriptor for which robot is sending to /team
 	teams.header.frame_id = INstampname;
+	teams.team_id.resize((IDstamp+1), -1);
 
 	// subscribe to LRF, follower current command values, follower base_pose_ground_truth, leader base_pose_ground_truth and leader command values, 
 	ros::Subscriber follower_cv_sub, follower_bpgt_sub, leader_bpgt_sub, leader_cv_sub, team_sub;

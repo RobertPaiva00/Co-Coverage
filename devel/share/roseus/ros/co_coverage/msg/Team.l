@@ -22,7 +22,7 @@
   (:init
    (&key
     ((:header __header) (instance std_msgs::Header :init))
-    ((:team_id __team_id) (make-array 100 :initial-element 0 :element-type :integer))
+    ((:team_id __team_id) (make-array 0 :initial-element 0 :element-type :integer))
     ((:team_num __team_num) 0)
     )
    (send-super :init)
@@ -48,8 +48,8 @@
    (+
     ;; std_msgs/Header _header
     (send _header :serialization-length)
-    ;; uint32[100] _team_id
-    (* 4    100)
+    ;; int32[] _team_id
+    (* 4    (length _team_id)) 4
     ;; uint32 _team_num
     4
     ))
@@ -59,8 +59,9 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; std_msgs/Header _header
        (send _header :serialize s)
-     ;; uint32[100] _team_id
-     (dotimes (i 100)
+     ;; int32[] _team_id
+     (write-long (length _team_id) s)
+     (dotimes (i (length _team_id))
        (write-long (elt _team_id i) s)
        )
      ;; uint32 _team_num
@@ -71,21 +72,24 @@
    (buf &optional (ptr- 0))
    ;; std_msgs/Header _header
      (send _header :deserialize buf ptr-) (incf ptr- (send _header :serialization-length))
-   ;; uint32[100] _team_id
-   (dotimes (i (length _team_id))
+   ;; int32[] _team_id
+   (let (n)
+     (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     (setq _team_id (instantiate integer-vector n))
+     (dotimes (i n)
      (setf (elt _team_id i) (sys::peek buf ptr- :integer)) (incf ptr- 4)
-     )
+     ))
    ;; uint32 _team_num
      (setq _team_num (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get co_coverage::Team :md5sum-) "0de80fe56a3402e56a427da4690e4ede")
+(setf (get co_coverage::Team :md5sum-) "08b1997128770891cd099f21d0aa94e8")
 (setf (get co_coverage::Team :datatype-) "co_coverage/Team")
 (setf (get co_coverage::Team :definition-)
       "Header header
-uint32[100] team_id
+int32[] team_id
 uint32 team_num
 
 ================================================================================
@@ -108,6 +112,6 @@ string frame_id
 
 
 
-(provide :co_coverage/Team "0de80fe56a3402e56a427da4690e4ede")
+(provide :co_coverage/Team "08b1997128770891cd099f21d0aa94e8")
 
 

@@ -9,13 +9,14 @@ import struct
 import std_msgs.msg
 
 class Status(genpy.Message):
-  _md5sum = "4d6c48ebb3172b53dd09390ff82f7d7a"
+  _md5sum = "73b0293d22aae890e0abda96fec4ba83"
   _type = "co_coverage/Status"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
 uint32 status
 uint32 subteam
 uint32 following
+uint32 leading
 
 ================================================================================
 MSG: std_msgs/Header
@@ -33,8 +34,8 @@ time stamp
 #Frame this data is associated with
 string frame_id
 """
-  __slots__ = ['header','status','subteam','following']
-  _slot_types = ['std_msgs/Header','uint32','uint32','uint32']
+  __slots__ = ['header','status','subteam','following','leading']
+  _slot_types = ['std_msgs/Header','uint32','uint32','uint32','uint32']
 
   def __init__(self, *args, **kwds):
     """
@@ -44,7 +45,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,status,subteam,following
+       header,status,subteam,following,leading
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -61,11 +62,14 @@ string frame_id
         self.subteam = 0
       if self.following is None:
         self.following = 0
+      if self.leading is None:
+        self.leading = 0
     else:
       self.header = std_msgs.msg.Header()
       self.status = 0
       self.subteam = 0
       self.following = 0
+      self.leading = 0
 
   def _get_types(self):
     """
@@ -88,7 +92,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_3I().pack(_x.status, _x.subteam, _x.following))
+      buff.write(_get_struct_4I().pack(_x.status, _x.subteam, _x.following, _x.leading))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -118,8 +122,8 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 12
-      (_x.status, _x.subteam, _x.following,) = _get_struct_3I().unpack(str[start:end])
+      end += 16
+      (_x.status, _x.subteam, _x.following, _x.leading,) = _get_struct_4I().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -141,7 +145,7 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_3I().pack(_x.status, _x.subteam, _x.following))
+      buff.write(_get_struct_4I().pack(_x.status, _x.subteam, _x.following, _x.leading))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -172,8 +176,8 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 12
-      (_x.status, _x.subteam, _x.following,) = _get_struct_3I().unpack(str[start:end])
+      end += 16
+      (_x.status, _x.subteam, _x.following, _x.leading,) = _get_struct_4I().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -188,3 +192,9 @@ def _get_struct_3I():
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
+_struct_4I = None
+def _get_struct_4I():
+    global _struct_4I
+    if _struct_4I is None:
+        _struct_4I = struct.Struct("<4I")
+    return _struct_4I

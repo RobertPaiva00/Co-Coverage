@@ -26,6 +26,11 @@
     :reader following
     :initarg :following
     :type cl:integer
+    :initform 0)
+   (leading
+    :reader leading
+    :initarg :leading
+    :type cl:integer
     :initform 0))
 )
 
@@ -56,6 +61,11 @@
 (cl:defmethod following-val ((m <Status>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader co_coverage-msg:following-val is deprecated.  Use co_coverage-msg:following instead.")
   (following m))
+
+(cl:ensure-generic-function 'leading-val :lambda-list '(m))
+(cl:defmethod leading-val ((m <Status>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader co_coverage-msg:leading-val is deprecated.  Use co_coverage-msg:leading instead.")
+  (leading m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <Status>) ostream)
   "Serializes a message object of type '<Status>"
   (roslisp-msg-protocol:serialize (cl:slot-value msg 'header) ostream)
@@ -71,6 +81,10 @@
   (cl:write-byte (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'following)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 16) (cl:slot-value msg 'following)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 24) (cl:slot-value msg 'following)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'leading)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'leading)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 16) (cl:slot-value msg 'leading)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 24) (cl:slot-value msg 'leading)) ostream)
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <Status>) istream)
   "Deserializes a message object of type '<Status>"
@@ -87,6 +101,10 @@
     (cl:setf (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'following)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 16) (cl:slot-value msg 'following)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 24) (cl:slot-value msg 'following)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'leading)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'leading)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 16) (cl:slot-value msg 'leading)) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 24) (cl:slot-value msg 'leading)) (cl:read-byte istream))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<Status>)))
@@ -97,19 +115,20 @@
   "co_coverage/Status")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<Status>)))
   "Returns md5sum for a message object of type '<Status>"
-  "4d6c48ebb3172b53dd09390ff82f7d7a")
+  "73b0293d22aae890e0abda96fec4ba83")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'Status)))
   "Returns md5sum for a message object of type 'Status"
-  "4d6c48ebb3172b53dd09390ff82f7d7a")
+  "73b0293d22aae890e0abda96fec4ba83")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<Status>)))
   "Returns full string definition for message of type '<Status>"
-  (cl:format cl:nil "Header header~%uint32 status~%uint32 subteam~%uint32 following~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%uint32 status~%uint32 subteam~%uint32 following~%uint32 leading~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'Status)))
   "Returns full string definition for message of type 'Status"
-  (cl:format cl:nil "Header header~%uint32 status~%uint32 subteam~%uint32 following~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%uint32 status~%uint32 subteam~%uint32 following~%uint32 leading~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <Status>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'header))
+     4
      4
      4
      4
@@ -121,4 +140,5 @@
     (cl:cons ':status (status msg))
     (cl:cons ':subteam (subteam msg))
     (cl:cons ':following (following msg))
+    (cl:cons ':leading (leading msg))
 ))

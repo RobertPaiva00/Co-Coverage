@@ -1,16 +1,20 @@
 (cl:in-package co_coverage-msg)
 (cl:export '(HEADER-VAL
           HEADER
-          INLID-VAL
-          INLID
-          INLAMBDA-VAL
-          INLAMBDA
-          INTAU_DELTA-VAL
-          INTAU_DELTA
-          INMU-VAL
-          INMU
-          INGAMMA-VAL
-          INGAMMA
-          INANGLE_DESIRED-VAL
-          INANGLE_DESIRED
+          LID-VAL
+          LID
+          LAMBDA-VAL
+          LAMBDA
+          TAU_DELTA-VAL
+          TAU_DELTA
+          MU-VAL
+          MU
+          GAMMA-VAL
+          GAMMA
+          ANGLE_DESIRED-VAL
+          ANGLE_DESIRED
+          CURVE-VAL
+          CURVE
+          ORDER_INV-VAL
+          ORDER_INV
 ))

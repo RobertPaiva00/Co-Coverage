@@ -168,6 +168,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/rule:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/rule
+.PHONY : co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/rule
+
+# Convenience name for target.
+rf_node_subteam_descriptor_reverse: co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/rule
+
+.PHONY : rf_node_subteam_descriptor_reverse
+
+# fast build rule for target.
+rf_node_subteam_descriptor_reverse/fast:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/build
+.PHONY : rf_node_subteam_descriptor_reverse/fast
+
+# Convenience name for target.
 co_coverage/CMakeFiles/rf_node_movement.dir/rule:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f CMakeFiles/Makefile2 co_coverage/CMakeFiles/rf_node_movement.dir/rule
 .PHONY : co_coverage/CMakeFiles/rf_node_movement.dir/rule
@@ -1313,6 +1328,33 @@ src/rf_node_subteam_descriptor.cpp.s:
 	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor.dir/src/rf_node_subteam_descriptor.cpp.s
 .PHONY : src/rf_node_subteam_descriptor.cpp.s
 
+src/rf_node_subteam_descriptor_reverse.o: src/rf_node_subteam_descriptor_reverse.cpp.o
+
+.PHONY : src/rf_node_subteam_descriptor_reverse.o
+
+# target to build an object file
+src/rf_node_subteam_descriptor_reverse.cpp.o:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/src/rf_node_subteam_descriptor_reverse.cpp.o
+.PHONY : src/rf_node_subteam_descriptor_reverse.cpp.o
+
+src/rf_node_subteam_descriptor_reverse.i: src/rf_node_subteam_descriptor_reverse.cpp.i
+
+.PHONY : src/rf_node_subteam_descriptor_reverse.i
+
+# target to preprocess a source file
+src/rf_node_subteam_descriptor_reverse.cpp.i:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/src/rf_node_subteam_descriptor_reverse.cpp.i
+.PHONY : src/rf_node_subteam_descriptor_reverse.cpp.i
+
+src/rf_node_subteam_descriptor_reverse.s: src/rf_node_subteam_descriptor_reverse.cpp.s
+
+.PHONY : src/rf_node_subteam_descriptor_reverse.s
+
+# target to generate assembly for a file
+src/rf_node_subteam_descriptor_reverse.cpp.s:
+	cd /home/roberto/COverage_ws/build && $(MAKE) -f co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/build.make co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir/src/rf_node_subteam_descriptor_reverse.cpp.s
+.PHONY : src/rf_node_subteam_descriptor_reverse.cpp.s
+
 src/rf_node_team_management.o: src/rf_node_team_management.cpp.o
 
 .PHONY : src/rf_node_team_management.o
@@ -1377,6 +1419,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... rf_node_subteam_descriptor_reverse"
 	@echo "... rf_node_movement"
 	@echo "... rf_node_co_coverage"
 	@echo "... co_coverage_genpy"
@@ -1460,6 +1503,9 @@ help:
 	@echo "... src/rf_node_subteam_descriptor.o"
 	@echo "... src/rf_node_subteam_descriptor.i"
 	@echo "... src/rf_node_subteam_descriptor.s"
+	@echo "... src/rf_node_subteam_descriptor_reverse.o"
+	@echo "... src/rf_node_subteam_descriptor_reverse.i"
+	@echo "... src/rf_node_subteam_descriptor_reverse.s"
 	@echo "... src/rf_node_team_management.o"
 	@echo "... src/rf_node_team_management.i"
 	@echo "... src/rf_node_team_management.s"

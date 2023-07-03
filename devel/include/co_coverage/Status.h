@@ -28,13 +28,15 @@ struct Status_
     : header()
     , status(0)
     , subteam(0)
-    , following(0)  {
+    , following(0)
+    , leading(0)  {
     }
   Status_(const ContainerAllocator& _alloc)
     : header(_alloc)
     , status(0)
     , subteam(0)
-    , following(0)  {
+    , following(0)
+    , leading(0)  {
   (void)_alloc;
     }
 
@@ -51,6 +53,9 @@ struct Status_
 
    typedef uint32_t _following_type;
   _following_type following;
+
+   typedef uint32_t _leading_type;
+  _leading_type leading;
 
 
 
@@ -84,7 +89,8 @@ bool operator==(const ::co_coverage::Status_<ContainerAllocator1> & lhs, const :
   return lhs.header == rhs.header &&
     lhs.status == rhs.status &&
     lhs.subteam == rhs.subteam &&
-    lhs.following == rhs.following;
+    lhs.following == rhs.following &&
+    lhs.leading == rhs.leading;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -141,12 +147,12 @@ struct MD5Sum< ::co_coverage::Status_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "4d6c48ebb3172b53dd09390ff82f7d7a";
+    return "73b0293d22aae890e0abda96fec4ba83";
   }
 
   static const char* value(const ::co_coverage::Status_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x4d6c48ebb3172b53ULL;
-  static const uint64_t static_value2 = 0xdd09390ff82f7d7aULL;
+  static const uint64_t static_value1 = 0x73b0293d22aae890ULL;
+  static const uint64_t static_value2 = 0xe0abda96fec4ba83ULL;
 };
 
 template<class ContainerAllocator>
@@ -169,6 +175,7 @@ struct Definition< ::co_coverage::Status_<ContainerAllocator> >
 "uint32 status\n"
 "uint32 subteam\n"
 "uint32 following\n"
+"uint32 leading\n"
 "\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
@@ -207,6 +214,7 @@ namespace serialization
       stream.next(m.status);
       stream.next(m.subteam);
       stream.next(m.following);
+      stream.next(m.leading);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -234,6 +242,8 @@ struct Printer< ::co_coverage::Status_<ContainerAllocator> >
     Printer<uint32_t>::stream(s, indent + "  ", v.subteam);
     s << indent << "following: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.following);
+    s << indent << "leading: ";
+    Printer<uint32_t>::stream(s, indent + "  ", v.leading);
   }
 };
 

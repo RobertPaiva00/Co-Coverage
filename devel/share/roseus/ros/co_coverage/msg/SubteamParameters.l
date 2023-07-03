@@ -16,27 +16,31 @@
 
 (defclass co_coverage::SubteamParameters
   :super ros::object
-  :slots (_header _inlid _inlambda _intau_delta _inmu _ingamma _inangle_desired ))
+  :slots (_header _lid _lambda _tau_delta _mu _gamma _angle_desired _curve _order_inv ))
 
 (defmethod co_coverage::SubteamParameters
   (:init
    (&key
     ((:header __header) (instance std_msgs::Header :init))
-    ((:inlid __inlid) 0.0)
-    ((:inlambda __inlambda) 0.0)
-    ((:intau_delta __intau_delta) 0.0)
-    ((:inmu __inmu) 0.0)
-    ((:ingamma __ingamma) 0.0)
-    ((:inangle_desired __inangle_desired) 0.0)
+    ((:lid __lid) 0.0)
+    ((:lambda __lambda) 0.0)
+    ((:tau_delta __tau_delta) 0.0)
+    ((:mu __mu) 0.0)
+    ((:gamma __gamma) 0.0)
+    ((:angle_desired __angle_desired) 0.0)
+    ((:curve __curve) 0)
+    ((:order_inv __order_inv) (make-array 0 :initial-element 0 :element-type :integer))
     )
    (send-super :init)
    (setq _header __header)
-   (setq _inlid (float __inlid))
-   (setq _inlambda (float __inlambda))
-   (setq _intau_delta (float __intau_delta))
-   (setq _inmu (float __inmu))
-   (setq _ingamma (float __ingamma))
-   (setq _inangle_desired (float __inangle_desired))
+   (setq _lid (float __lid))
+   (setq _lambda (float __lambda))
+   (setq _tau_delta (float __tau_delta))
+   (setq _mu (float __mu))
+   (setq _gamma (float __gamma))
+   (setq _angle_desired (float __angle_desired))
+   (setq _curve (round __curve))
+   (setq _order_inv __order_inv)
    self)
   (:header
    (&rest __header)
@@ -45,41 +49,51 @@
      (progn
        (if __header (setq _header (car __header)))
        _header)))
-  (:inlid
-   (&optional __inlid)
-   (if __inlid (setq _inlid __inlid)) _inlid)
-  (:inlambda
-   (&optional __inlambda)
-   (if __inlambda (setq _inlambda __inlambda)) _inlambda)
-  (:intau_delta
-   (&optional __intau_delta)
-   (if __intau_delta (setq _intau_delta __intau_delta)) _intau_delta)
-  (:inmu
-   (&optional __inmu)
-   (if __inmu (setq _inmu __inmu)) _inmu)
-  (:ingamma
-   (&optional __ingamma)
-   (if __ingamma (setq _ingamma __ingamma)) _ingamma)
-  (:inangle_desired
-   (&optional __inangle_desired)
-   (if __inangle_desired (setq _inangle_desired __inangle_desired)) _inangle_desired)
+  (:lid
+   (&optional __lid)
+   (if __lid (setq _lid __lid)) _lid)
+  (:lambda
+   (&optional __lambda)
+   (if __lambda (setq _lambda __lambda)) _lambda)
+  (:tau_delta
+   (&optional __tau_delta)
+   (if __tau_delta (setq _tau_delta __tau_delta)) _tau_delta)
+  (:mu
+   (&optional __mu)
+   (if __mu (setq _mu __mu)) _mu)
+  (:gamma
+   (&optional __gamma)
+   (if __gamma (setq _gamma __gamma)) _gamma)
+  (:angle_desired
+   (&optional __angle_desired)
+   (if __angle_desired (setq _angle_desired __angle_desired)) _angle_desired)
+  (:curve
+   (&optional __curve)
+   (if __curve (setq _curve __curve)) _curve)
+  (:order_inv
+   (&optional __order_inv)
+   (if __order_inv (setq _order_inv __order_inv)) _order_inv)
   (:serialization-length
    ()
    (+
     ;; std_msgs/Header _header
     (send _header :serialization-length)
-    ;; float64 _inlid
+    ;; float64 _lid
     8
-    ;; float64 _inlambda
+    ;; float64 _lambda
     8
-    ;; float64 _intau_delta
+    ;; float64 _tau_delta
     8
-    ;; float64 _inmu
+    ;; float64 _mu
     8
-    ;; float64 _ingamma
+    ;; float64 _gamma
     8
-    ;; float64 _inangle_desired
+    ;; float64 _angle_desired
     8
+    ;; uint8 _curve
+    1
+    ;; int32[] _order_inv
+    (* 4    (length _order_inv)) 4
     ))
   (:serialize
    (&optional strm)
@@ -87,50 +101,68 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; std_msgs/Header _header
        (send _header :serialize s)
-     ;; float64 _inlid
-       (sys::poke _inlid (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; float64 _inlambda
-       (sys::poke _inlambda (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; float64 _intau_delta
-       (sys::poke _intau_delta (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; float64 _inmu
-       (sys::poke _inmu (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; float64 _ingamma
-       (sys::poke _ingamma (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; float64 _inangle_desired
-       (sys::poke _inangle_desired (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _lid
+       (sys::poke _lid (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _lambda
+       (sys::poke _lambda (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _tau_delta
+       (sys::poke _tau_delta (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _mu
+       (sys::poke _mu (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _gamma
+       (sys::poke _gamma (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _angle_desired
+       (sys::poke _angle_desired (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; uint8 _curve
+       (write-byte _curve s)
+     ;; int32[] _order_inv
+     (write-long (length _order_inv) s)
+     (dotimes (i (length _order_inv))
+       (write-long (elt _order_inv i) s)
+       )
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
    ;; std_msgs/Header _header
      (send _header :deserialize buf ptr-) (incf ptr- (send _header :serialization-length))
-   ;; float64 _inlid
-     (setq _inlid (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; float64 _inlambda
-     (setq _inlambda (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; float64 _intau_delta
-     (setq _intau_delta (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; float64 _inmu
-     (setq _inmu (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; float64 _ingamma
-     (setq _ingamma (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; float64 _inangle_desired
-     (setq _inangle_desired (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _lid
+     (setq _lid (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _lambda
+     (setq _lambda (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _tau_delta
+     (setq _tau_delta (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _mu
+     (setq _mu (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _gamma
+     (setq _gamma (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _angle_desired
+     (setq _angle_desired (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; uint8 _curve
+     (setq _curve (sys::peek buf ptr- :char)) (incf ptr- 1)
+   ;; int32[] _order_inv
+   (let (n)
+     (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     (setq _order_inv (instantiate integer-vector n))
+     (dotimes (i n)
+     (setf (elt _order_inv i) (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     ))
    ;;
    self)
   )
 
-(setf (get co_coverage::SubteamParameters :md5sum-) "3960caeb2a960469bd33c37683b0c1f3")
+(setf (get co_coverage::SubteamParameters :md5sum-) "d9c99d86e077aca9b38aebac11d6f8df")
 (setf (get co_coverage::SubteamParameters :datatype-) "co_coverage/SubteamParameters")
 (setf (get co_coverage::SubteamParameters :definition-)
       "Header header
-float64 inlid
-float64 inlambda
-float64 intau_delta
-float64 inmu
-float64 ingamma
-float64 inangle_desired
+float64 lid
+float64 lambda
+float64 tau_delta
+float64 mu
+float64 gamma
+float64 angle_desired
+uint8 curve
+int32[] order_inv
 
 ================================================================================
 MSG: std_msgs/Header
@@ -152,6 +184,6 @@ string frame_id
 
 
 
-(provide :co_coverage/SubteamParameters "3960caeb2a960469bd33c37683b0c1f3")
+(provide :co_coverage/SubteamParameters "d9c99d86e077aca9b38aebac11d6f8df")
 
 

@@ -34,7 +34,7 @@ class Team {
         this.team_id = initObj.team_id
       }
       else {
-        this.team_id = new Array(100).fill(0);
+        this.team_id = [];
       }
       if (initObj.hasOwnProperty('team_num')) {
         this.team_num = initObj.team_num
@@ -49,12 +49,8 @@ class Team {
     // Serializes a message object of type Team
     // Serialize message field [header]
     bufferOffset = std_msgs.msg.Header.serialize(obj.header, buffer, bufferOffset);
-    // Check that the constant length array field [team_id] has the right length
-    if (obj.team_id.length !== 100) {
-      throw new Error('Unable to serialize array field team_id - length must be 100')
-    }
     // Serialize message field [team_id]
-    bufferOffset = _arraySerializer.uint32(obj.team_id, buffer, bufferOffset, 100);
+    bufferOffset = _arraySerializer.int32(obj.team_id, buffer, bufferOffset, null);
     // Serialize message field [team_num]
     bufferOffset = _serializer.uint32(obj.team_num, buffer, bufferOffset);
     return bufferOffset;
@@ -67,7 +63,7 @@ class Team {
     // Deserialize message field [header]
     data.header = std_msgs.msg.Header.deserialize(buffer, bufferOffset);
     // Deserialize message field [team_id]
-    data.team_id = _arrayDeserializer.uint32(buffer, bufferOffset, 100)
+    data.team_id = _arrayDeserializer.int32(buffer, bufferOffset, null)
     // Deserialize message field [team_num]
     data.team_num = _deserializer.uint32(buffer, bufferOffset);
     return data;
@@ -76,7 +72,8 @@ class Team {
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 404;
+    length += 4 * object.team_id.length;
+    return length + 8;
   }
 
   static datatype() {
@@ -86,14 +83,14 @@ class Team {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '0de80fe56a3402e56a427da4690e4ede';
+    return '08b1997128770891cd099f21d0aa94e8';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     Header header
-    uint32[100] team_id
+    int32[] team_id
     uint32 team_num
     
     ================================================================================
@@ -132,7 +129,7 @@ class Team {
       resolved.team_id = msg.team_id;
     }
     else {
-      resolved.team_id = new Array(100).fill(0)
+      resolved.team_id = []
     }
 
     if (msg.team_num !== undefined) {

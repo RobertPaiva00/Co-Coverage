@@ -49,3 +49,17 @@ double getAngle(double x, double y, double z, double w){
 
 	return yaw;
 }
+
+// Function to convert Cartesian coordinates to polar coordinates
+void cartesianToPolar(double x, double y, double& range, double& angle)
+{
+    range = std::sqrt(x*x + y*y);
+    angle = std::atan2(y, x);
+}
+
+// Function to convert polar coordinates to Cartesian coordinates
+void polarToCartesian(double range, double angle, double& x, double& y)
+{
+    x = range * std::cos(angle);
+    y = range * std::sin(angle);
+}

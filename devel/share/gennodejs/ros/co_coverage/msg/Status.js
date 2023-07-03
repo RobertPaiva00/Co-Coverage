@@ -23,6 +23,7 @@ class Status {
       this.status = null;
       this.subteam = null;
       this.following = null;
+      this.leading = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -49,6 +50,12 @@ class Status {
       else {
         this.following = 0;
       }
+      if (initObj.hasOwnProperty('leading')) {
+        this.leading = initObj.leading
+      }
+      else {
+        this.leading = 0;
+      }
     }
   }
 
@@ -62,6 +69,8 @@ class Status {
     bufferOffset = _serializer.uint32(obj.subteam, buffer, bufferOffset);
     // Serialize message field [following]
     bufferOffset = _serializer.uint32(obj.following, buffer, bufferOffset);
+    // Serialize message field [leading]
+    bufferOffset = _serializer.uint32(obj.leading, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -77,13 +86,15 @@ class Status {
     data.subteam = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [following]
     data.following = _deserializer.uint32(buffer, bufferOffset);
+    // Deserialize message field [leading]
+    data.leading = _deserializer.uint32(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 12;
+    return length + 16;
   }
 
   static datatype() {
@@ -93,7 +104,7 @@ class Status {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '4d6c48ebb3172b53dd09390ff82f7d7a';
+    return '73b0293d22aae890e0abda96fec4ba83';
   }
 
   static messageDefinition() {
@@ -103,6 +114,7 @@ class Status {
     uint32 status
     uint32 subteam
     uint32 following
+    uint32 leading
     
     ================================================================================
     MSG: std_msgs/Header
@@ -155,6 +167,13 @@ class Status {
     }
     else {
       resolved.following = 0
+    }
+
+    if (msg.leading !== undefined) {
+      resolved.leading = msg.leading;
+    }
+    else {
+      resolved.leading = 0
     }
 
     return resolved;

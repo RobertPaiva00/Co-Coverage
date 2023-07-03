@@ -9,16 +9,18 @@ import struct
 import std_msgs.msg
 
 class SubteamParameters(genpy.Message):
-  _md5sum = "3960caeb2a960469bd33c37683b0c1f3"
+  _md5sum = "d9c99d86e077aca9b38aebac11d6f8df"
   _type = "co_coverage/SubteamParameters"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
-float64 inlid
-float64 inlambda
-float64 intau_delta
-float64 inmu
-float64 ingamma
-float64 inangle_desired
+float64 lid
+float64 lambda
+float64 tau_delta
+float64 mu
+float64 gamma
+float64 angle_desired
+uint8 curve
+int32[] order_inv
 
 ================================================================================
 MSG: std_msgs/Header
@@ -36,8 +38,8 @@ time stamp
 #Frame this data is associated with
 string frame_id
 """
-  __slots__ = ['header','inlid','inlambda','intau_delta','inmu','ingamma','inangle_desired']
-  _slot_types = ['std_msgs/Header','float64','float64','float64','float64','float64','float64']
+  __slots__ = ['header','lid','lambda_','tau_delta','mu','gamma','angle_desired','curve','order_inv']
+  _slot_types = ['std_msgs/Header','float64','float64','float64','float64','float64','float64','uint8','int32[]']
 
   def __init__(self, *args, **kwds):
     """
@@ -47,7 +49,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,inlid,inlambda,intau_delta,inmu,ingamma,inangle_desired
+       header,lid,lambda_,tau_delta,mu,gamma,angle_desired,curve,order_inv
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -58,26 +60,32 @@ string frame_id
       # message fields cannot be None, assign default values for those that are
       if self.header is None:
         self.header = std_msgs.msg.Header()
-      if self.inlid is None:
-        self.inlid = 0.
-      if self.inlambda is None:
-        self.inlambda = 0.
-      if self.intau_delta is None:
-        self.intau_delta = 0.
-      if self.inmu is None:
-        self.inmu = 0.
-      if self.ingamma is None:
-        self.ingamma = 0.
-      if self.inangle_desired is None:
-        self.inangle_desired = 0.
+      if self.lid is None:
+        self.lid = 0.
+      if self.lambda_ is None:
+        self.lambda_ = 0.
+      if self.tau_delta is None:
+        self.tau_delta = 0.
+      if self.mu is None:
+        self.mu = 0.
+      if self.gamma is None:
+        self.gamma = 0.
+      if self.angle_desired is None:
+        self.angle_desired = 0.
+      if self.curve is None:
+        self.curve = 0
+      if self.order_inv is None:
+        self.order_inv = []
     else:
       self.header = std_msgs.msg.Header()
-      self.inlid = 0.
-      self.inlambda = 0.
-      self.intau_delta = 0.
-      self.inmu = 0.
-      self.ingamma = 0.
-      self.inangle_desired = 0.
+      self.lid = 0.
+      self.lambda_ = 0.
+      self.tau_delta = 0.
+      self.mu = 0.
+      self.gamma = 0.
+      self.angle_desired = 0.
+      self.curve = 0
+      self.order_inv = []
 
   def _get_types(self):
     """
@@ -100,7 +108,11 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_6d().pack(_x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired))
+      buff.write(_get_struct_6dB().pack(_x.lid, _x.lambda_, _x.tau_delta, _x.mu, _x.gamma, _x.angle_desired, _x.curve))
+      length = len(self.order_inv)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%si'%length
+      buff.write(struct.Struct(pattern).pack(*self.order_inv))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -130,8 +142,16 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 48
-      (_x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired,) = _get_struct_6d().unpack(str[start:end])
+      end += 49
+      (_x.lid, _x.lambda_, _x.tau_delta, _x.mu, _x.gamma, _x.angle_desired, _x.curve,) = _get_struct_6dB().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%si'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.order_inv = s.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -153,7 +173,11 @@ string frame_id
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_6d().pack(_x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired))
+      buff.write(_get_struct_6dB().pack(_x.lid, _x.lambda_, _x.tau_delta, _x.mu, _x.gamma, _x.angle_desired, _x.curve))
+      length = len(self.order_inv)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%si'%length
+      buff.write(self.order_inv.tostring())
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -184,8 +208,16 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 48
-      (_x.inlid, _x.inlambda, _x.intau_delta, _x.inmu, _x.ingamma, _x.inangle_desired,) = _get_struct_6d().unpack(str[start:end])
+      end += 49
+      (_x.lid, _x.lambda_, _x.tau_delta, _x.mu, _x.gamma, _x.angle_desired, _x.curve,) = _get_struct_6dB().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%si'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.order_inv = numpy.frombuffer(str[start:end], dtype=numpy.int32, count=length)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -200,9 +232,9 @@ def _get_struct_3I():
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
-_struct_6d = None
-def _get_struct_6d():
-    global _struct_6d
-    if _struct_6d is None:
-        _struct_6d = struct.Struct("<6d")
-    return _struct_6d
+_struct_6dB = None
+def _get_struct_6dB():
+    global _struct_6dB
+    if _struct_6dB is None:
+        _struct_6dB = struct.Struct("<6dB")
+    return _struct_6dB

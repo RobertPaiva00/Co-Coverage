@@ -28,22 +28,20 @@ struct Team_
     : header()
     , team_id()
     , team_num(0)  {
-      team_id.assign(0);
-  }
+    }
   Team_(const ContainerAllocator& _alloc)
     : header(_alloc)
-    , team_id()
+    , team_id(_alloc)
     , team_num(0)  {
   (void)_alloc;
-      team_id.assign(0);
-  }
+    }
 
 
 
    typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
   _header_type header;
 
-   typedef boost::array<uint32_t, 100>  _team_id_type;
+   typedef std::vector<int32_t, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<int32_t>> _team_id_type;
   _team_id_type team_id;
 
    typedef uint32_t _team_num_type;
@@ -137,12 +135,12 @@ struct MD5Sum< ::co_coverage::Team_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "0de80fe56a3402e56a427da4690e4ede";
+    return "08b1997128770891cd099f21d0aa94e8";
   }
 
   static const char* value(const ::co_coverage::Team_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x0de80fe56a3402e5ULL;
-  static const uint64_t static_value2 = 0x6a427da4690e4edeULL;
+  static const uint64_t static_value1 = 0x08b1997128770891ULL;
+  static const uint64_t static_value2 = 0xcd099f21d0aa94e8ULL;
 };
 
 template<class ContainerAllocator>
@@ -162,7 +160,7 @@ struct Definition< ::co_coverage::Team_<ContainerAllocator> >
   static const char* value()
   {
     return "Header header\n"
-"uint32[100] team_id\n"
+"int32[] team_id\n"
 "uint32 team_num\n"
 "\n"
 "================================================================================\n"
@@ -226,7 +224,7 @@ struct Printer< ::co_coverage::Team_<ContainerAllocator> >
     for (size_t i = 0; i < v.team_id.size(); ++i)
     {
       s << indent << "  team_id[" << i << "]: ";
-      Printer<uint32_t>::stream(s, indent + "  ", v.team_id[i]);
+      Printer<int32_t>::stream(s, indent + "  ", v.team_id[i]);
     }
     s << indent << "team_num: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.team_num);

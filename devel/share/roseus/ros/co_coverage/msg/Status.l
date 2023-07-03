@@ -16,7 +16,7 @@
 
 (defclass co_coverage::Status
   :super ros::object
-  :slots (_header _status _subteam _following ))
+  :slots (_header _status _subteam _following _leading ))
 
 (defmethod co_coverage::Status
   (:init
@@ -25,12 +25,14 @@
     ((:status __status) 0)
     ((:subteam __subteam) 0)
     ((:following __following) 0)
+    ((:leading __leading) 0)
     )
    (send-super :init)
    (setq _header __header)
    (setq _status (round __status))
    (setq _subteam (round __subteam))
    (setq _following (round __following))
+   (setq _leading (round __leading))
    self)
   (:header
    (&rest __header)
@@ -48,6 +50,9 @@
   (:following
    (&optional __following)
    (if __following (setq _following __following)) _following)
+  (:leading
+   (&optional __leading)
+   (if __leading (setq _leading __leading)) _leading)
   (:serialization-length
    ()
    (+
@@ -58,6 +63,8 @@
     ;; uint32 _subteam
     4
     ;; uint32 _following
+    4
+    ;; uint32 _leading
     4
     ))
   (:serialize
@@ -72,6 +79,8 @@
        (write-long _subteam s)
      ;; uint32 _following
        (write-long _following s)
+     ;; uint32 _leading
+       (write-long _leading s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -84,17 +93,20 @@
      (setq _subteam (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; uint32 _following
      (setq _following (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; uint32 _leading
+     (setq _leading (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get co_coverage::Status :md5sum-) "4d6c48ebb3172b53dd09390ff82f7d7a")
+(setf (get co_coverage::Status :md5sum-) "73b0293d22aae890e0abda96fec4ba83")
 (setf (get co_coverage::Status :datatype-) "co_coverage/Status")
 (setf (get co_coverage::Status :definition-)
       "Header header
 uint32 status
 uint32 subteam
 uint32 following
+uint32 leading
 
 ================================================================================
 MSG: std_msgs/Header
@@ -116,6 +128,6 @@ string frame_id
 
 
 
-(provide :co_coverage/Status "4d6c48ebb3172b53dd09390ff82f7d7a")
+(provide :co_coverage/Status "73b0293d22aae890e0abda96fec4ba83")
 
 

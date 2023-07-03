@@ -39,6 +39,7 @@
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/list_install_components.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/rebuild_cache.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/test.dir
+/home/roberto/COverage_ws/build/co_coverage/CMakeFiles/rf_node_subteam_descriptor_reverse.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/rf_node_movement.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/rf_node_co_coverage.dir
 /home/roberto/COverage_ws/build/co_coverage/CMakeFiles/co_coverage_genpy.dir

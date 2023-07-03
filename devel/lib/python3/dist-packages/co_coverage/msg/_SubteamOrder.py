@@ -9,13 +9,12 @@ import struct
 import std_msgs.msg
 
 class SubteamOrder(genpy.Message):
-  _md5sum = "5e9a5ecf0642328cf77124695091810b"
+  _md5sum = "5287d70d5cae641d69251c73b5adda1e"
   _type = "co_coverage/SubteamOrder"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
 int32[] order
 int32 num_robots
-int32 subteamstampid
 
 ================================================================================
 MSG: std_msgs/Header
@@ -33,8 +32,8 @@ time stamp
 #Frame this data is associated with
 string frame_id
 """
-  __slots__ = ['header','order','num_robots','subteamstampid']
-  _slot_types = ['std_msgs/Header','int32[]','int32','int32']
+  __slots__ = ['header','order','num_robots']
+  _slot_types = ['std_msgs/Header','int32[]','int32']
 
   def __init__(self, *args, **kwds):
     """
@@ -44,7 +43,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,order,num_robots,subteamstampid
+       header,order,num_robots
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -59,13 +58,10 @@ string frame_id
         self.order = []
       if self.num_robots is None:
         self.num_robots = 0
-      if self.subteamstampid is None:
-        self.subteamstampid = 0
     else:
       self.header = std_msgs.msg.Header()
       self.order = []
       self.num_robots = 0
-      self.subteamstampid = 0
 
   def _get_types(self):
     """
@@ -91,8 +87,8 @@ string frame_id
       buff.write(_struct_I.pack(length))
       pattern = '<%si'%length
       buff.write(struct.Struct(pattern).pack(*self.order))
-      _x = self
-      buff.write(_get_struct_2i().pack(_x.num_robots, _x.subteamstampid))
+      _x = self.num_robots
+      buff.write(_get_struct_i().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -128,10 +124,9 @@ string frame_id
       s = struct.Struct(pattern)
       end += s.size
       self.order = s.unpack(str[start:end])
-      _x = self
       start = end
-      end += 8
-      (_x.num_robots, _x.subteamstampid,) = _get_struct_2i().unpack(str[start:end])
+      end += 4
+      (self.num_robots,) = _get_struct_i().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -156,8 +151,8 @@ string frame_id
       buff.write(_struct_I.pack(length))
       pattern = '<%si'%length
       buff.write(self.order.tostring())
-      _x = self
-      buff.write(_get_struct_2i().pack(_x.num_robots, _x.subteamstampid))
+      _x = self.num_robots
+      buff.write(_get_struct_i().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -194,10 +189,9 @@ string frame_id
       s = struct.Struct(pattern)
       end += s.size
       self.order = numpy.frombuffer(str[start:end], dtype=numpy.int32, count=length)
-      _x = self
       start = end
-      end += 8
-      (_x.num_robots, _x.subteamstampid,) = _get_struct_2i().unpack(str[start:end])
+      end += 4
+      (self.num_robots,) = _get_struct_i().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -206,15 +200,15 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_2i = None
-def _get_struct_2i():
-    global _struct_2i
-    if _struct_2i is None:
-        _struct_2i = struct.Struct("<2i")
-    return _struct_2i
 _struct_3I = None
 def _get_struct_3I():
     global _struct_3I
     if _struct_3I is None:
         _struct_3I = struct.Struct("<3I")
     return _struct_3I
+_struct_i = None
+def _get_struct_i():
+    global _struct_i
+    if _struct_i is None:
+        _struct_i = struct.Struct("<i")
+    return _struct_i

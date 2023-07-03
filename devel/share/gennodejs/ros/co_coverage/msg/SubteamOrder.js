@@ -22,7 +22,6 @@ class SubteamOrder {
       this.header = null;
       this.order = null;
       this.num_robots = null;
-      this.subteamstampid = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -43,12 +42,6 @@ class SubteamOrder {
       else {
         this.num_robots = 0;
       }
-      if (initObj.hasOwnProperty('subteamstampid')) {
-        this.subteamstampid = initObj.subteamstampid
-      }
-      else {
-        this.subteamstampid = 0;
-      }
     }
   }
 
@@ -60,8 +53,6 @@ class SubteamOrder {
     bufferOffset = _arraySerializer.int32(obj.order, buffer, bufferOffset, null);
     // Serialize message field [num_robots]
     bufferOffset = _serializer.int32(obj.num_robots, buffer, bufferOffset);
-    // Serialize message field [subteamstampid]
-    bufferOffset = _serializer.int32(obj.subteamstampid, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -75,8 +66,6 @@ class SubteamOrder {
     data.order = _arrayDeserializer.int32(buffer, bufferOffset, null)
     // Deserialize message field [num_robots]
     data.num_robots = _deserializer.int32(buffer, bufferOffset);
-    // Deserialize message field [subteamstampid]
-    data.subteamstampid = _deserializer.int32(buffer, bufferOffset);
     return data;
   }
 
@@ -84,7 +73,7 @@ class SubteamOrder {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
     length += 4 * object.order.length;
-    return length + 12;
+    return length + 8;
   }
 
   static datatype() {
@@ -94,7 +83,7 @@ class SubteamOrder {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '5e9a5ecf0642328cf77124695091810b';
+    return '5287d70d5cae641d69251c73b5adda1e';
   }
 
   static messageDefinition() {
@@ -103,7 +92,6 @@ class SubteamOrder {
     Header header
     int32[] order
     int32 num_robots
-    int32 subteamstampid
     
     ================================================================================
     MSG: std_msgs/Header
@@ -149,13 +137,6 @@ class SubteamOrder {
     }
     else {
       resolved.num_robots = 0
-    }
-
-    if (msg.subteamstampid !== undefined) {
-      resolved.subteamstampid = msg.subteamstampid;
-    }
-    else {
-      resolved.subteamstampid = 0
     }
 
     return resolved;

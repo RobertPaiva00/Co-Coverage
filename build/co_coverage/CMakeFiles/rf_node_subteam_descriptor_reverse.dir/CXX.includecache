@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/roberto/COverage_ws/devel/include/co_coverage/Status.h
-string
--
-vector
--
-memory
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-std_msgs/Header.h
--
-
 /home/roberto/COverage_ws/devel/include/co_coverage/SubteamOrder.h
 string
 -
@@ -86,14 +68,16 @@ std_msgs/Header.h
 
 /home/roberto/COverage_ws/src/co_coverage/src/math_rf.h
 
-/home/roberto/COverage_ws/src/co_coverage/src/repulsive.h
-
-/home/roberto/COverage_ws/src/co_coverage/src/rf_node_co_coverage.cpp
+/home/roberto/COverage_ws/src/co_coverage/src/rf_node_subteam_descriptor_reverse.cpp
 iostream
 -
 string
 -
 ros/ros.h
+-
+vector
+-
+algorithm
 -
 tf2/LinearMath/Quaternion.h
 -
@@ -101,18 +85,14 @@ tf2/LinearMath/Matrix3x3.h
 -
 tf/transform_listener.h
 -
+tf/LinearMath/Matrix3x3.h
+-
+tf/LinearMath/Quaternion.h
+-
 tf/tf.h
 -
 vector
 -
-algorithm
--
-cmath
--
-sensor_msgs/LaserScan.h
-/home/roberto/COverage_ws/src/co_coverage/src/sensor_msgs/LaserScan.h
-geometry_msgs/Twist.h
-/home/roberto/COverage_ws/src/co_coverage/src/geometry_msgs/Twist.h
 geometry_msgs/PoseWithCovarianceStamped.h
 /home/roberto/COverage_ws/src/co_coverage/src/geometry_msgs/PoseWithCovarianceStamped.h
 math_rf.h
@@ -121,14 +101,10 @@ attractoroblique.h
 /home/roberto/COverage_ws/src/co_coverage/src/attractoroblique.h
 attractorcolumn.h
 /home/roberto/COverage_ws/src/co_coverage/src/attractorcolumn.h
-repulsive.h
-/home/roberto/COverage_ws/src/co_coverage/src/repulsive.h
 follower.h
 /home/roberto/COverage_ws/src/co_coverage/src/follower.h
 co_coverage/Team.h
 /home/roberto/COverage_ws/src/co_coverage/src/co_coverage/Team.h
-co_coverage/Status.h
-/home/roberto/COverage_ws/src/co_coverage/src/co_coverage/Status.h
 co_coverage/SubteamOrder.h
 /home/roberto/COverage_ws/src/co_coverage/src/co_coverage/SubteamOrder.h
 co_coverage/SubteamParameters.h
@@ -1110,24 +1086,6 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-/opt/ros/noetic/include/sensor_msgs/LaserScan.h
-string
--
-vector
--
-memory
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-std_msgs/Header.h
--
-
 /opt/ros/noetic/include/sensor_msgs/PointCloud.h
 string
 -
@@ -1227,6 +1185,14 @@ Vector3.h
 /opt/ros/noetic/include/tf/LinearMath/Vector3.h
 Quaternion.h
 /opt/ros/noetic/include/tf/LinearMath/Quaternion.h
+ros/macros.h
+-
+
+/opt/ros/noetic/include/tf/LinearMath/Quaternion.h
+Vector3.h
+/opt/ros/noetic/include/tf/LinearMath/Vector3.h
+QuadWord.h
+/opt/ros/noetic/include/tf/LinearMath/QuadWord.h
 ros/macros.h
 -
 
