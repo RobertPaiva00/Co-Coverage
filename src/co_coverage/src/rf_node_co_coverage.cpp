@@ -58,7 +58,7 @@ AttractorColumn targetColumn;
 Follower follower;
 
 // define strings to save tf topics of leader, follower, current subteam and from the robot it is leading
-using namespace std;
+// using namespace std;
 std::string stampname, leaderstampname, curr_subteam, leadingstampname;
 
 // define vectors used for the invert the order of the subteam
@@ -372,7 +372,11 @@ void getFollowPoint(){
     cartesianToPolar(follower_odom.xPos, follower_odom.yPos, robot_range, robot_angle);
 
     // Calculate the desired angle based on the given line angle
-    double desired_angle = robot_angle + coverage_angle;
+    double desired_angle = coverage_angle - follower_odom.angle;
+
+	// if (desired_angle > 0){
+	// 	desired_angle += M_PI;
+	// }
 
     // Calculate the nearest point on the line to the robot
     double line_vector_x = std::cos(coverage_angle);
@@ -382,6 +386,13 @@ void getFollowPoint(){
     double dot_product = line_vector_x * robot_vector_x + line_vector_y * robot_vector_y;
     double line_projection_x = x_ini + dot_product * line_vector_x;
     double line_projection_y = y_ini + dot_product * line_vector_y;
+
+	double cross_product = line_vector_x * robot_vector_y - line_vector_y * robot_vector_x;
+
+	// Adjust the desired angle based on the robot's position relative to the line
+	if (cross_product < 0) {
+		desired_angle -= M_PI; // Add a correction of 180 degrees for left side
+	}
 
     // // Check if the robot is on the line
     // bool on_line = std::abs(dot_product) < 0.1;
@@ -398,11 +409,30 @@ void getFollowPoint(){
     // Convert the range and desired angle back to Cartesian coordinates
     polarToCartesian(follow_point_range, desired_angle, line_followPoint.x, line_followPoint.y);
 
-	line_followPoint.x += follower_odom.xPos + 1.0*cos(coverage_angle);
-	line_followPoint.y += follower_odom.yPos + 1.0*sin(coverage_angle);
+	double distance = 1.0;
+
+	line_followPoint.x += follower_odom.xPos + distance * std::cos(coverage_angle);
+	line_followPoint.y += follower_odom.yPos + distance * std::sin(coverage_angle);
 
     // Calculate the pose of the point the robot should follow
     line_followPoint.theta = desired_angle - follower_odom.angle;
+
+    // // Vetor representando a reta
+    // double line_vector_x = std::cos(coverage_angle);
+    // double line_vector_y = std::sin(coverage_angle);
+
+    // // Vetor do robô para o ponto inicial da reta
+    // double robot_to_line_x = follower_odom.xPos - x_ini;
+    // double robot_to_line_y = follower_odom.yPos - y_ini;
+
+    // // Projeto do vetor do robô na direção da reta
+    // double projection = (robot_to_line_x * line_vector_x) + (robot_to_line_y * line_vector_y);
+
+	// double distance = 1.0;
+
+    // // Coordenadas do ponto mais próximo na reta
+    // line_followPoint.x = follower_odom.xPos + projection * line_vector_x + distance * std::cos(coverage_angle);
+    // line_followPoint.y = follower_odom.yPos + projection * line_vector_y + distance * std::sin(coverage_angle);
 
 }
 
@@ -456,7 +486,7 @@ void robotMovement(const sensor_msgs::LaserScan::ConstPtr& pt)
 		// --> 1st estimate marker/leader pose and velocities (camera simulation without field of vision)
 		getFollowPoint();
 
-		status.header.frame_id = stampname + "(" + to_string(line_followPoint.x).c_str() + "," + to_string(line_followPoint.y).c_str() + ")";
+		status.header.frame_id = stampname + "(" + std::to_string(line_followPoint.x).c_str() + "," + std::to_string(line_followPoint.y).c_str() + ")" + " --> " + std::to_string(follower_odom.angle).c_str();
 
 		target_inli = dist_Euclidian2(line_followPoint.x, line_followPoint.y, follower_odom.xPos, follower_odom.yPos);
 		target_inthetai = -wraptoPI((follower_odom.angle - atan2((line_followPoint.y - follower_odom.yPos), (line_followPoint.x - follower_odom.xPos))));
@@ -626,16 +656,16 @@ int main(int argc, char** argv){
 	pn.getParam("idleaderstamp", IDleaderstamp);
 
 	// formation parameters
-	stampname = "/robot_" + to_string(IDstamp);
-	leaderstampname = "/robot_" + to_string(IDleaderstamp);
+	stampname = "/robot_" + std::to_string(IDstamp);
+	leaderstampname = "/robot_" + std::to_string(IDleaderstamp);
 	lid = 0.1;
 	lambda = 1.0;
 	tau_delta = 2.0;
 	// mu = 1.0;
 	// ingamma = 0.0;
 	// angle_desired = -0.5;
-	cvrep = 1.0;
-	cvatt = 0.3;	
+	cvrep = 0.9;
+	cvatt = 0.5;	
 	curve = 0;
 
 	// set up target and follower classes
@@ -766,16 +796,16 @@ int main(int argc, char** argv){
 		follower_pose_sub = node.subscribe<geometry_msgs::PoseWithCovarianceStamped>(stampname + "/amcl_pose", 1, &odom_followerCallback);		
 
 		// tests if there is a new leader, actualizes the leaderstampname parameter and make the connections with the old leader shutdown; 
-		if (strcmp(leaderstampname.c_str(), ("/robot_" + to_string(IDleaderstamp)).c_str()) != 0){
+		if (strcmp(leaderstampname.c_str(), ("/robot_" + std::to_string(IDleaderstamp)).c_str()) != 0){
 			leader_pose_sub.shutdown();
 			leader_cv_sub.shutdown();
 
-			leaderstampname = "/robot_" + to_string(IDleaderstamp);
+			leaderstampname = "/robot_" + std::to_string(IDleaderstamp);
 		}
 
 		// tests if the robot is a new subteam, actualizes the curr_subteam parameter and make the connections with the old subteam shutdown; 
-		if(strcmp(curr_subteam.c_str(), ("/subteam_" + to_string(teams.team_id[IDstamp])).c_str()) != 0){
-			curr_subteam = "/subteam_" + to_string(teams.team_id[IDstamp]);
+		if(strcmp(curr_subteam.c_str(), ("/subteam_" + std::to_string(teams.team_id[IDstamp])).c_str()) != 0){
+			curr_subteam = "/subteam_" + std::to_string(teams.team_id[IDstamp]);
 			subteam_order_sub.shutdown();
 			subteam_order_pub.shutdown();
 			subteam_parameters_sub.shutdown();
@@ -786,8 +816,8 @@ int main(int argc, char** argv){
 
 
 		// tests if it is leading a new robot, actualizes the leadingstampname parameter and make the connections with the old shutdown; 
-		if(strcmp(leadingstampname.c_str(), ("/robot_" + to_string(status.leading)).c_str()) != 0){
-			leadingstampname = "/robot_" + to_string(status.leading);
+		if(strcmp(leadingstampname.c_str(), ("/robot_" + std::to_string(status.leading)).c_str()) != 0){
+			leadingstampname = "/robot_" + std::to_string(status.leading);
 			follower_status_sub.shutdown();
 		}
 
